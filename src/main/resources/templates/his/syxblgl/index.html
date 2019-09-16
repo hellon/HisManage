@@ -1,0 +1,1097 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0082)http://www.yingyisoft.com:8516/ggws/PhsFoodborneDis/bgk.aspx?dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	食源性疾病病例报告卡
+</title>
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/WdatePicker.js" type="text/javascript">
+    </script><link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/js.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+            $('#dg_lb').addClass('e-table');
+        });
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        //根据食品名称获取食品分类和包装方式
+        function GetTypePackag(obj) {
+            var spmc = document.getElementById('tb_spmc').value;
+            if (spmc == '') {
+                return false;
+            }
+            document.getElementById('btnGetTypePackag').click();
+        }
+    </script>
+    <style type="text/css">
+        .style1
+        {
+            height: 38px;
+        }
+    </style>
+</head>
+<body id="thebody">
+    <form name="Form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsFoodborneDis/bgk.aspx?dlmc=FE30304E96A1DA16" id="Form1" onkeydown="entertotab()" enctype="multipart/form-data">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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AhUPEGRkFgECAWQCFw8QZGQWAWZkAh8PPCsACwEADxYMHwhmHwcWAB8JAgEfCmYeB0NhcHRpb24FOzxmb250IHN0eWxlPSdmb250LXNpemU6IDEycHgnPuesrDHpobUw5p2hIOWFsTHpobUw5p2hPGZvbnQ+HhBDdXJyZW50UGFnZUluZGV4ZmRkAgcPDxYCHwFlZGQCCA8PFgIfAQUBMGRkAgoPDxYCHwEFATJkZAILDw8WAh8BBQ/lhazlhbHljavnlJ/np5FkZAINDw8WAh8BBQMxMjZkZAIODw8WAh8BBQzlhazlhbHljavnlJ9kZAIQDw8WAh8BZWRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxZpBQxjbF9xc3p6aHR6JDAFDGNsX3FzenpodHokMQUMY2xfcXN6emh0eiQyBQxjbF9xc3p6aHR6JDMFDGNsX3FzenpodHokNAUMY2xfcXN6emh0eiQ1BQxjbF9xc3p6aHR6JDYFDGNsX3FzenpodHokNwUMY2xfcXN6emh0eiQ4BQxjbF9xc3p6aHR6JDkFDWNsX3FzenpodHokMTAFDWNsX3FzenpodHokMTEFDWNsX3FzenpodHokMTIFDWNsX3FzenpodHokMTMFDWNsX3FzenpodHokMTQFDWNsX3FzenpodHokMTUFDWNsX3FzenpodHokMTYFDWNsX3FzenpodHokMTcFDWNsX3FzenpodHokMTgFDWNsX3FzenpodHokMTkFDWNsX3FzenpodHokMjAFDWNsX3FzenpodHokMjEFDWNsX3FzenpodHokMjIFDWNsX3FzenpodHokMjIFCWNsX3hoeHQkMAUJY2xfeGh4dCQxBQljbF94aHh0JDIFCWNsX3hoeHQkMwUJY2xfeGh4dCQ0BQljbF94aHh0JDUFCWNsX3hoeHQkNgUJY2xfeGh4dCQ2BQljbF9oeHh0JDAFCWNsX2h4eHQkMQUJY2xfaHh4dCQyBQljbF9oeHh0JDMFCWNsX2h4eHQkMwULY2xfeG54Z3h0JDAFC2NsX3hueGd4dCQxBQtjbF94bnhneHQkMgULY2xfeG54Z3h0JDMFC2NsX3hueGd4dCQ0BQtjbF94bnhneHQkNAUJY2xfbW54dCQwBQljbF9tbnh0JDEFCWNsX21ueHQkMgUJY2xfbW54dCQzBQljbF9tbnh0JDQFCWNsX21ueHQkNAUJY2xfc2p4dCQwBQljbF9zanh0JDEFCWNsX3NqeHQkMgUJY2xfc2p4dCQzBQljbF9zanh0JDQFCWNsX3NqeHQkNQUJY2xfc2p4dCQ2BQljbF9zanh0JDcFCWNsX3NqeHQkOAUJY2xfc2p4dCQ5BQpjbF9zanh0JDEwBQpjbF9zanh0JDExBQpjbF9zanh0JDEyBQpjbF9zanh0JDEzBQpjbF9zanh0JDE0BQpjbF9zanh0JDE1BQpjbF9zanh0JDE2BQpjbF9zanh0JDE3BQpjbF9zanh0JDE4BQpjbF9zanh0JDE4BQxjbF9wZmhweHp6JDAFDGNsX3BmaHB4enokMQUMY2xfcGZocHh6eiQyBQxjbF9wZmhweHp6JDMFDGNsX3BmaHB4enokNAUMY2xfcGZocHh6eiQ1BQxjbF9wZmhweHp6JDUFCWNsX2NiemQkMAUJY2xfY2J6ZCQxBQljbF9jYnpkJDIFCWNsX2NiemQkMwUJY2xfY2J6ZCQ0BQljbF9jYnpkJDUFCWNsX2NiemQkNgUJY2xfY2J6ZCQ3BQljbF9jYnpkJDgFCWNsX2NiemQkOQUJY2xfY2J6ZCQ5BQljbF9qd2JzJDAFCWNsX2p3YnMkMQUJY2xfandicyQyBQljbF9qd2JzJDMFCWNsX2p3YnMkNAUJY2xfandicyQ1BQljbF9qd2JzJDYFCWNsX2p3YnMkNwUJY2xfandicyQ3BQljbF96bHFrJDAFCWNsX3pscWskMQUJY2xfemxxayQyBQljbF96bHFrJDMFCWNsX3pscWskNAUJY2xfemxxayQ0BQ1ja19zZnd5c3N5eGJsBQlja19zZmNqeWIFCWliX3VwZmlsZaBnQrzL2cEhGDZ2UFfN0D02Z5hP54ufJ+AK855Jimsh">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="44F0815E">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 食源性疾病管理</span>
+    </div>
+    <!--r-top end-->
+    <div class="e-page-title">
+        <h2>
+            <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" checked="checked"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_1">审核列表</label></span>
+        </h2>
+    </div>
+    <div id="tab_bgk">
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">基本信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr style="display: none">
+                    <td align="right" width="180">
+                        *<font color="red">病例编号</font>：
+                    </td>
+                    <td>
+                        <input name="txtblbh" type="text" maxlength="15" id="txtblbh" disabled="disabled" class="txt"><font color="red">（上报后系统自动生成）</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="red">就诊类型</font>：
+                    </td>
+                    <td>
+                        <span id="rl_jzlx" style="display:inline-block;border-style:None;"><input id="rl_jzlx_0" type="radio" name="rl_jzlx" value="114"><label for="rl_jzlx_0">门诊病人</label><input id="rl_jzlx_1" type="radio" name="rl_jzlx" value="115"><label for="rl_jzlx_1">住院病人</label></span>
+                        <span id="l_jzlx" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        <font color="red">*是否复诊</font>：
+                    </td>
+                    <td>
+                        <span id="rbl_sffz"><input id="rbl_sffz_0" type="radio" name="rbl_sffz" value="1"><label for="rbl_sffz_0">是</label><input id="rbl_sffz_1" type="radio" name="rbl_sffz" value="0" checked="checked"><label for="rbl_sffz_1">否</label></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp; 是否住院：
+                        <span id="rl_sfzy" style="display:inline-block;border-style:None;"><input id="rl_sfzy_0" type="radio" name="rl_sfzy" value="1"><label for="rl_sfzy_0">是</label><input id="rl_sfzy_1" type="radio" name="rl_sfzy" value="2" checked="checked"><label for="rl_sfzy_1">否</label></span>
+                        <span id="l_sfzy" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        门诊号：
+                    </td>
+                    <td>
+                        <input name="tb_mzh" type="text" maxlength="15" id="tb_mzh" class="txt"><span id="l_mzh" style="color:Red;"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        住院号：
+                        <input name="tb_zyh" type="text" maxlength="10" id="tb_zyh" class="txt"><span id="l_zyh" style="color:Red;"></span>
+                        &nbsp;<span id="lbl_zycs">&nbsp;&nbsp;&nbsp;&nbsp;住院次数:</span><input name="tb_zycs" type="text" maxlength="4" id="tb_zycs" style="width:80px;" class="txt"><span id="l_zycs" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="red">姓名</font>：
+                    </td>
+                    <td>
+                        <input name="tb_xm" type="text" maxlength="10" id="tb_xm" class="txt"><span id="l_xm" style="color:Red;"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        监护人：
+                        <input name="tb_jhr" type="text" maxlength="10" id="tb_jhr" class="txt"><span id="l_jhr" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        身份证号：
+                    </td>
+                    <td>
+                        <input name="tb_sfzh" type="text" maxlength="18" id="tb_sfzh" class="txt">18位<span id="l_sfzh" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="red">出生日期</font>：
+                    </td>
+                    <td>
+                        <input name="tb_csrq_n" type="text" maxlength="4" id="tb_csrq_n" class="txt" style="width: 50px">年
+                        <input name="tb_csrq_y" type="text" maxlength="2" id="tb_csrq_y" class="txt" style="width: 25px">月
+                        <input name="tb_csrq_r" type="text" maxlength="2" id="tb_csrq_r" class="txt" style="width: 25px">日
+                        <span id="l_csrq" style="color:Red;"></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp; *<font color="red">性别</font>：
+                        <span id="rl_xb" style="display:inline-block;border-style:None;"><input id="rl_xb_0" type="radio" name="rl_xb" value="3"><label for="rl_xb_0">男</label><input id="rl_xb_1" type="radio" name="rl_xb" value="4"><label for="rl_xb_1">女</label></span>
+                        <span id="l_xb" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        单位：
+                    </td>
+                    <td>
+                        <input name="tb_dw" type="text" maxlength="50" id="tb_dw" class="txt" style="width: 350px">最长50汉字<span id="l_dw" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="red">联系电话</font>：
+                    </td>
+                    <td>
+                        <input name="tb_lxfs" type="text" maxlength="50" id="tb_lxfs" title="可填写电话号码" class="txt" style="width: 350px"><span id="l_lxfs" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="#ff0000">病人属于</font>：
+                    </td>
+                    <td>
+                        <span id="rl_brsy" style="display:inline-block;border-style:None;"><input id="rl_brsy_0" type="radio" name="rl_brsy" value="5"><label for="rl_brsy_0">本县区</label><input id="rl_brsy_1" type="radio" name="rl_brsy" value="6"><label for="rl_brsy_1">本市其他县区</label><input id="rl_brsy_2" type="radio" name="rl_brsy" value="7"><label for="rl_brsy_2">本省其他市</label><input id="rl_brsy_3" type="radio" name="rl_brsy" value="8"><label for="rl_brsy_3">外省</label><input id="rl_brsy_4" type="radio" name="rl_brsy" value="9"><label for="rl_brsy_4">港澳台</label><input id="rl_brsy_5" type="radio" name="rl_brsy" value="10"><label for="rl_brsy_5">外籍</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right" height="30">
+                        *<font color="#ff0000">现住地址</font>：
+                    </td>
+                    <td>
+                        <select name="dl_xzdz1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_xzdz1\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_xzdz1" style="width:120px;">
+	<option value="00000000">全国</option>
+	<option value="11000000">北京市</option>
+	<option value="12000000">天津市</option>
+	<option value="13000000">河北省</option>
+	<option value="14000000">山西省</option>
+	<option value="15000000">内蒙古</option>
+	<option value="21000000">辽宁省</option>
+	<option value="22000000">吉林省</option>
+	<option value="23000000">黑龙江省</option>
+	<option value="31000000">上海市</option>
+	<option value="32000000">江苏省</option>
+	<option value="33000000">浙江省</option>
+	<option value="34000000">安徽省</option>
+	<option value="35000000">福建省</option>
+	<option value="36000000">江西省</option>
+	<option selected="selected" value="37000000">山东省</option>
+	<option value="41000000">河南省</option>
+	<option value="42000000">湖北省</option>
+	<option value="43000000">湖南省</option>
+	<option value="44000000">广东省</option>
+	<option value="45000000">广西</option>
+	<option value="46000000">海南省</option>
+	<option value="50000000">重庆市</option>
+	<option value="51000000">四川省</option>
+	<option value="52000000">贵州省</option>
+	<option value="53000000">云南省</option>
+	<option value="54000000">西藏</option>
+	<option value="61000000">陕西省</option>
+	<option value="62000000">甘肃省</option>
+	<option value="63000000">青海省</option>
+	<option value="64000000">宁夏</option>
+	<option value="65000000">新疆</option>
+	<option value="66000000">建设兵团</option>
+
+</select>
+                        <select name="dl_xzdz2" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_xzdz2\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_xzdz2" style="width:120px;">
+	<option value="37000000">山东省</option>
+	<option selected="selected" value="37010000">济南市</option>
+	<option value="37020000">青岛市</option>
+	<option value="37030000">淄博市</option>
+	<option value="37040000">枣庄市</option>
+	<option value="37050000">东营市</option>
+	<option value="37060000">烟台市</option>
+	<option value="37070000">潍坊市</option>
+	<option value="37080000">济宁市</option>
+	<option value="37090000">泰安市</option>
+	<option value="37100000">威海市</option>
+	<option value="37110000">日照市</option>
+	<option value="37120000">莱芜市</option>
+	<option value="37130000">临沂市</option>
+	<option value="37140000">德州市</option>
+	<option value="37150000">聊城市</option>
+	<option value="37160000">滨州市</option>
+	<option value="37170000">菏泽市</option>
+	<option value="37990000">不详市</option>
+
+</select>
+                        <select name="dl_xzdz3" id="dl_xzdz3" style="width:120px;">
+	<option value="37010000">济南市</option>
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010300">市中区</option>
+	<option value="37010400">槐荫区</option>
+	<option value="37010500">天桥区</option>
+	<option value="37011200">历城区</option>
+	<option value="37011300">长清区</option>
+	<option value="37012400">平阴县</option>
+	<option value="37012500">济阳县</option>
+	<option value="37012600">商河县</option>
+	<option value="37018100">章丘市</option>
+	<option value="37019900">不详县</option>
+
+</select>
+                        
+                        <input name="tb_xzdzxx" type="text" maxlength="50" id="tb_xzdzxx" class="txt" style="width: 350px">最长50汉字<span id="l_xzdzxx" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="#ff0000">患者职业</font>：
+                    </td>
+                    <td>
+                        <span id="rl_hzzy" style="display:inline-block;border-style:None;"><input id="rl_hzzy_0" type="radio" name="rl_hzzy" value="11"><label for="rl_hzzy_0">散居儿童</label><input id="rl_hzzy_1" type="radio" name="rl_hzzy" value="12"><label for="rl_hzzy_1">托幼儿童</label><input id="rl_hzzy_2" type="radio" name="rl_hzzy" value="13"><label for="rl_hzzy_2">学生</label><input id="rl_hzzy_3" type="radio" name="rl_hzzy" value="14"><label for="rl_hzzy_3">教师</label><input id="rl_hzzy_4" type="radio" name="rl_hzzy" value="15"><label for="rl_hzzy_4">餐饮食品业</label><input id="rl_hzzy_5" type="radio" name="rl_hzzy" value="16"><label for="rl_hzzy_5">商业服务</label><input id="rl_hzzy_6" type="radio" name="rl_hzzy" value="17"><label for="rl_hzzy_6">医务人员</label><input id="rl_hzzy_7" type="radio" name="rl_hzzy" value="18"><label for="rl_hzzy_7">工人</label><input id="rl_hzzy_8" type="radio" name="rl_hzzy" value="19"><label for="rl_hzzy_8">农民</label><br><input id="rl_hzzy_9" type="radio" name="rl_hzzy" value="20"><label for="rl_hzzy_9">民工</label><input id="rl_hzzy_10" type="radio" name="rl_hzzy" value="21"><label for="rl_hzzy_10">牧民</label><input id="rl_hzzy_11" type="radio" name="rl_hzzy" value="188"><label for="rl_hzzy_11">渔民</label><input id="rl_hzzy_12" type="radio" name="rl_hzzy" value="189"><label for="rl_hzzy_12">干部职员</label><input id="rl_hzzy_13" type="radio" name="rl_hzzy" value="190"><label for="rl_hzzy_13">离退人员</label><input id="rl_hzzy_14" type="radio" name="rl_hzzy" value="191"><label for="rl_hzzy_14">家务及待业</label><input id="rl_hzzy_15" type="radio" name="rl_hzzy" value="192"><label for="rl_hzzy_15">其他</label><input id="rl_hzzy_16" type="radio" name="rl_hzzy" value="193"><label for="rl_hzzy_16">不详</label><br></span>
+                        <span id="l_hzzy" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="#ff0000">发病时间</font>：
+                    </td>
+                    <td>
+                        <input name="tb_fbsj_n" type="text" maxlength="4" id="tb_fbsj_n" class="txt" style="width: 50px">年
+                        <input name="tb_fbsj_y" type="text" maxlength="2" id="tb_fbsj_y" class="txt" style="width: 25px">月
+                        <input name="tb_fbsj_r" type="text" maxlength="2" id="tb_fbsj_r" class="txt" style="width: 25px">日
+                        <input name="tb_fbsj_s" type="text" maxlength="2" id="tb_fbsj_s" class="txt" style="width: 25px">时
+                        <input name="tb_fbsj_f" type="text" maxlength="2" id="tb_fbsj_f" class="txt" style="width: 25px">分
+                        <span id="l_fbsj" style="color:Red;"></span>
+                        <input id="i_fbsj" type="text" style="display: none" class="txt">
+                        <img onclick="WdatePicker({el:&#39;i_fbsj&#39;,dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,onpicked:pickedFuncfbsj})" src="../static/images/datePicker.gif" width="16" height="22" align="absmiddle">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        *<font color="#ff0000">就诊时间</font>：
+                    </td>
+                    <td>
+                        <input name="tb_jzsj_n" type="text" maxlength="4" id="tb_jzsj_n" class="txt" style="width: 50px">年
+                        <input name="tb_jzsj_y" type="text" maxlength="2" id="tb_jzsj_y" class="txt" style="width: 25px">月
+                        <input name="tb_jzsj_r" type="text" maxlength="2" id="tb_jzsj_r" class="txt" style="width: 25px">日
+                        <input name="tb_jzsj_s" type="text" maxlength="2" id="tb_jzsj_s" class="txt" style="width: 25px">时
+                        <input name="tb_jzsj_f" type="text" maxlength="2" id="tb_jzsj_f" class="txt" style="width: 25px">分
+                        <span id="l_jzsj" style="color:Red;"></span>
+                        <input id="i_jzsj" type="text" style="display: none" class="txt">
+                        <img onclick="WdatePicker({el:&#39;i_jzsj&#39;,dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,onpicked:pickedFuncjzsj})" src="../static/images/datePicker.gif" width="16" height="22" align="absmiddle">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" height="30">
+                        死亡时间：
+                    </td>
+                    <td>
+                        <input name="tb_swsj_n" type="text" maxlength="4" id="tb_swsj_n" class="txt" style="width: 50px">年
+                        <input name="tb_swsj_y" type="text" maxlength="2" id="tb_swsj_y" class="txt" style="width: 25px">月
+                        <input name="tb_swsj_r" type="text" maxlength="2" id="tb_swsj_r" class="txt" style="width: 25px">日
+                        <input name="tb_swsj_s" type="text" maxlength="2" id="tb_swsj_s" class="txt" style="width: 25px">时
+                        <input name="tb_swsj_f" type="text" maxlength="2" id="tb_swsj_f" class="txt" style="width: 25px">分
+                        
+                        <input id="i_swsj" type="text" style="display: none" class="txt">
+                        <img onclick="WdatePicker({el:&#39;i_swsj&#39;,dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,onpicked:pickedFuncswsj})" src="../static/images/datePicker.gif" width="16" height="22" align="absmiddle">
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">检查信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                
+                <tbody><tr>
+                    <td valign="top" align="right" width="180">
+                        全身症状和体征：
+                    </td>
+                    <td>
+                        <span id="cl_qszzhtz" style="display:inline-block;border-style:None;"><input id="cl_qszzhtz_0" type="checkbox" name="cl_qszzhtz$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_0">发热</label><input id="cl_qszzhtz_1" type="checkbox" name="cl_qszzhtz$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_1">面色潮红</label><input id="cl_qszzhtz_2" type="checkbox" name="cl_qszzhtz$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_2">面色苍白</label><input id="cl_qszzhtz_3" type="checkbox" name="cl_qszzhtz$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_3">发绀</label><input id="cl_qszzhtz_4" type="checkbox" name="cl_qszzhtz$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_4">脱水</label><input id="cl_qszzhtz_5" type="checkbox" name="cl_qszzhtz$5" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_5">口渴</label><input id="cl_qszzhtz_6" type="checkbox" name="cl_qszzhtz$6" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$6\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_6">浮肿</label><input id="cl_qszzhtz_7" type="checkbox" name="cl_qszzhtz$7" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$7\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_7">体重下降</label><input id="cl_qszzhtz_8" type="checkbox" name="cl_qszzhtz$8" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$8\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_8">寒战</label><input id="cl_qszzhtz_9" type="checkbox" name="cl_qszzhtz$9" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$9\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_9">乏力</label><input id="cl_qszzhtz_10" type="checkbox" name="cl_qszzhtz$10" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$10\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_10">贫血</label><input id="cl_qszzhtz_11" type="checkbox" name="cl_qszzhtz$11" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$11\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_11">肿胀</label><input id="cl_qszzhtz_12" type="checkbox" name="cl_qszzhtz$12" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$12\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_12">失眠</label><input id="cl_qszzhtz_13" type="checkbox" name="cl_qszzhtz$13" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$13\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_13">畏光</label><br><input id="cl_qszzhtz_14" type="checkbox" name="cl_qszzhtz$14" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$14\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_14">口有糊味</label><input id="cl_qszzhtz_15" type="checkbox" name="cl_qszzhtz$15" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$15\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_15">金属味</label><input id="cl_qszzhtz_16" type="checkbox" name="cl_qszzhtz$16" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$16\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_16">肥皂/咸味</label><input id="cl_qszzhtz_17" type="checkbox" name="cl_qszzhtz$17" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$17\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_17">唾液过多</label><input id="cl_qszzhtz_18" type="checkbox" name="cl_qszzhtz$18" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$18\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_18">足/腕下垂</label><input id="cl_qszzhtz_19" type="checkbox" name="cl_qszzhtz$19" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$19\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_19">色素沉着</label><input id="cl_qszzhtz_20" type="checkbox" name="cl_qszzhtz$20" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$20\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_20">脱皮</label><input id="cl_qszzhtz_21" type="checkbox" name="cl_qszzhtz$21" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$21\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_21">指甲出现白带</label><input id="cl_qszzhtz_22" type="checkbox" name="cl_qszzhtz$22" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_qszzhtz$22\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_qszzhtz_22">其他</label><br></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        发热：<input name="tb_qszzhtz_fr" type="text" maxlength="10" id="tb_qszzhtz_fr" disabled="disabled" title="数值，支持2位小数，小数位前最多3位" class="txt" style="width: 50px">℃
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        脱水程度：<span id="rl_qszzhtz_tscd" disabled="disabled" style="display:inline-block;border-style:None;"><span disabled="disabled"><input id="rl_qszzhtz_tscd_0" type="radio" name="rl_qszzhtz_tscd" value="116" disabled="disabled"><label for="rl_qszzhtz_tscd_0">轻度</label></span><span disabled="disabled"><input id="rl_qszzhtz_tscd_1" type="radio" name="rl_qszzhtz_tscd" value="117" disabled="disabled"><label for="rl_qszzhtz_tscd_1">中度</label></span><span disabled="disabled"><input id="rl_qszzhtz_tscd_2" type="radio" name="rl_qszzhtz_tscd" value="118" disabled="disabled"><label for="rl_qszzhtz_tscd_2">重度</label></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_qszzhtz_qt" type="text" maxlength="50" id="tb_qszzhtz_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right">
+                        *<font color="#ff0000">消化系统</font>：
+                    </td>
+                    <td>
+                        <span id="cl_xhxt" style="display:inline-block;border-style:None;"><input id="cl_xhxt_0" type="checkbox" name="cl_xhxt$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_0">恶心</label><input id="cl_xhxt_1" type="checkbox" name="cl_xhxt$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_1">呕吐</label><input id="cl_xhxt_2" type="checkbox" name="cl_xhxt$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_2">腹痛</label><input id="cl_xhxt_3" type="checkbox" name="cl_xhxt$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_3">腹泻</label><input id="cl_xhxt_4" type="checkbox" name="cl_xhxt$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_4">便秘</label><input id="cl_xhxt_5" type="checkbox" name="cl_xhxt$5" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_5">里急后重</label><input id="cl_xhxt_6" type="checkbox" name="cl_xhxt$6" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xhxt$6\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xhxt_6">其他</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        呕吐：<input name="tb_xhxt_otcs" type="text" maxlength="3" id="tb_xhxt_otcs" disabled="disabled" title="整数" class="txt" style="width: 50px">次/天
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        腹泻大便性状：<span id="rl_xhxt_fxdbxz" disabled="disabled" style="display:inline-block;border-style:None;"><span disabled="disabled"><input id="rl_xhxt_fxdbxz_0" type="radio" name="rl_xhxt_fxdbxz" value="52" disabled="disabled"><label for="rl_xhxt_fxdbxz_0">水样便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_1" type="radio" name="rl_xhxt_fxdbxz" value="53" disabled="disabled"><label for="rl_xhxt_fxdbxz_1">米泔样便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_2" type="radio" name="rl_xhxt_fxdbxz" value="54" disabled="disabled"><label for="rl_xhxt_fxdbxz_2">粘液便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_3" type="radio" name="rl_xhxt_fxdbxz" value="55" disabled="disabled"><label for="rl_xhxt_fxdbxz_3">脓血便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_4" type="radio" name="rl_xhxt_fxdbxz" value="56" disabled="disabled"><label for="rl_xhxt_fxdbxz_4">洗肉样便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_5" type="radio" name="rl_xhxt_fxdbxz" value="57" disabled="disabled"><label for="rl_xhxt_fxdbxz_5">鲜血样便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_6" type="radio" name="rl_xhxt_fxdbxz" value="58" disabled="disabled"><label for="rl_xhxt_fxdbxz_6">黑便</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_7" type="radio" name="rl_xhxt_fxdbxz" value="59" disabled="disabled"><label for="rl_xhxt_fxdbxz_7">其他</label></span><span disabled="disabled"><input id="rl_xhxt_fxdbxz_8" type="radio" name="rl_xhxt_fxdbxz" value="194" disabled="disabled"><label for="rl_xhxt_fxdbxz_8">稀便</label></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        腹泻：<input name="tb_xhxt_fxcs" type="text" maxlength="3" id="tb_xhxt_fxcs" disabled="disabled" title="整数" class="txt" style="width: 50px">次/天
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_xhxt_qt" type="text" maxlength="50" id="tb_xhxt_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right">
+                        呼吸系统：
+                    </td>
+                    <td>
+                        <span id="cl_hxxt" style="display:inline-block;border-style:None;"><input id="cl_hxxt_0" type="checkbox" name="cl_hxxt$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_hxxt$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_hxxt_0">呼吸短促</label><input id="cl_hxxt_1" type="checkbox" name="cl_hxxt$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_hxxt$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_hxxt_1">咯血</label><input id="cl_hxxt_2" type="checkbox" name="cl_hxxt$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_hxxt$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_hxxt_2">呼吸困难</label><input id="cl_hxxt_3" type="checkbox" name="cl_hxxt$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_hxxt$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_hxxt_3">其他</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_hxxt_qt" type="text" maxlength="50" id="tb_hxxt_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        心脑血管系统：
+                    </td>
+                    <td>
+                        <span id="cl_xnxgxt" style="display:inline-block;border-style:None;"><input id="cl_xnxgxt_0" type="checkbox" name="cl_xnxgxt$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xnxgxt$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xnxgxt_0">胸闷</label><input id="cl_xnxgxt_1" type="checkbox" name="cl_xnxgxt$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xnxgxt$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xnxgxt_1">胸痛</label><input id="cl_xnxgxt_2" type="checkbox" name="cl_xnxgxt$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xnxgxt$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xnxgxt_2">心悸</label><input id="cl_xnxgxt_3" type="checkbox" name="cl_xnxgxt$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xnxgxt$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xnxgxt_3">气短</label><input id="cl_xnxgxt_4" type="checkbox" name="cl_xnxgxt$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_xnxgxt$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_xnxgxt_4">其他</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_xnxgxt_qt" type="text" maxlength="50" id="tb_xnxgxt_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        泌尿系统：
+                    </td>
+                    <td>
+                        <span id="cl_mnxt" style="display:inline-block;border-style:None;"><input id="cl_mnxt_0" type="checkbox" name="cl_mnxt$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_mnxt$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_mnxt_0">尿量减少</label><input id="cl_mnxt_1" type="checkbox" name="cl_mnxt$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_mnxt$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_mnxt_1">背部/肾区疼痛</label><input id="cl_mnxt_2" type="checkbox" name="cl_mnxt$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_mnxt$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_mnxt_2">肾结石</label><input id="cl_mnxt_3" type="checkbox" name="cl_mnxt$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_mnxt$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_mnxt_3">尿中带血</label><input id="cl_mnxt_4" type="checkbox" name="cl_mnxt$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_mnxt$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_mnxt_4">其他</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_mnxt_qt" type="text" maxlength="50" id="tb_mnxt_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right">
+                        神经系统：
+                    </td>
+                    <td>
+                        <span id="cl_sjxt" style="display:inline-block;border-style:None;"><input id="cl_sjxt_0" type="checkbox" name="cl_sjxt$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_0">头痛</label><input id="cl_sjxt_1" type="checkbox" name="cl_sjxt$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_1">昏迷</label><input id="cl_sjxt_2" type="checkbox" name="cl_sjxt$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_2">惊厥</label><input id="cl_sjxt_3" type="checkbox" name="cl_sjxt$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_3">谵妄</label><input id="cl_sjxt_4" type="checkbox" name="cl_sjxt$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_4">瘫痪</label><input id="cl_sjxt_5" type="checkbox" name="cl_sjxt$5" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_5">言语困难</label><input id="cl_sjxt_6" type="checkbox" name="cl_sjxt$6" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$6\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_6">吞咽困难</label><input id="cl_sjxt_7" type="checkbox" name="cl_sjxt$7" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$7\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_7">感觉异常</label><input id="cl_sjxt_8" type="checkbox" name="cl_sjxt$8" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$8\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_8">精神失常</label><input id="cl_sjxt_9" type="checkbox" name="cl_sjxt$9" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$9\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_9">复视</label><input id="cl_sjxt_10" type="checkbox" name="cl_sjxt$10" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$10\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_10">视力模糊</label><input id="cl_sjxt_11" type="checkbox" name="cl_sjxt$11" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$11\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_11">眩晕</label><br><input id="cl_sjxt_12" type="checkbox" name="cl_sjxt$12" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$12\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_12">眼睑下垂</label><input id="cl_sjxt_13" type="checkbox" name="cl_sjxt$13" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$13\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_13">肢体麻木</label><input id="cl_sjxt_14" type="checkbox" name="cl_sjxt$14" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$14\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_14">末梢感觉障碍</label><input id="cl_sjxt_15" type="checkbox" name="cl_sjxt$15" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$15\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_15">瞳孔异常</label><input id="cl_sjxt_16" type="checkbox" name="cl_sjxt$16" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$16\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_16">针刺感</label><input id="cl_sjxt_17" type="checkbox" name="cl_sjxt$17" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$17\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_17">抽搐</label><input id="cl_sjxt_18" type="checkbox" name="cl_sjxt$18" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_sjxt$18\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_sjxt_18">其他</label><br></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        瞳孔异常：<span id="rl_sjxt_tkyc" disabled="disabled" style="display:inline-block;border-style:None;"><span disabled="disabled"><input id="rl_sjxt_tkyc_0" type="radio" name="rl_sjxt_tkyc" value="93" disabled="disabled"><label for="rl_sjxt_tkyc_0">扩大</label></span><span disabled="disabled"><input id="rl_sjxt_tkyc_1" type="radio" name="rl_sjxt_tkyc" value="94" disabled="disabled"><label for="rl_sjxt_tkyc_1">固定</label></span><span disabled="disabled"><input id="rl_sjxt_tkyc_2" type="radio" name="rl_sjxt_tkyc" value="95" disabled="disabled"><label for="rl_sjxt_tkyc_2">收缩</label></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_sjxt_qt" type="text" maxlength="50" id="tb_sjxt_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        皮肤和皮下组织：
+                    </td>
+                    <td>
+                        <span id="cl_pfhpxzz" style="display:inline-block;border-style:None;"><input id="cl_pfhpxzz_0" type="checkbox" name="cl_pfhpxzz$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_0">瘙痒</label><input id="cl_pfhpxzz_1" type="checkbox" name="cl_pfhpxzz$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_1">烧灼感</label><input id="cl_pfhpxzz_2" type="checkbox" name="cl_pfhpxzz$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_2">皮疹</label><input id="cl_pfhpxzz_3" type="checkbox" name="cl_pfhpxzz$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_3">出血点</label><input id="cl_pfhpxzz_4" type="checkbox" name="cl_pfhpxzz$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_4">黄疸</label><input id="cl_pfhpxzz_5" type="checkbox" name="cl_pfhpxzz$5" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_pfhpxzz$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_pfhpxzz_5">其他</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        其他：<input name="tb_pfhpxzz_qt" type="text" maxlength="50" id="tb_pfhpxzz_qt" disabled="disabled" class="txt" style="width: 350px">(最长50汉字)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="style1">
+                        *<font color="red">初步诊断</font>：
+                    </td>
+                    <td class="style1">
+                        <span id="cl_cbzd" style="display:inline-block;border-style:None;"><input id="cl_cbzd_0" type="checkbox" name="cl_cbzd$0"><label for="cl_cbzd_0">急性胃肠炎</label><input id="cl_cbzd_1" type="checkbox" name="cl_cbzd$1"><label for="cl_cbzd_1">感染性腹泻</label><input id="cl_cbzd_2" type="checkbox" name="cl_cbzd$2"><label for="cl_cbzd_2">毒蘑菇中毒</label><input id="cl_cbzd_3" type="checkbox" name="cl_cbzd$3"><label for="cl_cbzd_3">菜豆中毒</label><input id="cl_cbzd_4" type="checkbox" name="cl_cbzd$4"><label for="cl_cbzd_4">河豚中毒</label><input id="cl_cbzd_5" type="checkbox" name="cl_cbzd$5"><label for="cl_cbzd_5">肉毒中毒</label><input id="cl_cbzd_6" type="checkbox" name="cl_cbzd$6"><label for="cl_cbzd_6">横纹肌溶解综合征 </label><input id="cl_cbzd_7" type="checkbox" name="cl_cbzd$7"><label for="cl_cbzd_7">亚硝酸盐中毒</label><input id="cl_cbzd_8" type="checkbox" name="cl_cbzd$8"><label for="cl_cbzd_8">贝类毒素中毒</label><input id="cl_cbzd_9" type="checkbox" name="cl_cbzd$9"><label for="cl_cbzd_9">其他</label></span>
+                        <input name="tb_cbzd" type="text" id="tb_cbzd" class="txt">
+                    </td>
+                </tr>
+                <tr class="style1">
+                    <td align="right">
+                        *<font color="red">既往病史</font>：
+                    </td>
+                    <td>
+                        <span id="cl_jwbs" style="display:inline-block;border-style:None;"><input id="cl_jwbs_0" type="checkbox" name="cl_jwbs$0"><label for="cl_jwbs_0">无 </label><input id="cl_jwbs_1" type="checkbox" name="cl_jwbs$1"><label for="cl_jwbs_1">一般消化道炎症 </label><input id="cl_jwbs_2" type="checkbox" name="cl_jwbs$2"><label for="cl_jwbs_2">克罗恩病 </label><input id="cl_jwbs_3" type="checkbox" name="cl_jwbs$3"><label for="cl_jwbs_3">消化道溃疡 </label><input id="cl_jwbs_4" type="checkbox" name="cl_jwbs$4"><label for="cl_jwbs_4">消化道肿瘤 </label><input id="cl_jwbs_5" type="checkbox" name="cl_jwbs$5"><label for="cl_jwbs_5">肠易激综合征 </label><input id="cl_jwbs_6" type="checkbox" name="cl_jwbs$6"><label for="cl_jwbs_6">脑膜炎、脑肿瘤等 </label><input id="cl_jwbs_7" type="checkbox" name="cl_jwbs$7"><label for="cl_jwbs_7">其他</label></span>
+                        <input name="tb_jwbs" type="text" id="tb_jwbs" class="txt">
+                    </td>
+                </tr>
+                <tr class="style1">
+                    <td align="right">
+                        *<font color="red">就诊前是否使用抗生素</font>：
+                    </td>
+                    <td>
+                        <span id="rab_sfsykss" style="display:inline-block;border-style:None;"><input id="rab_sfsykss_0" type="radio" name="rab_sfsykss" value="1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rab_sfsykss$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rab_sfsykss_0">是</label><input id="rab_sfsykss_1" type="radio" name="rab_sfsykss" value="0" checked="checked"><label for="rab_sfsykss_1">否</label></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr class="style1" style="display: none">
+                    <td align="right">
+                        <font color="red"></font>治疗情况：
+                    </td>
+                    <td>
+                        <span id="cl_zlqk" style="display:inline-block;border-style:None;"><input id="cl_zlqk_0" type="checkbox" name="cl_zlqk$0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_zlqk$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_zlqk_0">ORT</label><input id="cl_zlqk_1" type="checkbox" name="cl_zlqk$1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_zlqk$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_zlqk_1">ORS</label><input id="cl_zlqk_2" type="checkbox" name="cl_zlqk$2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_zlqk$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_zlqk_2">静脉补液</label><input id="cl_zlqk_3" type="checkbox" name="cl_zlqk$3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_zlqk$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_zlqk_3">抗生素</label><input id="cl_zlqk_4" type="checkbox" name="cl_zlqk$4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;cl_zlqk$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="cl_zlqk_4">中医中药</label></span>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">暴露信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr>
+                    <td colspan="2">
+                        <label for="ck_sfwyssyxbl">是否为疑似食源性病例</label><input id="ck_sfwyssyxbl" type="checkbox" name="ck_sfwyssyxbl" checked="checked" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ck_sfwyssyxbl\&#39;,\&#39;\&#39;)&#39;, 0)">
+                    </td>
+                </tr>
+                <tr id="tr_blxx">
+	<td colspan="2" style="text-align: center">
+                        <table class="e-table" cellspacing="0" cellpadding="0" rules="all" border="1" id="dg_blxx" style="border-color:#9DB2DF;width:100%;border-collapse:collapse;">
+		<tbody><tr class="th" align="center" style="height:30px;">
+			<td>食品信息</td><td>进食场所</td><td>进食时间</td><td style="width:50px;">进食人数</td><td style="width:50px;">查看</td><td style="width:50px;">删除</td>
+		</tr>
+	</tbody></table>
+                        <table border="0" cellspacing="0" cellpadding="2">
+                            <tbody><tr>
+                                <td width="110" nowrap="" align="right">
+                                    *<font color="red">食品名称</font>：
+                                </td>
+                                <td align="left">
+                                    <input name="tb_spmc" type="text" maxlength="20" id="tb_spmc" class="txt" onblur="return GetTypePackag(this)">最长20汉字
+                                    <input type="submit" name="btnGetTypePackag" value="" id="btnGetTypePackag" style="display: none">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="110" align="right">
+                                    *<font color="red">食品分类</font>：
+                                </td>
+                                <td align="left">
+                                    <select name="ddl_FoodType" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_FoodType\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_FoodType">
+		<option selected="selected" value="">请选择...</option>
+		<option value="124">肉与肉制品</option>
+		<option value="125">蔬菜类及其制品</option>
+		<option value="126">水果类及其制品（包括果脯和蜜饯）</option>
+		<option value="127">水产动物及其制品</option>
+		<option value="128">婴幼儿食品</option>
+		<option value="129">乳与乳制品</option>
+		<option value="130">蛋与蛋制品</option>
+		<option value="131">饮料与冷冻饮品类</option>
+		<option value="132">包装饮用水（含桶装水）</option>
+		<option value="133">粮食类及其制品（含淀粉糖类、焙烤类及各类主食）</option>
+		<option value="134">豆及豆制品</option>
+		<option value="135">坚果籽类及其制品</option>
+		<option value="136">菌类及其制品</option>
+		<option value="137">酒类及其制品</option>
+		<option value="138">糖果、巧克力、蜂蜜及其制品</option>
+		<option value="139">藻类及其制品</option>
+		<option value="140">油脂类</option>
+		<option value="141">调味品</option>
+		<option value="142">其他食品</option>
+		<option value="143">多种食品</option>
+		<option value="144">混合食品</option>
+		<option value="145">不明食品</option>
+		<option value="201">保健品</option>
+
+	</select>
+                                    <font color="red">
+                                        </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="110" align="right">
+                                    *<font color="red">加工或包装方式</font>：
+                                </td>
+                                <td align="left">
+                                    <select name="ddl_ProcessOrPackag" id="ddl_ProcessOrPackag">
+		<option value="">请选择...</option>
+		<option value="146">餐饮服务业</option>
+		<option value="147">家庭自制</option>
+		<option value="148">定型包装</option>
+		<option value="149">散装（包括简易包装）</option>
+		<option value="150">其他</option>
+
+	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    食品品牌：
+                                </td>
+                                <td align="left">
+                                    <input name="tb_sppp" type="text" maxlength="20" id="tb_sppp" class="txt">最长20汉字
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    生产厂家：
+                                </td>
+                                <td align="left">
+                                    <input name="tb_sccj" type="text" maxlength="50" id="tb_sccj" class="txt" style="width: 350px">最长50汉字
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="110" align="right">
+                                    *<font color="red">进食场所类型</font>：
+                                </td>
+                                <td align="left">
+                                    <select name="ddl_FeedType1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_FeedType1\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_FeedType1">
+		<option selected="selected" value="">请选择...</option>
+		<option value="151">家庭</option>
+		<option value="152">餐饮服务业</option>
+		<option value="153">集体食堂</option>
+		<option value="154">零售市场</option>
+		<option value="155">农村宴席</option>
+		<option value="156">其他</option>
+
+	</select>
+                                    <select name="ddl_FeedType2" id="ddl_FeedType2">
+
+	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="110" nowrap="" align="right">
+                                    *<font color="red">购买场所类型</font>：
+                                </td>
+                                <td align="left">
+                                    <select name="ddl_GmType1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_GmType1\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_GmType1">
+		<option selected="selected" value="">请选择...</option>
+		<option value="152">餐饮服务业</option>
+		<option value="153">集体食堂</option>
+		<option value="154">零售市场</option>
+		<option value="156">其他</option>
+
+	</select>
+                                    <select name="ddl_GmType2" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_GmType2\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_GmType2">
+
+	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    *<font color="red">购买地点</font>：
+                                </td>
+                                <td align="left">
+                                    <span id="rblBuyDomestic" style="display:inline-block;border-style:None;"><input id="rblBuyDomestic_0" type="radio" name="rblBuyDomestic" value="197" checked="checked"><label for="rblBuyDomestic_0">境内</label><input id="rblBuyDomestic_1" type="radio" name="rblBuyDomestic" value="198" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rblBuyDomestic$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rblBuyDomestic_1">境外</label></span>
+                                    <select name="dl_gmdd1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_gmdd1\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_gmdd1" style="width:120px;">
+		<option value="00000000">全国</option>
+		<option value="11000000">北京市</option>
+		<option value="12000000">天津市</option>
+		<option value="13000000">河北省</option>
+		<option value="14000000">山西省</option>
+		<option value="15000000">内蒙古</option>
+		<option value="21000000">辽宁省</option>
+		<option value="22000000">吉林省</option>
+		<option value="23000000">黑龙江省</option>
+		<option value="31000000">上海市</option>
+		<option value="32000000">江苏省</option>
+		<option value="33000000">浙江省</option>
+		<option value="34000000">安徽省</option>
+		<option value="35000000">福建省</option>
+		<option value="36000000">江西省</option>
+		<option selected="selected" value="37000000">山东省</option>
+		<option value="41000000">河南省</option>
+		<option value="42000000">湖北省</option>
+		<option value="43000000">湖南省</option>
+		<option value="44000000">广东省</option>
+		<option value="45000000">广西</option>
+		<option value="46000000">海南省</option>
+		<option value="50000000">重庆市</option>
+		<option value="51000000">四川省</option>
+		<option value="52000000">贵州省</option>
+		<option value="53000000">云南省</option>
+		<option value="54000000">西藏</option>
+		<option value="61000000">陕西省</option>
+		<option value="62000000">甘肃省</option>
+		<option value="63000000">青海省</option>
+		<option value="64000000">宁夏</option>
+		<option value="65000000">新疆</option>
+		<option value="66000000">建设兵团</option>
+
+	</select>
+                                    <select name="dl_gmdd2" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_gmdd2\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_gmdd2" style="width:120px;">
+		<option value="37000000">山东省</option>
+		<option selected="selected" value="37010000">济南市</option>
+		<option value="37020000">青岛市</option>
+		<option value="37030000">淄博市</option>
+		<option value="37040000">枣庄市</option>
+		<option value="37050000">东营市</option>
+		<option value="37060000">烟台市</option>
+		<option value="37070000">潍坊市</option>
+		<option value="37080000">济宁市</option>
+		<option value="37090000">泰安市</option>
+		<option value="37100000">威海市</option>
+		<option value="37110000">日照市</option>
+		<option value="37120000">莱芜市</option>
+		<option value="37130000">临沂市</option>
+		<option value="37140000">德州市</option>
+		<option value="37150000">聊城市</option>
+		<option value="37160000">滨州市</option>
+		<option value="37170000">菏泽市</option>
+		<option value="37990000">不详市</option>
+
+	</select>
+                                    <select name="dl_gmdd3" id="dl_gmdd3" style="width:120px;">
+		<option value="37010000">济南市</option>
+		<option selected="selected" value="37010200">历下区</option>
+		<option value="37010300">市中区</option>
+		<option value="37010400">槐荫区</option>
+		<option value="37010500">天桥区</option>
+		<option value="37011200">历城区</option>
+		<option value="37011300">长清区</option>
+		<option value="37012400">平阴县</option>
+		<option value="37012500">济阳县</option>
+		<option value="37012600">商河县</option>
+		<option value="37018100">章丘市</option>
+		<option value="37019900">不详县</option>
+
+	</select>
+                                    
+                                    <input name="tb_gmddxx" type="text" maxlength="50" id="tb_gmddxx" class="txt" style="width: 350px">最长50汉字
+                                </td>
+                            </tr>
+                            <tr style="display: none">
+                                <td align="right">
+                                    *<font color="red">购买地点详细</font>：
+                                </td>
+                                <td align="left">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    *<font color="red">进食场所</font>：
+                                </td>
+                                <td align="left">
+                                    <span id="rblEatDomestic" style="display:inline-block;border-style:None;"><input id="rblEatDomestic_0" type="radio" name="rblEatDomestic" value="197" checked="checked"><label for="rblEatDomestic_0">境内</label><input id="rblEatDomestic_1" type="radio" name="rblEatDomestic" value="198" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rblEatDomestic$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rblEatDomestic_1">境外</label></span>
+                                    <select name="dl_jscs1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_jscs1\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_jscs1" style="width:120px;">
+		<option value="00000000">全国</option>
+		<option value="11000000">北京市</option>
+		<option value="12000000">天津市</option>
+		<option value="13000000">河北省</option>
+		<option value="14000000">山西省</option>
+		<option value="15000000">内蒙古</option>
+		<option value="21000000">辽宁省</option>
+		<option value="22000000">吉林省</option>
+		<option value="23000000">黑龙江省</option>
+		<option value="31000000">上海市</option>
+		<option value="32000000">江苏省</option>
+		<option value="33000000">浙江省</option>
+		<option value="34000000">安徽省</option>
+		<option value="35000000">福建省</option>
+		<option value="36000000">江西省</option>
+		<option selected="selected" value="37000000">山东省</option>
+		<option value="41000000">河南省</option>
+		<option value="42000000">湖北省</option>
+		<option value="43000000">湖南省</option>
+		<option value="44000000">广东省</option>
+		<option value="45000000">广西</option>
+		<option value="46000000">海南省</option>
+		<option value="50000000">重庆市</option>
+		<option value="51000000">四川省</option>
+		<option value="52000000">贵州省</option>
+		<option value="53000000">云南省</option>
+		<option value="54000000">西藏</option>
+		<option value="61000000">陕西省</option>
+		<option value="62000000">甘肃省</option>
+		<option value="63000000">青海省</option>
+		<option value="64000000">宁夏</option>
+		<option value="65000000">新疆</option>
+		<option value="66000000">建设兵团</option>
+
+	</select>
+                                    <select name="dl_jscs2" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_jscs2\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_jscs2" style="width:120px;">
+		<option value="37000000">山东省</option>
+		<option selected="selected" value="37010000">济南市</option>
+		<option value="37020000">青岛市</option>
+		<option value="37030000">淄博市</option>
+		<option value="37040000">枣庄市</option>
+		<option value="37050000">东营市</option>
+		<option value="37060000">烟台市</option>
+		<option value="37070000">潍坊市</option>
+		<option value="37080000">济宁市</option>
+		<option value="37090000">泰安市</option>
+		<option value="37100000">威海市</option>
+		<option value="37110000">日照市</option>
+		<option value="37120000">莱芜市</option>
+		<option value="37130000">临沂市</option>
+		<option value="37140000">德州市</option>
+		<option value="37150000">聊城市</option>
+		<option value="37160000">滨州市</option>
+		<option value="37170000">菏泽市</option>
+		<option value="37990000">不详市</option>
+
+	</select>
+                                    <select name="dl_jscs3" id="dl_jscs3" style="width:120px;">
+		<option value="37010000">济南市</option>
+		<option selected="selected" value="37010200">历下区</option>
+		<option value="37010300">市中区</option>
+		<option value="37010400">槐荫区</option>
+		<option value="37010500">天桥区</option>
+		<option value="37011200">历城区</option>
+		<option value="37011300">长清区</option>
+		<option value="37012400">平阴县</option>
+		<option value="37012500">济阳县</option>
+		<option value="37012600">商河县</option>
+		<option value="37018100">章丘市</option>
+		<option value="37019900">不详县</option>
+
+	</select>
+                                    
+                                    <input name="tb_jscsxx" type="text" maxlength="50" id="tb_jscsxx" class="txt" style="width: 350px">最长50汉字
+                                </td>
+                            </tr>
+                            <tr style="display: none">
+                                <td align="right">
+                                    *<font color="red">进食场所详细</font>：
+                                </td>
+                                <td align="left">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    *<font color="red">进食时间</font>：
+                                </td>
+                                <td align="left">
+                                    <input name="tb_jssj_n" type="text" maxlength="4" id="tb_jssj_n" class="txt" style="width: 50px">年
+                                    <input name="tb_jssj_y" type="text" maxlength="2" id="tb_jssj_y" class="txt" style="width: 25px">月
+                                    <input name="tb_jssj_r" type="text" maxlength="2" id="tb_jssj_r" class="txt" style="width: 25px">日
+                                    <input name="tb_jssj_s" type="text" maxlength="2" id="tb_jssj_s" class="txt" style="width: 25px">时
+                                    <input name="tb_jssj_f" type="text" maxlength="2" id="tb_jssj_f" class="txt" style="width: 25px">分
+                                    
+                                    <input id="i_jssj" type="text" style="display: none" class="txt">
+                                    <img onclick="WdatePicker({el:&#39;i_jssj&#39;,dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,onpicked:pickedFunc})" src="../static/images/datePicker.gif" width="16" height="22" align="absmiddle">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    *<font color="red">进食人数</font>：
+                                </td>
+                                <td align="left">
+                                    <input name="tb_jsrs" type="text" maxlength="3" id="tb_jsrs" class="txt" style="width: 50px">整数
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    *<font color="red">其他人是否发病</font>：
+                                </td>
+                                <td align="left">
+                                    <span id="rl_qtrsffb" style="display:inline-block;border-style:None;"><input id="rl_qtrsffb_0" type="radio" name="rl_qtrsffb" value="102"><label for="rl_qtrsffb_0">否</label><input id="rl_qtrsffb_1" type="radio" name="rl_qtrsffb" value="103"><label for="rl_qtrsffb_1">是</label><input id="rl_qtrsffb_2" type="radio" name="rl_qtrsffb" value="199"><label for="rl_qtrsffb_2">未知</label></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    是否采样：
+                                </td>
+                                <td align="left">
+                                    <span id="rl_sfcy" style="display:inline-block;border-style:None;"><input id="rl_sfcy_0" type="radio" name="rl_sfcy" value="104" checked="checked"><label for="rl_sfcy_0">否</label><input id="rl_sfcy_1" type="radio" name="rl_sfcy" value="105"><label for="rl_sfcy_1">是</label></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    
+                                </td>
+                                <td align="left">
+                                    <input type="submit" name="ib_zjblxx" value="增加" id="ib_zjblxx" class="xk-but1">
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+</tr>
+
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">样本信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr>
+                    <td colspan="2">
+                        <label for="ck_sfcjyb">是否采集样本</label><input id="ck_sfcjyb" type="checkbox" name="ck_sfcjyb" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ck_sfcjyb\&#39;,\&#39;\&#39;)&#39;, 0)">
+                    </td>
+                </tr>
+                
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">填报信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr>
+                    <td align="right" width="180">
+                        *<font color="red">医疗机构名称</font>：
+                    </td>
+                    <td>
+                        <span id="rl_bgdw" style="display:inline-block;border-style:None;"><input id="rl_bgdw_0" type="radio" name="rl_bgdw" value="0" checked="checked"><label for="rl_bgdw_0">某医院</label></span>
+                        <span id="l_bgdw" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="red">科室</font>：
+                    </td>
+                    <td>
+                        <select name="dl_bgks" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_bgks\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_bgks">
+	<option value="11">B超室</option>
+	<option value="12">CT室</option>
+	<option value="13">ICU</option>
+	<option value="14">ICU病房</option>
+	<option value="15">病理科</option>
+	<option value="16">查体中心</option>
+	<option value="17">放射科</option>
+	<option value="18">妇科</option>
+	<option value="19">肝病科</option>
+	<option value="20">肛肠二科</option>
+	<option value="21">肛肠二科病房</option>
+	<option value="22">肛肠一科</option>
+	<option value="23">肛肠一科病房</option>
+	<option value="4">公卫科</option>
+	<option value="24">骨二科</option>
+	<option value="25">骨伤二科病房</option>
+	<option value="26">骨伤一科病房</option>
+	<option value="27">骨一科</option>
+	<option value="28">急诊科</option>
+	<option value="29">急诊科病房</option>
+	<option value="30">检验科</option>
+	<option value="31">康复二科</option>
+	<option value="32">麻醉疼痛科</option>
+	<option value="33">内二科</option>
+	<option value="34">内二科病房</option>
+	<option value="35">内窥镜室</option>
+	<option value="36">内三科</option>
+	<option value="37">内三科病房</option>
+	<option value="38">内一科</option>
+	<option value="39">内一科病房</option>
+	<option value="40">脑电图</option>
+	<option value="41">皮肤科</option>
+	<option value="42">肾内科</option>
+	<option value="43">肾内科病房</option>
+	<option value="44">手术室</option>
+	<option value="45">输血科</option>
+	<option value="46">外二科</option>
+	<option value="47">外二科病房</option>
+	<option value="48">外院</option>
+	<option value="49">西药房</option>
+	<option value="50">心电图室</option>
+	<option value="51">眼科</option>
+	<option value="52">眼科病房</option>
+	<option value="53">医务科</option>
+	<option value="54">站东门诊部</option>
+	<option value="55">针灸推拿科</option>
+	<option value="56">针灸推拿科病房</option>
+	<option value="57">中药房</option>
+	<option value="58">中医保健中心</option>
+	<option value="59">中医门诊</option>
+	<option value="60">肿瘤二科病房</option>
+	<option value="61">肿瘤科</option>
+	<option value="62">肿瘤一科病房</option>
+	<option value="63">自助机</option>
+	<option selected="selected" value="2">公共卫生科</option>
+
+</select>
+                        <span id="l_ksbm" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td align="right">
+                        *<font color="red">科室卡片编号</font>：
+                    </td>
+                    <td>
+                        <input name="tb_kskpbh" type="text" value="2019-12-0001" maxlength="20" id="tb_kskpbh" disabled="disabled" title="规则＝4位年份-科室编码-4位卡片编号" class="txt">（该部分由系统产生，用于查询）
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="red">填表人</font>：
+                    </td>
+                    <td>
+                        <input name="tb_tbr" type="text" value="公共卫生" maxlength="10" id="tb_tbr" disabled="disabled" class="txt">最长10汉字
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="red">填写时间</font>：
+                    </td>
+                    <td>
+                        <input name="tb_zjsj_n" type="text" maxlength="4" id="tb_zjsj_n" class="txt" style="width: 50px">年
+                        <input name="tb_zjsj_y" type="text" maxlength="2" id="tb_zjsj_y" class="txt" style="width: 25px">月
+                        <input name="tb_zjsj_r" type="text" maxlength="2" id="tb_zjsj_r" class="txt" style="width: 25px">日
+                        <input name="tb_zjsj_s" type="text" maxlength="2" id="tb_zjsj_s" class="txt" style="width: 25px">时
+                        <input name="tb_zjsj_f" type="text" maxlength="2" id="tb_zjsj_f" class="txt" style="width: 25px">分（系统）
+                        
+                    </td>
+                </tr>
+                <tr style="height: 24px">
+                    <td align="right">
+                        病例附件：
+                    </td>
+                    <td align="left">
+                        <table border="0" cellspacing="0" cellpadding="2">
+                            <tbody><tr>
+                                <td>
+                                    <input name="file" type="file" id="file" style="height: 19px">
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <input type="image" name="ib_upfile" id="ib_upfile" src="../static/images/upfile.gif" alt="上传" style="border-width:0px;">&nbsp;&nbsp;<a id="HyperLink1"></a>
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        报卡错误：
+                    </td>
+                    <td>
+                        <input name="tb_cwnr" type="text" id="tb_cwnr" style="width:350px;" class="txt">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="#ff0000">报告卡状态</font>：
+                    </td>
+                    <td>
+                        <select name="dl_zt" id="dl_zt" disabled="disabled">
+	<option selected="selected" value="0">正常</option>
+	<option value="1">重卡</option>
+	<option value="2">废卡</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="#ff0000">报告卡审核</font>：
+                    </td>
+                    <td>
+                        <select name="dl_sh" id="dl_sh" disabled="disabled">
+	<option selected="selected" value="0">否</option>
+	<option value="1">是</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" valign="bottom" colspan="2" align="left" style="border-top: #66c9f3 1px solid">
+                        <table>
+                            <tbody><tr>
+                                <td width="80">
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <input type="submit" name="ib_add" value="保存" id="ib_add" class="xk-but1">
+                                    &nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    <input type="submit" name="ib_lb" value="列表" id="ib_lb" class="xk-but1">&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    &nbsp;&nbsp;
+                                </td>
+
+                                 <td>
+                                    &nbsp;&nbsp;
+                                </td>
+
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+    </div>
+    
+    
+    
+    
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

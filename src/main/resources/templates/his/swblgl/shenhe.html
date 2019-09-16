@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0104)http://www.yingyisoft.com:8516/ggws/PhsDeathCases/swblbgk.aspx?qx=8294361849FEFE34&dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	死亡病例报告卡
+</title>
+    <script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+            $('#dg_lb').addClass('e-table');
+            rbl_swssfcyrsq();
+            $('input[name="rbl_xb"]').change(function () {
+                rbl_swssfcyrsq();
+            });
+            $('#tb_zjhm').blur(function () {
+                var sfzh = $(this).val();
+                var swrq = $('#tb_swrq').val();
+                GetAge(4, sfzh, swrq);
+            });
+            $('#tb_swrq').blur(function () {
+                var sfzh = $('#tb_zjhm').val();
+                var swrq = $(this).val();
+                GetAge(4, sfzh, swrq);
+            });
+        });
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function GetAge(sflxid, sfzh, swrq) {
+            var year, month, day, sex;
+            var birthDate, age, sexId, ageId, sexId;
+
+            if (sflxid == 4) {
+                if (sfzh.length != 18 && sfzh.length != 15) {
+                    return;
+                }
+                if (sfzh.length == 18) {
+                    year = sfzh.substr(6, 4);
+                    month = sfzh.substr(10, 2);
+                    day = sfzh.substr(12, 2);
+                    sex = sfzh.substr(14, 3);
+                }
+                if (sfzh.length == 15) {
+                    year = '19' + sfzh.substr(6, 2);
+                    month = sfzh.substr(8, 2);
+                    day = sfzh.substr(10, 2);
+                    sex = sfzh.substr(12, 3);
+                }
+                birthDate = year + '-' + month + '-' + day;
+                sexId = sex % 2 == 0 ? 1 : 0;
+                $('#tb_csrq').val(birthDate);
+                $('input[name="rbl_xb"]').get(sexId).checked = true;
+                $('input[name="rbl_xb"]').change();
+
+                if (swrq == '') {
+                    var now = new Date();
+
+                    //                    age = (now.getFullYear() - year) != 0 ? (now.getFullYear() - year) : (((now.getMonth() + 1 - month) != 0 ? (now.getMonth() + 1 - month) : (now.getDate() - day)));
+
+                    var birthYear = year;
+                    var birthMonth = month;
+                    var birthDay = day;
+
+                    var deathYear = now.getFullYear();
+                    var deathMonth = now.getMonth() + 1;
+                    var deathDay = now.getDate();
+
+                    if (deathYear == birthYear) {
+                        age = 0; //同年 则为0岁
+                    }
+                    else {
+                        var ageDiff = deathYear - birthYear; //年之差
+                        if (ageDiff > 0) {
+                            if (deathMonth == birthMonth) {
+                                var dayDiff = deathDay - birthDay; //日之差
+                                if (dayDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                            else {
+                                var monthDiff = deathMonth - birthMonth; //月之差
+                                if (monthDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                        }
+                        else {
+                            age = -1; //返回-1 表示出生日期输入错误 晚于今天
+                            alert('出生日期大于死亡日期！');
+                        }
+                    }
+                    var months = (deathYear - birthYear) * 12 + (deathMonth - birthMonth) + 1 - 1;
+                    var days = parseInt(Math.abs((Date.parse(birthMonth + '/' + birthDay + '/' + birthYear) - Date.parse(deathMonth + '/' + deathDay + '/' + deathYear)) / 1000 / 60 / 60 / 24)) + 1;
+                    if (age > 0) {//若大于一周岁按岁算
+                        ageId = 0;
+                    } else if (months < 1) {//若小于12月按天算
+                        age = days;
+                        ageId = 2; //单位为天
+                    } else if (age < 1) {//若小于一周岁按月算
+                        age = months
+                        ageId = 1; //单位为月
+                    }
+                    //                    ageId = (now.getFullYear() - year) != 0 ? 0 : ((now.getMonth() + 1 - month) != 0 ? 1 : 2);
+                } else {
+                    var b = new Date(birthDate.replace("-", "/").replace("-", "/"));
+                    swrq = new Date(swrq.replace("-", "/").replace("-", "/"));
+
+                    if (swrq < b) {
+                        alert('出生日期大于死亡日期！');
+                        return;
+                    }
+                    //                    age = (swrq.getFullYear() - year) != 0 ? (swrq.getFullYear() - year) : (((swrq.getMonth() + 1 - month) != 0 ? (swrq.getMonth() + 1 - month) : (swrq.getDate() - day)));
+                    var birthYear = year;
+                    var birthMonth = month;
+                    var birthDay = day;
+
+                    var deathYear = swrq.getFullYear();
+                    var deathMonth = swrq.getMonth() + 1;
+                    var deathDay = swrq.getDate();
+
+                    if (deathYear == birthYear) {
+                        age = 0; //同年 则为0岁
+                    }
+                    else {
+                        var ageDiff = deathYear - birthYear; //年之差
+                        if (ageDiff > 0) {
+                            if (deathMonth == birthMonth) {
+                                var dayDiff = deathDay - birthDay; //日之差
+                                if (dayDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                            else {
+                                var monthDiff = deathMonth - birthMonth; //月之差
+                                if (monthDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                        }
+                        else {
+                            age = -1; //返回-1 表示出生日期输入错误 晚于今天
+                            alert('出生日期大于死亡日期！');
+                        }
+                    }
+
+                    var months = (deathYear - birthYear) * 12 + (deathMonth - birthMonth) + 1 - 1;
+                    var days = parseInt(Math.abs((Date.parse(birthMonth + '/' + birthDay + '/' + birthYear) - Date.parse(deathMonth + '/' + deathDay + '/' + deathYear)) / 1000 / 60 / 60 / 24)) + 1;
+                    if (age > 0) {//若大于一周岁按岁算
+                        ageId = 0;
+                    } else if (months < 1) {//若小于12月按天算
+                        ageId = 2; //单位为天
+                        age = days;
+                    } else if (age < 1) {//若小于一周岁按月算
+                        ageId = 1; //单位为月
+                        age = months;
+                    }
+
+                    //                    ageId = (swrq.getFullYear() - year) != 0 ? 0 : ((swrq.getMonth() + 1 - month) != 0 ? 1 : 2);
+                }
+                $('#tb_nl').val(age);
+                $('input[name="rbl_nldw"]').get(ageId).checked = true;
+            }
+        }
+        function rbl_swssfcyrsq() {
+            var flag = $('input[name="rbl_xb"]').get(1).checked;
+            if (flag) {
+                $('input[name="rbl_swssfcyrsq"]').each(function (index, domEle) {
+                    $(this).removeAttr('disabled');
+                    if (index == 0) {
+                        this.checked = true;
+                    }
+                });
+            } else {
+            $('input[name="rbl_swssfcyrsq"]').each(function () {
+                $(this).removeAttr('checked');
+                $(this).attr('disabled', 'disabled');
+            });
+            }
+    }
+    function CheckDateTime(str) {
+        var reg = /^(\d{4})-(\d{2})-(\d{2})$/;
+        var str = mystring;
+        var arr = reg.exec(str);
+        if (str == "") return true;
+        if (!reg.test(str) && RegExp.$2 <= 12 && RegExp.$3 <= 31) {
+            //alert("请保证" + sm + "中输入的日期格式为yyyy-mm-dd或正确的日期!");
+            return false;
+        }
+        return true;  
+    }
+    </script>
+    <!--[if lt IE 9]> 
+    <script type="text/javascript">
+         $(function () {
+            $('select option').each(function () {
+                $(this).attr({ title: $(this).text() });
+            });
+        });
+    </script>
+    <![endif]-->
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="Form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsDeathCases/swblbgk.aspx?qx=8294361849FEFE34&amp;dlmc=FE30304E96A1DA16" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3628105C">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdACKla/voHTgpsXjI6xN5ma/I2PDiJB6uSsZDKjr58HXE8iSqjqVLdEt6ErfNE/GPbs6/8dCJZkzDWgADUW0kRi2echRpEwNdEqTX7JrDUgt2ExcBZXYZaFDJcI5SLZzmuW/DwQ/uzTgIgh1UG+4XdInBdMYPEQJStmMqE0jSFTgVm98XfRmjzpPe9uaAj/iBmMXyIwI33yXvKah27p+/pgV7O3vteHVgU6Qdmp4OI2DQVoJ5t0N2JAJslisWdSu6zTzeGr6wZZl9wDtfJGdaHVkqF2FpgGCkH89UOCjQrZFU4SGCj+zLRVYHmZtSCVp1MTh4ct9tpYN9j7s7wul6gDsRbu363E9nHHl+UdBYoHkX6xcMW7/b57sSqC57C+Pme5Qc2vdgMy94esC1E2G8zqs28jf5iVoWQIP+LgSopiCdjn4WqUMFf56g/QlT5uYs48wQbXju8zSeffQeJxITKzIzD1KV8zmY+4jzkGYsshRANdYoYggimwAClDpqcYnhKykpqys56HiMimlKbFgSdSKyAPxjn8pf9tcDFl3HFPvwYC9cIj6ZDA/fLdnowfB0AW4Yr3IqNrAVVxd7nofqk0Se0k0qo1lh68P+exorvOnmyv+2Wc0LPbyaqJYJv46M21JfCVb7K1Os2LxDjgocQOgqgw3W3N+H8GdUW3I4EdgfTntsyec8JcVdD8vvRZgvjRT18j3DCBgizbQ31Bo2FgCWge7r3nonNe/M/P3uYzcakQeHL/d8oHYVvFSrqLQbpLI=">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 死亡病例管理</span></div>
+    <!--r-top end-->
+    <div class="e-page-title">
+        <h2>
+            <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" checked="checked"><label for="rl_tab_1">审核列表</label></span>
+        </h2>
+    </div>
+    <table id="tab_lb" cellpadding="2" width="100%">
+	<tbody><tr>
+		<td align="left">
+                <table cellpadding="2" align="left" width="90%" class="lbtable">
+                    <tbody><tr>
+                        <td>
+                            死者姓名：<input name="tb_cxszxm" type="text" maxlength="20" id="tb_cxszxm" title="姓名或门诊号或住院号" style="width: 120px" class="txt">
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;年龄：
+                            <input name="tb_ksnl" type="text" maxlength="3" id="tb_ksnl" title="开始年龄" style="width: 30px" class="txt">至<input name="tb_jsnl" type="text" maxlength="3" id="tb_jsnl" title="结束年龄" style="width: 30px" class="txt"><select name="ddl_nldw" id="ddl_nldw">
+			<option selected="selected" value="">单位</option>
+			<option value="76">岁</option>
+			<option value="77">月</option>
+			<option value="78">天</option>
+
+		</select>
+                        </td>
+                        <td>
+                            性别：<select name="ddl_cxxb" id="ddl_cxxb" style="width: 124px">
+			<option selected="selected" value="">性别</option>
+			<option value="12">男</option>
+			<option value="13">女</option>
+			<option value="14">未知的性别</option>
+			<option value="15">未说明的性别</option>
+
+		</select>
+                        </td>
+                        <td>
+                            根本死因名称：
+                            <input name="tb_cxicd" type="text" maxlength="110" id="tb_cxicd" style="width: 70px" class="txt">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        院区：
+                        <select name="dp_yq" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_yq\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_yq" style="width:165px;">
+			<option selected="selected" value="0">某医院</option>
+
+		</select>
+                        </td>
+                        <td>
+                            报告科室：<select name="ddl_cxks" id="ddl_cxks" style="width: 120px">
+			<option selected="selected" value="">报告科室</option>
+
+		</select>
+                        </td>
+                        <td>
+                            <select name="ddl_rqxz" id="ddl_rqxz">
+			<option selected="selected" value="tkrq">填卡日期</option>
+			<option value="swrq">死亡日期</option>
+
+		</select>
+                            ：
+                            <input name="tb_cxksrq" type="text" maxlength="10" id="tb_cxksrq" title="开始日期，格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">至<input name="tb_cxjsrq" type="text" maxlength="10" id="tb_cxjsrq" title="结束日期，格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">
+                        </td>
+                        <td>
+                            状态：<select name="ddl_zt" id="ddl_zt" style="width: 124px">
+			<option value="">状态</option>
+			<option selected="selected" value="0">正常</option>
+			<option value="1">重卡</option>
+			<option value="2">废卡</option>
+
+		</select>
+                        </td>
+                        
+                        
+                    </tr>
+                    <tr>
+                    <td>
+                            审核：<select name="ddl_sh" id="ddl_sh" style="width:165px;">
+			<option selected="selected" value="">审核</option>
+			<option value="0">否</option>
+			<option value="1">是</option>
+
+		</select>
+                        </td>
+                    <td>
+                             &nbsp;&nbsp;&nbsp;&nbsp;<span title="查询数据量&lt;=100"><input id="cx_100" type="checkbox" name="cx_100" checked="checked"></span>
+                             &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="btn_cx" value="查询" id="btn_cx" class="xk-but1">
+                            <input type="submit" name="bt_dc" value="导出" id="bt_dc" class="xk-but1">
+                    
+                            
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+            </td>
+	</tr>
+	<tr>
+		<td align="left">
+                <table cellspacing="0" cellpadding="2" rules="all" class="e-table" border="1" id="dg_lb" style="width:100%;border-collapse:collapse;">
+			<caption align="Bottom">
+				<font style="font-size: 12px">第1页0条 共1页0条<font>
+			</font></font></caption><tbody><tr class="th" align="center" style="height:30px;">
+				<td>死亡卡片编号</td><td>死者姓名</td><td>性别</td><td style="width:30px;">年龄</td><td>生前详细住址</td><td>根本死亡原因</td><td>填卡科室</td><td>填卡医生</td><td>填卡日期</td><td style="width:30px;">审核</td><td style="width:30px;">类别</td><td>导出</td><td style="width:30px;">错误</td><td style="width:50px;">操作</td>
+			</tr><tr align="center">
+				<td colspan="14"><span>1</span></td>
+			</tr>
+		</tbody></table>
+            </td>
+	</tr>
+</tbody></table>
+
+    
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

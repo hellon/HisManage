@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0106)http://www.yingyisoft.com:8516/ggws/PhsInfluenzaSur/Flu_bgk.aspx?qx=8294361849FEFE34&dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	流感监测上报
+</title>
+    <script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function check() {
+            var msg = "";
+            var score0 = $("#txt_Age").val();
+            if (score0 == "" || isNaN(score0)) {
+                msg += "年龄不能为空且必须为数字！\n";
+            }
+
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function check1() {
+            var msg = "";
+
+            var score1 = $("#txtTemperature").val();
+            if (score1 == "" || isNaN(score1)) {
+                msg += "体温不能为空且必须为数字！\n";
+            }
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function funbirthday() {
+            var sfz = document.getElementById("txtIdentificationNumber");
+            var sr = document.getElementById("txtBirthdayDate");
+
+            var birthday;
+            if (sfz.value.length == 18) {
+                birthday = sfz.value.substring(6, 10) + "-" + sfz.value.substring(10, 12) + "-" + sfz.value.substring(12, 14);
+                if (parseInt(sfz.value.charAt(16) / 2) * 2 != sfz.value.charAt(16)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+            }
+            else if (sfz.value.length == 15) {
+                birthday = "19" + sfz.value.substring(6, 8) + "-" + sfz.value.substring(8, 10) + "-" + sfz.value.substring(10, 12);
+                if (parseInt(sfz.value.charAt(14) / 2) * 2 != sfz.value.charAt(14)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+
+            }
+            else {
+                birthday = "";
+            }
+            sr.value = birthday;
+        }
+
+
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+    </script>
+    <script language="vbscript">
+			function nl()
+				dim birth
+				birth = document.all.txtBirthdayDate.value
+				if not isdate(birth) then
+					exit function
+				end if
+				if (cdate(birth) > date()) then
+					birth = date()
+				end if
+				dim today,y, m, d
+				today=date() 
+				if not isdate(today) then
+					today = date()
+				end if
+				if (cdate(today) > date()) then
+					today = date()
+				end if
+				
+				y = datediff("yyyy", birth, today)
+				if month(today) < month(birth) then
+					y = y -1
+				end if
+				birth = dateadd("yyyy", y, birth)
+				m = datediff("m", birth, today)
+				if day(today) < day(birth) then
+					m = m -1
+				end if
+				birth = dateadd("m", m, birth)
+				d = datediff("d", birth, today)
+				if (y>0) then
+					document.all.txt_Age.value = y
+					document.all.rl_AgeType_0.checked = true
+				elseif (m>0) then
+					document.all.txt_Age.value = m
+					document.all.rl_AgeType_1.checked = true
+				elseif (d>0) then
+					document.all.txt_Age.value = d
+					document.all.rl_AgeType_2.checked = true
+				else
+					document.all.txt_Age.value = 1
+					document.all.rl_AgeType_2.checked = true
+				end if
+				'alert(y & "岁" & m & "个月" & d & "天")
+			end function
+    </script>
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsInfluenzaSur/Flu_bgk.aspx?qx=8294361849FEFE34&amp;dlmc=FE30304E96A1DA16" id="form1">
+<div>
+<input type="hidden" name="__SCROLLPOS" id="__SCROLLPOS" value="0">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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Q2hlY2tCb3hMaXN0MSQwBQ9DaGVja0JveExpc3QxJDEFD0NoZWNrQm94TGlzdDEkMgUPQ2hlY2tCb3hMaXN0MSQzBQ9DaGVja0JveExpc3QxJDQFD0NoZWNrQm94TGlzdDEkNQUPQ2hlY2tCb3hMaXN0MSQ2BQ9DaGVja0JveExpc3QxJDcFD0NoZWNrQm94TGlzdDEkOAUPQ2hlY2tCb3hMaXN0MSQ5BRBDaGVja0JveExpc3QxJDEwBRBDaGVja0JveExpc3QxJDExBRBDaGVja0JveExpc3QxJDEyBRBDaGVja0JveExpc3QxJDEzBRBDaGVja0JveExpc3QxJDE0BRBDaGVja0JveExpc3QxJDE1BRBDaGVja0JveExpc3QxJDE2BRBDaGVja0JveExpc3QxJDE3BRBDaGVja0JveExpc3QxJDE4BRBDaGVja0JveExpc3QxJDE5BRBDaGVja0JveExpc3QxJDIwBRBDaGVja0JveExpc3QxJDIxBRBDaGVja0JveExpc3QxJDIyBRBDaGVja0JveExpc3QxJDIzBRBDaGVja0JveExpc3QxJDI0BRBDaGVja0JveExpc3QxJDI1BRBDaGVja0JveExpc3QxJDI2BRBDaGVja0JveExpc3QxJDI3BRBDaGVja0JveExpc3QxJDI4BRBDaGVja0JveExpc3QxJDI5BRBDaGVja0JveExpc3QxJDMwBRBDaGVja0JveExpc3QxJDMxBRBDaGVja0JveExpc3QxJDMyBRBDaGVja0JveExpc3QxJDMzBRBDaGVja0JveExpc3QxJDM0BRBDaGVja0JveExpc3QxJDM1BRBDaGVja0JveExpc3QxJDM2BRBDaGVja0JveExpc3QxJDM25TIzvNodMKc/7sdvZBnfH98Io5hUM8lhshyBMHI/6/8=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A1462589">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAENpmQ/XGgcbGF9yn02AR3/D2PDiJB6uSsZDKjr58HXE8iSqjqVLdEt6ErfNE/GPbs6/8dCJZkzDWgADUW0kRi2eFwxbv9vnuxKoLnsL4+Z7lBza92AzL3h6wLUTYbzOqzYZeDtJqYinm4yMKrwvxyVjLt2+1c05Fu04mcYrOPAWTV5R+dvoTrkCjbDrDLvwEDCd9L1Dpizt+eDhAkbQCRNRjIOs4mQ+K2GyIat3htalAKwErA1mr4ZS0uL3pT1KFRL0lDOVUIrmx42dKMPD8iPmGMrRVR5fo65raIaLyHrixLUlGh6OXQeq1DQ4dVGRq6j+dF7FPhg3e9DimEiB28rH6TKwyxolEHw3z0pjZ2A8TogwNSS3FgMOicqTylXGHmUo9w7UpSGdMzeX0jwq3ThRX4kxCm/hr9wP1pRIEBfCRF8hQ/5mD2JsXnm3VClQs2QAb/OJfnqILqrcgh1ShC1niia/6h2aTAXVy3LAWLYrjQRSOYozZLSzQFAojRlAPNvnE6KGL24c+LOvf4wrggP33s4gyYDQD/G9lyF7IyDace6A1/J8ih2D/WBdPSJo9kvlQdbgwtenQX7/572OmIdQYsM/NU/Z5r2lBSJnouRCWmUgvfSOipW6li3hh9stZcawmRNupW5HFY5PrwHDOUfeUT0qdyYrXk4KHcdtoNilhtK24ndwjjpRkx6LzjheqiQZcK2T6akpdkrmrETBNdDPYbfsoKQHvbNQOir4eAShmBib02Bl0Md86IHCjEup/2Of1yEQAgQgAv3QTGZn1ALz0mZ80oFFkm13/viZEI9bqPOb9an5ruJ+n/UIiK2OChdEAMccd3VuhmhBvvv1hykZ7VfrUDm57ElBrVkeqlss3tKgv07Ai8jbzVVeamLhHvAojolbmatkluzwHFw9KqzaMsBgdQzjilSGdAt1Zbr5ESF11IBLke+7Gk+BtiSx5FFAuihT/JMs77Kw3RnCW2zkPO40VAackrAR7kFv/+xQNJB2L41e4/IW429PZWibARdVFYdWVDWUfbauT4hKNZxjx4jIdNaiqvO0AYr3kDeIXYj22d7dgE/IvY0RPZeGayEB60UlusOLR9XZoPbnlHP9FJXvzPWYZ3kdVwhDZsXTph6rM59FJRLxpRDNktmNxMtEs/V+bkan0vooV6hECsmP06NcghLxCmHib8w2zV+G9q3PEAOj6P7UQXFizLM6t+ccAeVgHrgwgBtuvy7NGsA59LWyqun7b5z07xXkVrB2jviTUrWEvz+JlRay0QWKuG3Wy1asNUzFnUTJExMo5uqFQpPL0pfKNMdLffsOAruGdjt9tKpCGRIeqMNQeS28/7Dg/c+GGrSmSY1eF+1HwjPRV9AKgITs6DzlzatJTw6UXJW458hY1tfZcfXljA3FOrxt4FB3dON92OGzfneAP54gzOuX4SlupK2q6evDp7Pj1mp2EqWZtKgYkKIbjoOh6a8=">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 流感监测管理</span></div>
+    <!--r-top end-->
+    <div class="e-page-title">
+        <h2>
+            <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" checked="checked"><label for="rl_tab_1">审核列表</label></span>
+        </h2>
+    </div>
+    
+    <table id="tab_lb" border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tbody><tr>
+		<td>
+                <table cellspacing="0" cellpadding="1" width="85%" align="left" class="lbtable">
+                    <tbody><tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;报告院区：<select name="dp_yq" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_yq\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_yq" style="width:165px;">
+			<option selected="selected" value="0">某医院</option>
+
+		</select>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;报告科室：<select name="dll_cx_ks" id="dll_cx_ks" style="width:120px;">
+
+		</select>
+                        </td>
+                        <td>
+                            发病日期：<input name="cx_bgrq1" type="text" maxlength="10" id="cx_bgrq1" title="格式yyyy-M-d" class="txt" onclick="WdatePicker()" style="width:80px;">至<input name="cx_bgrq2" type="text" maxlength="10" id="cx_bgrq2" title="格式yyyy-M-d" class="txt" onclick="WdatePicker()" style="width:80px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;患者性别：<select name="cx_xb" id="cx_xb" style="width:165px;">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="1">男</option>
+			<option value="2">女</option>
+
+		</select>
+                        </td>
+                        <td>
+                            患者姓名：<input name="cx_xm" type="text" maxlength="10" id="cx_xm" class="txt" style="width:120px;">
+                        </td>
+                        <td nowrap="">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄：<input name="cx_nl1" type="text" maxlength="10" id="cx_nl1" title="格式yy" class="txt" style="width:80px;">至<input name="cx_nl2" type="text" maxlength="10" id="cx_nl2" title="格式yy" class="txt" style="width:80px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            报告卡状态：<select name="cx_zt" id="cx_zt" style="width:165px;">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">正常</option>
+			<option value="1">重卡</option>
+			<option value="2">废卡</option>
+
+		</select>
+                        </td>
+                        <td>
+                            是否审核：<select name="cx_sh" id="cx_sh">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">否</option>
+			<option value="1">是</option>
+
+		</select>
+                        </td>
+                        <td>
+                            是否导出：<select name="cx_dc" id="cx_dc" style="width: 176px">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">否</option>
+			<option value="1">是</option>
+
+		</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;报告人：<input name="cx_bgr" type="text" maxlength="10" id="cx_bgr" class="txt" style="width:165px;">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<input type="submit" name="ib_cx" value="查询" id="ib_cx" class="xk-but1">&nbsp;&nbsp;<input type="submit" name="ib_dcExcle" value="导出EXCLE" id="ib_dcExcle" class="xk-but2">&nbsp;&nbsp;<input type="submit" name="ib_dcWord" value="导出WORD" id="ib_dcWord" class="xk-but2">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+	</tr>
+	<tr id="tr_check" style="display:none;">
+		<td style="border: #ddd 1px solid; text-align: left;">
+                <font color="red">请选择要导出的列，不选默认导出所有列：</font><input type="submit" name="ib_dcExcle2" value="导出EXCLE" id="ib_dcExcle2" class="xk-but2">
+                <table id="CheckBoxList1" border="0" style="height:30px;">
+			<tbody><tr>
+				<td><label for="CheckBoxList1_0">报告卡编号国家</label><input id="CheckBoxList1_0" type="checkbox" name="CheckBoxList1$0"></td><td><label for="CheckBoxList1_1">报告卡编号医院</label><input id="CheckBoxList1_1" type="checkbox" name="CheckBoxList1$1"></td><td><label for="CheckBoxList1_2">姓名</label><input id="CheckBoxList1_2" type="checkbox" name="CheckBoxList1$2"></td><td><label for="CheckBoxList1_3">性别</label><input id="CheckBoxList1_3" type="checkbox" name="CheckBoxList1$3"></td><td><label for="CheckBoxList1_4">身份证号</label><input id="CheckBoxList1_4" type="checkbox" name="CheckBoxList1$4"></td><td><label for="CheckBoxList1_5">年龄</label><input id="CheckBoxList1_5" type="checkbox" name="CheckBoxList1$5"></td><td><label for="CheckBoxList1_6">年龄单位</label><input id="CheckBoxList1_6" type="checkbox" name="CheckBoxList1$6"></td><td><label for="CheckBoxList1_7">出生日期</label><input id="CheckBoxList1_7" type="checkbox" name="CheckBoxList1$7"></td><td><label for="CheckBoxList1_8">居住地址</label><input id="CheckBoxList1_8" type="checkbox" name="CheckBoxList1$8"></td><td><label for="CheckBoxList1_9">职业</label><input id="CheckBoxList1_9" type="checkbox" name="CheckBoxList1$9"></td><td><label for="CheckBoxList1_10">发病日期</label><input id="CheckBoxList1_10" type="checkbox" name="CheckBoxList1$10"></td><td><label for="CheckBoxList1_11">诊断日期</label><input id="CheckBoxList1_11" type="checkbox" name="CheckBoxList1$11"></td><td><label for="CheckBoxList1_12">就诊日期</label><input id="CheckBoxList1_12" type="checkbox" name="CheckBoxList1$12"></td><td><label for="CheckBoxList1_13">可联系的家属姓名</label><input id="CheckBoxList1_13" type="checkbox" name="CheckBoxList1$13"></td><td><label for="CheckBoxList1_14">家属联系电话</label><input id="CheckBoxList1_14" type="checkbox" name="CheckBoxList1$14"></td><td><label for="CheckBoxList1_15">体温</label><input id="CheckBoxList1_15" type="checkbox" name="CheckBoxList1$15"></td><td><label for="CheckBoxList1_16">是否咳嗽</label><input id="CheckBoxList1_16" type="checkbox" name="CheckBoxList1$16"></td><td><label for="CheckBoxList1_17">是否吐痰</label><input id="CheckBoxList1_17" type="checkbox" name="CheckBoxList1$17"></td><td><label for="CheckBoxList1_18">是否呼吸困难</label><input id="CheckBoxList1_18" type="checkbox" name="CheckBoxList1$18"></td><td><label for="CheckBoxList1_19">是否咽痛</label><input id="CheckBoxList1_19" type="checkbox" name="CheckBoxList1$19"></td><td><label for="CheckBoxList1_20">是否肌肉酸痛</label><input id="CheckBoxList1_20" type="checkbox" name="CheckBoxList1$20"></td><td><label for="CheckBoxList1_21">是否畏寒</label><input id="CheckBoxList1_21" type="checkbox" name="CheckBoxList1$21"></td><td><label for="CheckBoxList1_22">是否有其它症状</label><input id="CheckBoxList1_22" type="checkbox" name="CheckBoxList1$22"></td><td><label for="CheckBoxList1_23">具体其它症状</label><input id="CheckBoxList1_23" type="checkbox" name="CheckBoxList1$23"></td><td><label for="CheckBoxList1_24">白细胞</label><input id="CheckBoxList1_24" type="checkbox" name="CheckBoxList1$24"></td><td><label for="CheckBoxList1_25">是否接触史</label><input id="CheckBoxList1_25" type="checkbox" name="CheckBoxList1$25"></td><td><label for="CheckBoxList1_26">是否有肺部阴影</label><input id="CheckBoxList1_26" type="checkbox" name="CheckBoxList1$26"></td><td><label for="CheckBoxList1_27">临床诊断</label><input id="CheckBoxList1_27" type="checkbox" name="CheckBoxList1$27"></td><td><label for="CheckBoxList1_28">报告人</label><input id="CheckBoxList1_28" type="checkbox" name="CheckBoxList1$28"></td><td><label for="CheckBoxList1_29">报告日期</label><input id="CheckBoxList1_29" type="checkbox" name="CheckBoxList1$29"></td><td><label for="CheckBoxList1_30">报告科室</label><input id="CheckBoxList1_30" type="checkbox" name="CheckBoxList1$30"></td><td><label for="CheckBoxList1_31">填表人</label><input id="CheckBoxList1_31" type="checkbox" name="CheckBoxList1$31"></td><td><label for="CheckBoxList1_32">填表日期</label><input id="CheckBoxList1_32" type="checkbox" name="CheckBoxList1$32"></td><td><label for="CheckBoxList1_33">填表人联系电话</label><input id="CheckBoxList1_33" type="checkbox" name="CheckBoxList1$33"></td><td><label for="CheckBoxList1_34">卡片状态</label><input id="CheckBoxList1_34" type="checkbox" name="CheckBoxList1$34"></td><td><label for="CheckBoxList1_35">是否审核</label><input id="CheckBoxList1_35" type="checkbox" name="CheckBoxList1$35"></td><td><label for="CheckBoxList1_36">是否导出</label><input id="CheckBoxList1_36" type="checkbox" name="CheckBoxList1$36"></td>
+			</tr>
+		</tbody></table>
+            </td>
+	</tr>
+	<tr>
+		<td>
+                <table cellspacing="0" cellpadding="3" rules="all" class="e-table" border="1" id="dg_lb" style="border-color:#9DB2DF;width:100%;border-collapse:collapse;">
+			<caption align="Bottom">
+				<font style="font-size: 12px">第1页0条 共1页0条<font>
+			</font></font></caption><tbody><tr class="th" align="center" style="height:30px;">
+				<td style="width:10px;">
+                                <input id="checkall" name="checkall" type="checkbox" onclick="chooseall()">
+                            </td><td style="width:80px;">报告卡编号（医院）</td><td style="width:110px;">身份证号</td><td style="width:80px;">姓名</td><td style="width:30px;">性别</td><td style="width:30px;">年龄</td><td style="width:30px;">年龄<br>单位</td><td style="width:80px;">职业</td><td style="width:60px;">诊断日期</td><td style="width:60px;">发病日期</td><td style="width:80px;">报告科室</td><td style="width:50px;">报告人</td><td style="width:60px;">报告日期</td><td style="width:60px;">报告卡状态</td><td style="width:30px;">审核</td><td style="width:30px;">导出word</td><td style="width:120px;">操作</td>
+			</tr><tr align="center">
+				<td colspan="18"><span>1</span></td>
+			</tr>
+		</tbody></table>
+            </td>
+	</tr>
+</tbody></table>
+
+    <div style="display: none">
+        报告卡编号（院区）：<input name="cx_bgkbh" type="text" maxlength="10" id="cx_bgkbh" class="txt" style="width:120px;">
+    </div>
+    
+    
+<script language="javascript">function saveScrollPosition() { document.forms[0].__SCROLLPOS.value = thebody.scrollTop;}thebody.onscroll=saveScrollPosition;</script><script language="javascript">function set0() { thebody.scrollTop = 0;}thebody.onload=set0;</script>
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

@@ -1,0 +1,1330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0084)http://www.yingyisoft.com:8516/ggws/PhsDeathCases/swblbgk.aspx?dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	死亡病例报告卡
+</title><link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/WdatePicker.js" type="text/javascript"></script><link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+            $('#dg_lb').addClass('e-table');
+            rbl_swssfcyrsq();
+            $('input[name="rbl_xb"]').change(function () {
+                rbl_swssfcyrsq();
+            });
+            $('#tb_zjhm').blur(function () {
+                var sfzh = $(this).val();
+                var swrq = $('#tb_swrq').val();
+                GetAge(4, sfzh, swrq);
+            });
+            $('#tb_swrq').blur(function () {
+                var sfzh = $('#tb_zjhm').val();
+                var swrq = $(this).val();
+                GetAge(4, sfzh, swrq);
+            });
+        });
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function GetAge(sflxid, sfzh, swrq) {
+            var year, month, day, sex;
+            var birthDate, age, sexId, ageId, sexId;
+
+            if (sflxid == 4) {
+                if (sfzh.length != 18 && sfzh.length != 15) {
+                    return;
+                }
+                if (sfzh.length == 18) {
+                    year = sfzh.substr(6, 4);
+                    month = sfzh.substr(10, 2);
+                    day = sfzh.substr(12, 2);
+                    sex = sfzh.substr(14, 3);
+                }
+                if (sfzh.length == 15) {
+                    year = '19' + sfzh.substr(6, 2);
+                    month = sfzh.substr(8, 2);
+                    day = sfzh.substr(10, 2);
+                    sex = sfzh.substr(12, 3);
+                }
+                birthDate = year + '-' + month + '-' + day;
+                sexId = sex % 2 == 0 ? 1 : 0;
+                $('#tb_csrq').val(birthDate);
+                $('input[name="rbl_xb"]').get(sexId).checked = true;
+                $('input[name="rbl_xb"]').change();
+
+                if (swrq == '') {
+                    var now = new Date();
+
+                    //                    age = (now.getFullYear() - year) != 0 ? (now.getFullYear() - year) : (((now.getMonth() + 1 - month) != 0 ? (now.getMonth() + 1 - month) : (now.getDate() - day)));
+
+                    var birthYear = year;
+                    var birthMonth = month;
+                    var birthDay = day;
+
+                    var deathYear = now.getFullYear();
+                    var deathMonth = now.getMonth() + 1;
+                    var deathDay = now.getDate();
+
+                    if (deathYear == birthYear) {
+                        age = 0; //同年 则为0岁
+                    }
+                    else {
+                        var ageDiff = deathYear - birthYear; //年之差
+                        if (ageDiff > 0) {
+                            if (deathMonth == birthMonth) {
+                                var dayDiff = deathDay - birthDay; //日之差
+                                if (dayDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                            else {
+                                var monthDiff = deathMonth - birthMonth; //月之差
+                                if (monthDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                        }
+                        else {
+                            age = -1; //返回-1 表示出生日期输入错误 晚于今天
+                            alert('出生日期大于死亡日期！');
+                        }
+                    }
+                    var months = (deathYear - birthYear) * 12 + (deathMonth - birthMonth) + 1 - 1;
+                    var days = parseInt(Math.abs((Date.parse(birthMonth + '/' + birthDay + '/' + birthYear) - Date.parse(deathMonth + '/' + deathDay + '/' + deathYear)) / 1000 / 60 / 60 / 24)) + 1;
+                    if (age > 0) {//若大于一周岁按岁算
+                        ageId = 0;
+                    } else if (months < 1) {//若小于12月按天算
+                        age = days;
+                        ageId = 2; //单位为天
+                    } else if (age < 1) {//若小于一周岁按月算
+                        age = months
+                        ageId = 1; //单位为月
+                    }
+                    //                    ageId = (now.getFullYear() - year) != 0 ? 0 : ((now.getMonth() + 1 - month) != 0 ? 1 : 2);
+                } else {
+                    var b = new Date(birthDate.replace("-", "/").replace("-", "/"));
+                    swrq = new Date(swrq.replace("-", "/").replace("-", "/"));
+
+                    if (swrq < b) {
+                        alert('出生日期大于死亡日期！');
+                        return;
+                    }
+                    //                    age = (swrq.getFullYear() - year) != 0 ? (swrq.getFullYear() - year) : (((swrq.getMonth() + 1 - month) != 0 ? (swrq.getMonth() + 1 - month) : (swrq.getDate() - day)));
+                    var birthYear = year;
+                    var birthMonth = month;
+                    var birthDay = day;
+
+                    var deathYear = swrq.getFullYear();
+                    var deathMonth = swrq.getMonth() + 1;
+                    var deathDay = swrq.getDate();
+
+                    if (deathYear == birthYear) {
+                        age = 0; //同年 则为0岁
+                    }
+                    else {
+                        var ageDiff = deathYear - birthYear; //年之差
+                        if (ageDiff > 0) {
+                            if (deathMonth == birthMonth) {
+                                var dayDiff = deathDay - birthDay; //日之差
+                                if (dayDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                            else {
+                                var monthDiff = deathMonth - birthMonth; //月之差
+                                if (monthDiff < 0) {
+                                    age = ageDiff - 1;
+                                }
+                                else {
+                                    age = ageDiff;
+                                }
+                            }
+                        }
+                        else {
+                            age = -1; //返回-1 表示出生日期输入错误 晚于今天
+                            alert('出生日期大于死亡日期！');
+                        }
+                    }
+
+                    var months = (deathYear - birthYear) * 12 + (deathMonth - birthMonth) + 1 - 1;
+                    var days = parseInt(Math.abs((Date.parse(birthMonth + '/' + birthDay + '/' + birthYear) - Date.parse(deathMonth + '/' + deathDay + '/' + deathYear)) / 1000 / 60 / 60 / 24)) + 1;
+                    if (age > 0) {//若大于一周岁按岁算
+                        ageId = 0;
+                    } else if (months < 1) {//若小于12月按天算
+                        ageId = 2; //单位为天
+                        age = days;
+                    } else if (age < 1) {//若小于一周岁按月算
+                        ageId = 1; //单位为月
+                        age = months;
+                    }
+
+                    //                    ageId = (swrq.getFullYear() - year) != 0 ? 0 : ((swrq.getMonth() + 1 - month) != 0 ? 1 : 2);
+                }
+                $('#tb_nl').val(age);
+                $('input[name="rbl_nldw"]').get(ageId).checked = true;
+            }
+        }
+        function rbl_swssfcyrsq() {
+            var flag = $('input[name="rbl_xb"]').get(1).checked;
+            if (flag) {
+                $('input[name="rbl_swssfcyrsq"]').each(function (index, domEle) {
+                    $(this).removeAttr('disabled');
+                    if (index == 0) {
+                        this.checked = true;
+                    }
+                });
+            } else {
+            $('input[name="rbl_swssfcyrsq"]').each(function () {
+                $(this).removeAttr('checked');
+                $(this).attr('disabled', 'disabled');
+            });
+            }
+    }
+    function CheckDateTime(str) {
+        var reg = /^(\d{4})-(\d{2})-(\d{2})$/;
+        var str = mystring;
+        var arr = reg.exec(str);
+        if (str == "") return true;
+        if (!reg.test(str) && RegExp.$2 <= 12 && RegExp.$3 <= 31) {
+            //alert("请保证" + sm + "中输入的日期格式为yyyy-mm-dd或正确的日期!");
+            return false;
+        }
+        return true;  
+    }
+    </script>
+    <!--[if lt IE 9]> 
+    <script type="text/javascript">
+         $(function () {
+            $('select option').each(function () {
+                $(this).attr({ title: $(this).text() });
+            });
+        });
+    </script>
+    <![endif]-->
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="Form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsDeathCases/swblbgk.aspx?dlmc=FE30304E96A1DA16" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3628105C">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 死亡病例管理</span></div>
+    <!--r-top end-->
+    <div class="e-page-title">
+        <h2>
+            <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" checked="checked"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_1">审核列表</label></span>
+        </h2>
+    </div>
+    
+    <div id="tab_bgk">
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">基本信息 </legend>
+            <table cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr style="height: 30px;">
+                    <td width="200" align="right">
+                        <font color="#ff0000"></font>报告地区：
+                    </td>
+                    <td>
+                        <select name="ddl_bgdq" id="ddl_bgdq">
+	<option selected="selected" value="1">某市</option>
+
+</select>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000"></font>报告单位:
+                        <select name="ddl_bgdw" id="ddl_bgdw">
+	<option selected="selected" value="2">某医院</option>
+
+</select>
+                        &nbsp;<span id="l_bgdw" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        <font color="#ff0000"></font>死亡卡编号：
+                    </td>
+                    <td>
+                        <input name="tb_swkbh" type="text" maxlength="20" id="tb_swkbh" disabled="disabled" class="txt">(系统自动生成)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        <font color="red"></font>门诊号：
+                    </td>
+                    <td>
+                        <input name="tb_mzh" type="text" maxlength="20" id="tb_mzh" class="txt">&nbsp;<span id="l_mzh" style="color:Red;"></span>&nbsp;&nbsp; <font color="red">
+                            </font>住院号：
+                        <input name="tb_zyh" type="text" maxlength="20" id="tb_zyh" class="txt">&nbsp;<span id="l_zyh" style="color:Red;"></span>
+                        &nbsp;<span id="lbl_zycs">住院次数：</span><input name="tb_zycs" type="text" maxlength="4" id="tb_zycs" style="width:80px;" class="txt"><span id="l_zycs" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">死者姓名</font>：
+                    </td>
+                    <td>
+                        <input name="tb_szxm" type="text" maxlength="20" id="tb_szxm" class="txt">&nbsp;<span id="l_szxm" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">性别</font>：
+                    </td>
+                    <td>
+                        <span id="rbl_xb" style="display:inline-block;border-style:None;"><input id="rbl_xb_0" type="radio" name="rbl_xb" value="12"><label for="rbl_xb_0">男</label><input id="rbl_xb_1" type="radio" name="rbl_xb" value="13"><label for="rbl_xb_1">女</label><input id="rbl_xb_2" type="radio" name="rbl_xb" value="14"><label for="rbl_xb_2">未知的性别</label><input id="rbl_xb_3" type="radio" name="rbl_xb" value="15"><label for="rbl_xb_3">未说明的性别</label></span>
+                        &nbsp;<span id="l_xb" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">民族</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_mz" id="ddl_mz">
+	<option value="18">汉族</option>
+	<option value="19">蒙古族</option>
+	<option value="20">回族</option>
+	<option value="21">藏族</option>
+	<option value="22">维吾尔族</option>
+	<option value="23">苗族</option>
+	<option value="24">彝族</option>
+	<option value="25">壮族</option>
+	<option value="26">布依族</option>
+	<option value="27">朝鲜族</option>
+	<option value="28">满族</option>
+	<option value="29">桐族</option>
+	<option value="30">瑶族</option>
+	<option value="31">白族</option>
+	<option value="32">土家族</option>
+	<option value="33">哈尼族</option>
+	<option value="34">哈萨克族</option>
+	<option value="35">傣族</option>
+	<option value="36">黎族</option>
+	<option value="37">傈僳族</option>
+	<option value="38">佤族</option>
+	<option value="39">畲族</option>
+	<option value="40">高山族</option>
+	<option value="41">拉祜族</option>
+	<option value="42">水族</option>
+	<option value="43">东乡族</option>
+	<option value="44">纳西族</option>
+	<option value="45">景颇族</option>
+	<option value="46">柯尔克孜族</option>
+	<option value="47">土族</option>
+	<option value="48">达斡尔族</option>
+	<option value="49">仫佬族</option>
+	<option value="50">羌族</option>
+	<option value="51">布朗族</option>
+	<option value="52">撒拉族</option>
+	<option value="53">毛难族</option>
+	<option value="54">仡佬族</option>
+	<option value="55">锡伯族</option>
+	<option value="56">阿昌族</option>
+	<option value="57">普米族</option>
+	<option value="58">塔吉克族</option>
+	<option value="59">怒族</option>
+	<option value="60">乌孜别克族</option>
+	<option value="61">俄罗斯族</option>
+	<option value="62">鄂温克族</option>
+	<option value="63">崩龙族</option>
+	<option value="64">保安族</option>
+	<option value="65">裕固族</option>
+	<option value="66">京族</option>
+	<option value="67">塔塔尔族</option>
+	<option value="68">独龙族</option>
+	<option value="69">鄂伦春族</option>
+	<option value="70">赫哲族</option>
+	<option value="71">门巴族</option>
+	<option value="72">珞巴族</option>
+	<option value="73">基诺族</option>
+	<option value="74">其他</option>
+	<option value="75">外国血统中国籍人士</option>
+
+</select>
+                        &nbsp;<span id="l_mz" style="color:Red;"></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp; 国家或地区:
+                        <input name="tb_gjhdq" type="text" value="中国" maxlength="20" id="tb_gjhdq" class="txt">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        <font color="#ff0000"></font>有效身份证件类型：
+                    </td>
+                    <td>
+                        <select name="ddl_yxsfzjlx" id="ddl_yxsfzjlx">
+	<option value=""></option>
+	<option selected="selected" value="4">身份证</option>
+	<option value="5">户口薄</option>
+	<option value="6">护照</option>
+	<option value="7">军官证</option>
+	<option value="8">驾驶证</option>
+	<option value="9">港澳通行证</option>
+	<option value="10">台湾通行证</option>
+	<option value="11">其他法定有效证件</option>
+	<option value="133">无证件类型</option>
+
+</select>
+                        (<font color="#ff0000">*</font>身份证号码必填)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        证件号码：
+                    </td>
+                    <td>
+                        <input name="tb_zjhm" type="text" maxlength="18" id="tb_zjhm" class="txt">(最长18位)&nbsp;<span id="l_sfzh" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">出生日期</font>：
+                    </td>
+                    <td>
+                        <input name="tb_csrq" type="text" maxlength="10" id="tb_csrq" onclick="WdatePicker()" class="txt">&nbsp;<span id="l_csrq" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">年龄</font>：
+                    </td>
+                    <td>
+                        <input name="tb_nl" type="text" maxlength="3" id="tb_nl" class="txt">(整数)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">年龄单位</font>：
+                    </td>
+                    <td>
+                        <span id="rbl_nldw" style="display:inline-block;border-style:None;"><input id="rbl_nldw_0" type="radio" name="rbl_nldw" value="76" checked="checked"><label for="rbl_nldw_0">岁</label><input id="rbl_nldw_1" type="radio" name="rbl_nldw" value="77"><label for="rbl_nldw_1">月</label><input id="rbl_nldw_2" type="radio" name="rbl_nldw" value="78"><label for="rbl_nldw_2">天</label></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">婚姻状况</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_hyzk" id="ddl_hyzk">
+	<option value="">...请下拉选择...</option>
+	<option value="98">未婚</option>
+	<option value="99">已婚</option>
+	<option value="100">丧偶</option>
+	<option value="101">离婚</option>
+	<option value="102">未说明</option>
+
+</select>
+                        &nbsp;<span id="l_hyzk" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">文化程度</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_whcd" id="ddl_whcd">
+	<option value="">...请下拉选择...</option>
+	<option value="103">研究生</option>
+	<option value="104">大学</option>
+	<option value="105">大专</option>
+	<option value="106">中专</option>
+	<option value="107">技校</option>
+	<option value="108">高中</option>
+	<option value="109">初中及以下</option>
+
+</select>
+                        &nbsp;<span id="l_whcd" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">个人身份</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_grsf" id="ddl_grsf">
+	<option value="">...请下拉选择...</option>
+	<option value="79">公务员</option>
+	<option value="80">专业技术人员</option>
+	<option value="81">职员</option>
+	<option value="82">企业管理者</option>
+	<option value="83">工人</option>
+	<option value="84">农民</option>
+	<option value="85">学生</option>
+	<option value="86">现役军人</option>
+	<option value="87">自由职业者</option>
+	<option value="88">个体经营者</option>
+	<option value="89">无业人员</option>
+	<option value="90">离退休人员</option>
+	<option value="91">其他</option>
+
+</select>
+                        &nbsp;<span id="l_grsf" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">死亡日期</font>：
+                    </td>
+                    <td>
+                        <input name="tb_swrq" type="text" maxlength="16" id="tb_swrq" onclick="WdatePicker({dateFmt:&#39;yyyy-MM-dd HH:mm&#39;})" class="txt">&nbsp;<span id="l_swrq" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">死亡地点</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_swdd" id="ddl_swdd">
+	<option value="">...请下拉选择...</option>
+	<option value="110">医疗卫生机构</option>
+	<option value="111">来院途中</option>
+	<option value="112">家中</option>
+	<option value="113">养老服务机构</option>
+	<option value="114">其他场所</option>
+	<option value="115">不详</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        死亡时是否处于妊娠期<br>
+                        或妊娠终止后42天内：
+                    </td>
+                    <td>
+                        <table id="rbl_swssfcyrsq" border="0">
+	<tbody><tr>
+		<td><input id="rbl_swssfcyrsq_0" type="radio" name="rbl_swssfcyrsq" value="0" disabled=""><label for="rbl_swssfcyrsq_0">否</label></td><td><input id="rbl_swssfcyrsq_1" type="radio" name="rbl_swssfcyrsq" value="1" disabled=""><label for="rbl_swssfcyrsq_1">是</label></td>
+	</tr>
+</tbody></table>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        死者生前工作单位：
+                    </td>
+                    <td>
+                        <input name="tb_sqgzdw" type="text" maxlength="40" id="tb_sqgzdw" style="width: 350px" class="txt">(最长40汉字)&nbsp;<span id="l_szsqgzdw" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">户籍地址类型选择</font>：
+                    </td>
+                    <td>
+                        <span id="rbl_hjdzlxxz" style="display:inline-block;border-style:None;"><input id="rbl_hjdzlxxz_0" type="radio" name="rbl_hjdzlxxz" value="92" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_0">本县区</label><input id="rbl_hjdzlxxz_1" type="radio" name="rbl_hjdzlxxz" value="93" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_1">本市其它县区</label><input id="rbl_hjdzlxxz_2" type="radio" name="rbl_hjdzlxxz" value="94" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_2">本省其它地市</label><input id="rbl_hjdzlxxz_3" type="radio" name="rbl_hjdzlxxz" value="95" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_3">其它省</label><input id="rbl_hjdzlxxz_4" type="radio" name="rbl_hjdzlxxz" value="96" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_4">港澳台</label><input id="rbl_hjdzlxxz_5" type="radio" name="rbl_hjdzlxxz" value="97" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rbl_hjdzlxxz$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rbl_hjdzlxxz_5">外籍</label></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">户籍地址类型地址选择</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_hjsheng" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_hjsheng\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_hjsheng" disabled="disabled" style="width:120px;">
+	<option value="00000000">全国</option>
+	<option value="11000000">北京市</option>
+	<option value="12000000">天津市</option>
+	<option value="13000000">河北省</option>
+	<option value="14000000">山西省</option>
+	<option value="15000000">内蒙古</option>
+	<option value="21000000">辽宁省</option>
+	<option value="22000000">吉林省</option>
+	<option value="23000000">黑龙江省</option>
+	<option value="31000000">上海市</option>
+	<option value="32000000">江苏省</option>
+	<option value="33000000">浙江省</option>
+	<option value="34000000">安徽省</option>
+	<option value="35000000">福建省</option>
+	<option value="36000000">江西省</option>
+	<option selected="selected" value="37000000">山东省</option>
+	<option value="41000000">河南省</option>
+	<option value="42000000">湖北省</option>
+	<option value="43000000">湖南省</option>
+	<option value="44000000">广东省</option>
+	<option value="45000000">广西</option>
+	<option value="46000000">海南省</option>
+	<option value="50000000">重庆市</option>
+	<option value="51000000">四川省</option>
+	<option value="52000000">贵州省</option>
+	<option value="53000000">云南省</option>
+	<option value="54000000">西藏</option>
+	<option value="61000000">陕西省</option>
+	<option value="62000000">甘肃省</option>
+	<option value="63000000">青海省</option>
+	<option value="64000000">宁夏</option>
+	<option value="65000000">新疆</option>
+	<option value="66000000">建设兵团</option>
+
+</select>
+                        省
+                        <select name="ddl_hjshi" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_hjshi\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_hjshi" disabled="disabled" style="width:120px;">
+	<option value="37000000">山东省</option>
+	<option selected="selected" value="37010000">济南市</option>
+	<option value="37020000">青岛市</option>
+	<option value="37030000">淄博市</option>
+	<option value="37040000">枣庄市</option>
+	<option value="37050000">东营市</option>
+	<option value="37060000">烟台市</option>
+	<option value="37070000">潍坊市</option>
+	<option value="37080000">济宁市</option>
+	<option value="37090000">泰安市</option>
+	<option value="37100000">威海市</option>
+	<option value="37110000">日照市</option>
+	<option value="37120000">莱芜市</option>
+	<option value="37130000">临沂市</option>
+	<option value="37140000">德州市</option>
+	<option value="37150000">聊城市</option>
+	<option value="37160000">滨州市</option>
+	<option value="37170000">菏泽市</option>
+	<option value="37990000">不详市</option>
+
+</select>
+                        市
+                        <select name="ddl_hjxian" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_hjxian\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_hjxian" disabled="disabled" style="width:120px;">
+	<option value="37010000">济南市</option>
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010300">市中区</option>
+	<option value="37010400">槐荫区</option>
+	<option value="37010500">天桥区</option>
+	<option value="37011200">历城区</option>
+	<option value="37011300">长清区</option>
+	<option value="37012400">平阴县</option>
+	<option value="37012500">济阳县</option>
+	<option value="37012600">商河县</option>
+	<option value="37018100">章丘市</option>
+	<option value="37019900">不详县</option>
+
+</select>
+                        县
+                        <select name="ddl_hjxiang" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_hjxiang\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_hjxiang" disabled="disabled" style="width:160px;">
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010201">解放路街道办事处</option>
+	<option value="37010202">千佛山街道办事处</option>
+	<option value="37010203">泉城路街道办事处</option>
+	<option value="37010204">趵突泉街道办事处</option>
+	<option value="37010205">大明湖街道办事处</option>
+	<option value="37010206">东关街道办事处</option>
+	<option value="37010207">建新街道办事处</option>
+	<option value="37010208">文东街道办事处</option>
+	<option value="37010209">甸柳街道办事处</option>
+	<option value="37010210">燕山街道办事处</option>
+	<option value="37010211">姚家街道办事处</option>
+	<option value="37010212">智远街道办事处</option>
+	<option value="37010213">龙洞街道办事处</option>
+	<option value="37010214">舜华路街道办事处</option>
+	<option value="37010299">不详乡镇</option>
+
+</select>
+                        乡
+                           <select name="dl_hj5" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_hj5\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_hj5">
+	<option selected="selected" value="">请选择... </option>
+
+</select>村
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">户籍地址国标</font>：
+                    </td>
+                    <td>
+                        <input name="tb_hjdzgb" type="text" value="37010200" maxlength="8" id="tb_hjdzgb" disabled="disabled" class="txt">(8位)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">户籍详细地址</font>：
+                    </td>
+                    <td>
+                        <input name="tb_hjxxdz" type="text" value="山东省济南市历下区" maxlength="50" id="tb_hjxxdz" style="width: 350px" class="txt">(最长100汉字)<input type="submit" name="btn_copy" value="复制地址" id="btn_copy" class="xk-but1">
+                        &nbsp;<span id="l_hjxxdz" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">死者生前常住住址</font>：
+                    </td>
+                    <td>
+                        <span id="rl_zzid" style="display:inline-block;border-style:None;"><input id="rl_zzid_0" type="radio" name="rl_zzid" value="92" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_0">本县区</label><input id="rl_zzid_1" type="radio" name="rl_zzid" value="93" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_1">本市其它县区</label><input id="rl_zzid_2" type="radio" name="rl_zzid" value="94" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_2">本省其它地市</label><input id="rl_zzid_3" type="radio" name="rl_zzid" value="95" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_3">其它省</label><input id="rl_zzid_4" type="radio" name="rl_zzid" value="96" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_4">港澳台</label><input id="rl_zzid_5" type="radio" name="rl_zzid" value="97" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_zzid$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_zzid_5">外籍</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="red">死者生前住址选择</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_zzsheng" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_zzsheng\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_zzsheng" disabled="disabled" style="width:120px;">
+	<option value="00000000">全国</option>
+	<option value="11000000">北京市</option>
+	<option value="12000000">天津市</option>
+	<option value="13000000">河北省</option>
+	<option value="14000000">山西省</option>
+	<option value="15000000">内蒙古</option>
+	<option value="21000000">辽宁省</option>
+	<option value="22000000">吉林省</option>
+	<option value="23000000">黑龙江省</option>
+	<option value="31000000">上海市</option>
+	<option value="32000000">江苏省</option>
+	<option value="33000000">浙江省</option>
+	<option value="34000000">安徽省</option>
+	<option value="35000000">福建省</option>
+	<option value="36000000">江西省</option>
+	<option selected="selected" value="37000000">山东省</option>
+	<option value="41000000">河南省</option>
+	<option value="42000000">湖北省</option>
+	<option value="43000000">湖南省</option>
+	<option value="44000000">广东省</option>
+	<option value="45000000">广西</option>
+	<option value="46000000">海南省</option>
+	<option value="50000000">重庆市</option>
+	<option value="51000000">四川省</option>
+	<option value="52000000">贵州省</option>
+	<option value="53000000">云南省</option>
+	<option value="54000000">西藏</option>
+	<option value="61000000">陕西省</option>
+	<option value="62000000">甘肃省</option>
+	<option value="63000000">青海省</option>
+	<option value="64000000">宁夏</option>
+	<option value="65000000">新疆</option>
+	<option value="66000000">建设兵团</option>
+
+</select>
+                        省
+                        <select name="ddl_zzshi" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_zzshi\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_zzshi" disabled="disabled" style="width:120px;">
+	<option value="37000000">山东省</option>
+	<option selected="selected" value="37010000">济南市</option>
+	<option value="37020000">青岛市</option>
+	<option value="37030000">淄博市</option>
+	<option value="37040000">枣庄市</option>
+	<option value="37050000">东营市</option>
+	<option value="37060000">烟台市</option>
+	<option value="37070000">潍坊市</option>
+	<option value="37080000">济宁市</option>
+	<option value="37090000">泰安市</option>
+	<option value="37100000">威海市</option>
+	<option value="37110000">日照市</option>
+	<option value="37120000">莱芜市</option>
+	<option value="37130000">临沂市</option>
+	<option value="37140000">德州市</option>
+	<option value="37150000">聊城市</option>
+	<option value="37160000">滨州市</option>
+	<option value="37170000">菏泽市</option>
+	<option value="37990000">不详市</option>
+
+</select>
+                        市
+                        <select name="ddl_zzxian" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_zzxian\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_zzxian" disabled="disabled" style="width:120px;">
+	<option value="37010000">济南市</option>
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010300">市中区</option>
+	<option value="37010400">槐荫区</option>
+	<option value="37010500">天桥区</option>
+	<option value="37011200">历城区</option>
+	<option value="37011300">长清区</option>
+	<option value="37012400">平阴县</option>
+	<option value="37012500">济阳县</option>
+	<option value="37012600">商河县</option>
+	<option value="37018100">章丘市</option>
+	<option value="37019900">不详县</option>
+
+</select>
+                        县
+                        <select name="ddl_zzxiang" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_zzxiang\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_zzxiang" disabled="disabled" style="width:160px;">
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010201">解放路街道办事处</option>
+	<option value="37010202">千佛山街道办事处</option>
+	<option value="37010203">泉城路街道办事处</option>
+	<option value="37010204">趵突泉街道办事处</option>
+	<option value="37010205">大明湖街道办事处</option>
+	<option value="37010206">东关街道办事处</option>
+	<option value="37010207">建新街道办事处</option>
+	<option value="37010208">文东街道办事处</option>
+	<option value="37010209">甸柳街道办事处</option>
+	<option value="37010210">燕山街道办事处</option>
+	<option value="37010211">姚家街道办事处</option>
+	<option value="37010212">智远街道办事处</option>
+	<option value="37010213">龙洞街道办事处</option>
+	<option value="37010214">舜华路街道办事处</option>
+	<option value="37010299">不详乡镇</option>
+
+</select>
+                        乡
+                             <select name="dl_cz5" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dl_cz5\&#39;,\&#39;\&#39;)&#39;, 0)" id="dl_cz5">
+	<option selected="selected" value="">请选择... </option>
+
+</select>村
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">死者生前常住地址国标</font>：
+                    </td>
+                    <td>
+                        <input name="tb_szsqczdzgb" type="text" value="37010200" maxlength="8" id="tb_szsqczdzgb" disabled="disabled" class="txt">(8位)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">死者生前详细地址</font>：
+                    </td>
+                    <td>
+                        <input name="tb_szsqxxdz" type="text" value="山东省济南市历下区" maxlength="50" id="tb_szsqxxdz" style="width: 350px" class="txt">(最长100汉字)&nbsp;<span id="l_szsqxxdz" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        可联系的家属姓名：
+                    </td>
+                    <td>
+                        <input name="tb_jsxm" type="text" maxlength="20" id="tb_jsxm" class="txt">&nbsp;<span id="l_klxdjsxm" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        家属联系电话：
+                    </td>
+                    <td>
+                        <input name="tb_jslxdh" type="text" maxlength="15" id="tb_jslxdh" class="txt">&nbsp;<span id="l_jslxdh" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        家属住址或工作单位：
+                    </td>
+                    <td>
+                        <input name="tb_jszz" type="text" maxlength="40" id="tb_jszz" style="width: 350px" class="txt">(最长40汉字)&nbsp;<span id="l_jszzhgzdw" style="color:Red;"></span>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">诊断信息 </legend>
+            <table cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr style="height: 30px;">
+                    <td align="right">
+                        I.直接导致死亡的疾病或情况:
+                    </td>
+                    <td>
+                        （不允许直接填写：猝死、呼吸循环衰竭、多脏器功能衰竭、创伤、呼吸心跳骤停、外伤、休克、院外死亡）
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        *<font color="#ff0000">(a)：</font>
+                        <input name="tb_icdmca" type="text" maxlength="50" id="tb_icdmca" title="a直接导致死亡的疾病" style="width: 300px" class="txt">&nbsp;*<span id="lb_icdbm_a" style="color:Red;"></span><font color="#ff0000">ICD10：</font>
+                        <select name="ddl_icdbm_a" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_a\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_a" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索肿瘤选项：<select name="ddl_icdenum" id="ddl_icdenum">
+	<option value="">常用编码</option>
+	<option value="D32">脑脊膜良性肿瘤</option>
+	<option value="C00">唇</option>
+	<option value="C01">舌根/舌底</option>
+	<option value="C02">舌的其他部位和NOS</option>
+	<option value="C03">牙龈</option>
+	<option value="C04">口底</option>
+	<option value="C05">腭</option>
+	<option value="C06">口的其他部位和NOS</option>
+	<option value="C07">腮腺</option>
+	<option value="C08">其他和NOS的大涎腺</option>
+	<option value="C09">扁桃体</option>
+	<option value="C10">口咽</option>
+	<option value="C11">鼻咽</option>
+	<option value="C12">梨状窦</option>
+	<option value="C13">咽下部/下咽</option>
+	<option value="C14">唇，口腔和咽的其他和部位不明的</option>
+	<option value="C15">食管</option>
+	<option value="C16">胃</option>
+	<option value="C17">小肠</option>
+	<option value="C18">结肠</option>
+	<option value="C19">直肠乙状结肠连接处</option>
+	<option value="C20">直肠</option>
+	<option value="C21">肛门和肛管</option>
+	<option value="C22">肝和肝内胆管</option>
+	<option value="C23">胆囊</option>
+	<option value="C24">胆道其他部位和NOS</option>
+	<option value="C25">胰</option>
+	<option value="C26">其他和不明确的消化器官</option>
+	<option value="C30">鼻腔和中耳</option>
+	<option value="C31">副鼻窦</option>
+	<option value="C32">喉</option>
+	<option value="C33">气管</option>
+	<option value="C34">支气管和肺</option>
+	<option value="C37">胸腺</option>
+	<option value="C38">心脏、纵隔和胸膜</option>
+	<option value="C39">呼吸和胸腔内器官的其他和部位不明确的</option>
+	<option value="C40">四肢的骨和关节软骨</option>
+	<option value="C41">其他部位和NOS的骨、关节和关节软骨</option>
+	<option value="C43">皮肤恶性黑色素瘤</option>
+	<option value="C44">皮肤</option>
+	<option value="C45">间皮瘤，M-905-/3</option>
+	<option value="C46">卡波西肉瘤，M-9140/3</option>
+	<option value="C47">周围神经和自主神经系统</option>
+	<option value="C48">腹膜后和腹膜</option>
+	<option value="C49">结缔组织、皮下组织和其他软组织</option>
+	<option value="C50">乳房</option>
+	<option value="C51">外阴</option>
+	<option value="C52">阴道</option>
+	<option value="C53">宫颈</option>
+	<option value="C54">子宫体</option>
+	<option value="C55">子宫NOS</option>
+	<option value="C56">卵巢</option>
+	<option value="C57">其他和NOS的女性生殖器官</option>
+	<option value="C58">胎盘</option>
+	<option value="C60">阴茎</option>
+	<option value="C61">前列腺</option>
+	<option value="C62">睾丸</option>
+	<option value="C63">其他和NOS的男性生殖器官</option>
+	<option value="C64">肾</option>
+	<option value="C65">肾盂</option>
+	<option value="C66">输尿管</option>
+	<option value="C67">膀胱</option>
+	<option value="C68">其他和NOS的泌尿器官</option>
+	<option value="C69">眼和附器</option>
+	<option value="C70">脑（脊）膜</option>
+	<option value="C71">脑</option>
+	<option value="C72">脊髓，颅神经和中枢神经系统的其他部位</option>
+	<option value="C73">甲状腺</option>
+	<option value="C74">肾上腺</option>
+	<option value="C75">其他内分泌腺和有关结构</option>
+	<option value="C76">其他和不明确部位</option>
+	<option value="C77">淋巴结继发和NOS</option>
+	<option value="C78">呼吸和消化器官的继发</option>
+	<option value="C79">其他部位的继发</option>
+	<option value="C80">NOS</option>
+	<option value="C81">霍奇金［何杰金］病</option>
+	<option value="C82">滤泡性［结节性］非霍奇金淋巴瘤</option>
+	<option value="C83">弥漫性非霍奇金淋巴瘤</option>
+	<option value="C84">周围和皮的T细胞淋巴瘤</option>
+	<option value="C85">非霍奇金淋巴瘤的其他和NOS类型</option>
+	<option value="C88">恶性免疫增生性疾病</option>
+	<option value="C90">多发性骨髓瘤和恶性浆细胞肿瘤</option>
+	<option value="C91">淋巴样白血病</option>
+	<option value="C92">髓样白血病</option>
+	<option value="C93">单核细胞白血病</option>
+	<option value="C94">特指细胞类型的其他白血病</option>
+	<option value="C95">细胞类型NOS的白血病</option>
+	<option value="C96">其他和NOS的淋巴、造血和有关组织的</option>
+	<option value="C97">独立的多个部位的（原发性）</option>
+
+</select> 其他选项<input name="tb_icdmc_a" type="text" maxlength="50" id="tb_icdmc_a" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icda" id="ib_icda" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_qka" id="ib_qka" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000"></font>发病至死亡时间间隔：
+                    </td>
+                    <td>
+                        <input name="tb_icdswjg_a" type="text" maxlength="10" id="tb_icdswjg_a" style="width: 50px" class="txt"><select name="ddl_icdsjjgdw_a" id="ddl_icdsjjgdw_a">
+	<option value="">...请下拉选择...</option>
+	<option value="116">小时</option>
+	<option value="117">日</option>
+	<option value="118">月</option>
+	<option value="119">年</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        <font>(b)</font>：
+                        <input name="tb_icdmcb" type="text" maxlength="50" id="tb_icdmcb" title="b直接导致死亡的疾病" style="width: 300px" class="txt">&nbsp;
+                        <font>ICD10</font>：
+                        <select name="ddl_icdbm_b" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_b\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_b" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索条件<input name="tb_icdmc_b" type="text" maxlength="50" id="tb_icdmc_b" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icdb" id="ib_icdb" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_qkb" id="ib_qkb" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        <font>发病至死亡时间间隔</font>：
+                    </td>
+                    <td>
+                        <input name="tb_icdswjg_b" type="text" maxlength="10" id="tb_icdswjg_b" style="width: 50px" class="txt"><select name="ddl_icdsjjgdw_b" id="ddl_icdsjjgdw_b">
+	<option value="">...请下拉选择...</option>
+	<option value="116">小时</option>
+	<option value="117">日</option>
+	<option value="118">月</option>
+	<option value="119">年</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        (c)：<input name="tb_icdmcc" type="text" maxlength="50" id="tb_icdmcc" title="c直接导致死亡的疾病" style="width: 300px" class="txt">&nbsp;
+                            &nbsp;&nbsp;&nbsp; ICD10：
+                        <select name="ddl_icdbm_c" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_c\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_c" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索条件<input name="tb_icdmc_c" type="text" maxlength="50" id="tb_icdmc_c" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icdc" id="ib_icdc" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_qkc" id="ib_qkc" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        发病至死亡时间间隔：
+                    </td>
+                    <td>
+                        <input name="tb_icdswjg_c" type="text" maxlength="10" id="tb_icdswjg_c" style="width: 50px" class="txt"><select name="ddl_icdsjjgdw_c" id="ddl_icdsjjgdw_c">
+	<option value="">...请下拉选择...</option>
+	<option value="116">小时</option>
+	<option value="117">日</option>
+	<option value="118">月</option>
+	<option value="119">年</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        (d)：
+                        <input name="tb_icdmcd" type="text" maxlength="50" id="tb_icdmcd" title="d直接导致死亡的疾病" style="width: 300px" class="txt">&nbsp;
+                        &nbsp;&nbsp;&nbsp;ICD10：
+                        <select name="ddl_icdbm_d" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_d\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_d" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索条件<input name="tb_icdmc_d" type="text" maxlength="50" id="tb_icdmc_d" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icdd" id="ib_icdd" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_qkd" id="ib_qkd" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        发病至死亡时间间隔：
+                    </td>
+                    <td>
+                        <input name="tb_icdswjg_d" type="text" maxlength="10" id="tb_icdswjg_d" style="width: 50px" class="txt"><select name="ddl_icdsjjgdw_d" id="ddl_icdsjjgdw_d">
+	<option value="">...请下拉选择...</option>
+	<option value="116">小时</option>
+	<option value="117">日</option>
+	<option value="118">月</option>
+	<option value="119">年</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        II.其它疾病诊断：
+                        <input name="tb_icdmcqt" type="text" maxlength="50" id="tb_icdmcqt" title="其它疾病诊断" style="width: 200px" class="txt">&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ICD10：
+                        <select name="ddl_icdbm_qt" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_qt\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_qt" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索条件<input name="tb_icdmc_qt" type="text" maxlength="50" id="tb_icdmc_qt" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icdqt" id="ib_icdqt" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_qkqt" id="ib_qkqt" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td colspan="2" align="center">
+                        *<span id="lb_icdmcgb" style="color:Red;"></span><font color="#ff0000">根本死亡原因：</font>
+                        <input name="tb_icdmcgb" type="text" maxlength="50" id="tb_icdmcgb" title="根本死亡原因" style="width: 260px" class="txt">&nbsp;<span id="l_gbswyy" style="color:Red;"></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff0000">*</font><span id="lb_icdbm_gb" style="color:Red;"></span><font color="#ff0000">ICD10：</font>
+                        <select name="ddl_icdbm_gb" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_icdbm_gb\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_icdbm_gb" style="width:300px;">
+	<option selected="selected" value="">...请下拉选择...</option>
+
+</select>
+                        &nbsp;&nbsp;检索条件<input name="tb_icdmc_gb" type="text" maxlength="50" id="tb_icdmc_gb" title="输入编码或名称" style="width: 60px" class="txt">
+                        &nbsp;&nbsp;<input type="image" name="ib_icdgb" id="ib_icdgb" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                        <input type="image" name="ib_icdscgbsy" id="ib_icdscgbsy" src="../static/images/shch.gif" alt="生成根本死因" style="border-width:0px;">
+                        <input type="image" name="ib_qkgb" id="ib_qkgb" src="../static/images/qk.gif" alt="清空" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">最高诊断单位</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_zgzddw" id="ddl_zgzddw" disabled="disabled">
+	<option value="">...请下拉选择...</option>
+	<option selected="selected" value="120">三级医院</option>
+	<option value="121">二级医院</option>
+	<option value="122">乡镇卫生院/社区卫生服务机构</option>
+	<option value="123">村卫生室</option>
+	<option value="124">其他医疗卫生机构</option>
+	<option value="125">未就诊</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="red">最高诊断依据</font>：
+                    </td>
+                    <td>
+                        <select name="ddl_zgzdyj" id="ddl_zgzdyj">
+	<option value="">...请下拉选择...</option>
+	<option value="126">尸检</option>
+	<option value="127">病理</option>
+	<option value="128">手术</option>
+	<option value="129">临床+理化</option>
+	<option value="130">临床</option>
+	<option value="131">死后推断</option>
+	<option value="132">不详</option>
+
+</select>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">填报信息 </legend>
+            <table cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">填卡医生</font>：
+                        
+                    </td>
+                    <td>
+                        <input name="tb_tkys" type="text" value="公共卫生" maxlength="20" id="tb_tkys" disabled="disabled" class="txt">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        *<font color="#ff0000">医生填卡日期</font>：
+                    </td>
+                    <td>
+                        <input name="tb_tkrq" type="text" value="2019-09-15" maxlength="10" id="tb_tkrq" disabled="disabled" onclick="WdatePicker()" class="txt">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        备注：
+                    </td>
+                    <td>
+                        <input name="tb_bz" type="text" maxlength="40" id="tb_bz" style="width: 400px" class="txt">(最长40汉字)
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        调查记录：
+                    </td>
+                    <td>
+                        <input type="image" name="ib_dcjl" id="ib_dcjl" src="../static/images/dak.gif" style="border-width:0px;">
+                    </td>
+                </tr>
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr style="height: 30px;">
+                    <td align="right">
+                        报告科室：
+                    </td>
+                    <td>
+                        <select name="ddl_bgks" id="ddl_bgks">
+	<option value="11">B超室</option>
+	<option value="12">CT室</option>
+	<option value="13">ICU</option>
+	<option value="14">ICU病房</option>
+	<option value="15">病理科</option>
+	<option value="16">查体中心</option>
+	<option value="17">放射科</option>
+	<option value="18">妇科</option>
+	<option value="19">肝病科</option>
+	<option value="20">肛肠二科</option>
+	<option value="21">肛肠二科病房</option>
+	<option value="22">肛肠一科</option>
+	<option value="23">肛肠一科病房</option>
+	<option value="4">公卫科</option>
+	<option value="24">骨二科</option>
+	<option value="25">骨伤二科病房</option>
+	<option value="26">骨伤一科病房</option>
+	<option value="27">骨一科</option>
+	<option value="28">急诊科</option>
+	<option value="29">急诊科病房</option>
+	<option value="30">检验科</option>
+	<option value="31">康复二科</option>
+	<option value="32">麻醉疼痛科</option>
+	<option value="33">内二科</option>
+	<option value="34">内二科病房</option>
+	<option value="35">内窥镜室</option>
+	<option value="36">内三科</option>
+	<option value="37">内三科病房</option>
+	<option value="38">内一科</option>
+	<option value="39">内一科病房</option>
+	<option value="40">脑电图</option>
+	<option value="41">皮肤科</option>
+	<option value="42">肾内科</option>
+	<option value="43">肾内科病房</option>
+	<option value="44">手术室</option>
+	<option value="45">输血科</option>
+	<option value="46">外二科</option>
+	<option value="47">外二科病房</option>
+	<option value="48">外院</option>
+	<option value="49">西药房</option>
+	<option value="50">心电图室</option>
+	<option value="51">眼科</option>
+	<option value="52">眼科病房</option>
+	<option value="53">医务科</option>
+	<option value="54">站东门诊部</option>
+	<option value="55">针灸推拿科</option>
+	<option value="56">针灸推拿科病房</option>
+	<option value="57">中药房</option>
+	<option value="58">中医保健中心</option>
+	<option value="59">中医门诊</option>
+	<option value="60">肿瘤二科病房</option>
+	<option value="61">肿瘤科</option>
+	<option value="62">肿瘤一科病房</option>
+	<option value="63">自助机</option>
+	<option selected="selected" value="2">公共卫生科</option>
+
+</select>
+                        检索条件<input name="tb_bgks" type="text" maxlength="10" id="tb_bgks" style="width: 60px" class="txt">
+                        <input type="image" name="ib_bgks" id="ib_bgks" src="../static/images/cx.gif" alt="查询" style="border-width:0px;">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        报卡错误：
+                    </td>
+                    <td>
+                        <input name="tb_cwnr" type="text" id="tb_cwnr" style="width:350px;" class="txt">
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        报告卡状态：
+                    </td>
+                    <td>
+                        <select name="ddl_bgkzt" id="ddl_bgkzt" disabled="disabled">
+	<option selected="selected" value="0">正常</option>
+	<option value="1">重卡</option>
+	<option value="2">废卡</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td align="right">
+                        报告卡审核：
+                    </td>
+                    <td>
+                        <select name="ddl_bgksh" id="ddl_bgksh" disabled="disabled">
+	<option selected="selected" value="0">否</option>
+	<option value="1">是</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td colspan="2" style="border-top: #66c9f3 1px solid">
+                        <table cellspacing="2" align="center">
+                            <tbody><tr>
+                                <td>
+                                    <input type="submit" name="ib_add" value="保存" id="ib_add" class="xk-but1">
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <input type="submit" name="ib_lb" value="列表" id="ib_lb" class="xk-but1">
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+    </div>
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

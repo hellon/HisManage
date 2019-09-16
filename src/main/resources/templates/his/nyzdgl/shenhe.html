@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0112)http://www.yingyisoft.com:8516/ggws/PhsPesticidePoi/Pesticide_bgk.aspx?qx=8294361849FEFE34&dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	农药中毒上报
+</title><meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1"><meta name="CODE_LANGUAGE" content="C#">
+    <meta name="vs_defaultClientScript" content="JavaScript">
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+
+    <script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function check() {
+            var msg = "";
+            var score0 = $("#txt_sznl").val();
+            if (score0 == "" || isNaN(score0)) {
+                msg += "年龄不能为空且必须为数字！\n";
+            }
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+
+        //设置icd10编码
+        //设置icd10编码,name2为调查记录中死因推断
+        function icd(nameobj, codeobj) {
+            var rstr = showModalDialog("SelectPesticideID.aspx", null, "dialogwidth=500px;dialogheight=500px;center=yes;scrollbars=yes;status=no");
+            var i = rstr.lastIndexOf("&");
+            if (i > 0) {
+                if (document.all.Rbl_PoisonPesticideCount_0.checked) {
+                    nameobj.value = rstr.substring(0, i);
+                    codeobj.value = rstr.substring(i + 1);
+                }
+                if (document.all.Rbl_PoisonPesticideCount_1.checked) {
+                    if (nameobj.value != "") {
+                        nameobj.value += "，" + rstr.substring(0, i);
+                        codeobj.value += "," + rstr.substring(i + 1);
+                    }
+                    else {
+                        nameobj.value += rstr.substring(0, i);
+                        codeobj.value += rstr.substring(i + 1);
+                    }
+                }
+            }
+        }
+        //清除icd10编码
+        function icdk(nameobj, codeobj) {
+            nameobj.value = "";
+            codeobj.value = "";
+
+        }
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function funbirthday() {
+            var sfz = document.getElementById("txtIdentificationNumber");
+            var sr = document.getElementById("txtBirthdayDate");
+
+            var birthday;
+            if (sfz.value.length == 18) {
+                birthday = sfz.value.substring(6, 10) + "-" + sfz.value.substring(10, 12) + "-" + sfz.value.substring(12, 14);
+                if (parseInt(sfz.value.charAt(16) / 2) * 2 != sfz.value.charAt(16)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+            }
+            else {
+                birthday = "19" + sfz.value.substring(6, 8) + "-" + sfz.value.substring(8, 10) + "-" + sfz.value.substring(10, 12);
+                if (parseInt(sfz.value.charAt(14) / 2) * 2 != sfz.value.charAt(14)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+
+            }
+
+            sr.value = birthday;
+        }
+
+
+
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+
+    </script>
+    <script language="vbscript">
+			function nl()
+				dim birth
+				birth = document.all.txtBirthdayDate.value
+				if not isdate(birth) then
+					exit function
+				end if
+				if (cdate(birth) > date()) then
+					birth = date()
+				end if
+				dim today,y, m, d
+				today=date() 
+				if not isdate(today) then
+					today = date()
+				end if
+				if (cdate(today) > date()) then
+					today = date()
+				end if
+				
+				y = datediff("yyyy", birth, today)
+				if month(today) < month(birth) then
+					y = y -1
+				end if
+				birth = dateadd("yyyy", y, birth)
+				m = datediff("m", birth, today)
+				if day(today) < day(birth) then
+					m = m -1
+				end if
+				birth = dateadd("m", m, birth)
+				d = datediff("d", birth, today)
+				if (y>0) then
+					document.all.txt_sznl.value = y
+					document.all.rl_AgeType_0.checked = true
+				elseif (m>0) then
+					document.all.txt_sznl.value = m
+					document.all.rl_AgeType_1.checked = true
+				elseif (d>0) then
+					document.all.txt_sznl.value = d
+					document.all.rl_AgeType_2.checked = true
+				else
+					document.all.txt_sznl.value = 1
+					document.all.rl_AgeType_2.checked = true
+				end if
+				'alert(y & "岁" & m & "个月" & d & "天")
+			end function
+    </script>
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="Form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsPesticidePoi/Pesticide_bgk.aspx?qx=8294361849FEFE34&amp;dlmc=FE30304E96A1DA16" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTM4ODQ1MjY1Mw9kFgICAw9kFgoCAQ8QZGQWAQIBZAIDDxYCHgdWaXNpYmxlaBZyAgEPEA8WBh4NRGF0YVRleHRGaWVsZAUCbWMeDkRhdGFWYWx1ZUZpZWxkBQJpZB4LXyFEYXRhQm91bmRnZBAVBgnmnKzljr/ljLoS5pys5biC5YW25a6D5Y6/5Yy6EuacrOecgeWFtuWug+WcsOW4ggnlhbblroPnnIEJ5riv5r6z5Y+wBuWkluexjRUGATkCMTACMTECMTICMTMCMTQUKwMGZ2dnZ2dnFgFmZAIDDxAPFgYfAQUCamMfAgUDc2lkHwNnZBAVIQblhajlm70J5YyX5Lqs5biCCeWkqea0peW4ggnmsrPljJfnnIEJ5bGx6KW/55yBCeWGheiSmeWPpAnovr3lroHnnIEJ5ZCJ5p6X55yBDOm7kem+meaxn+ecgQnkuIrmtbfluIIJ5rGf6IuP55yBCea1meaxn+ecgQnlronlvr3nnIEJ56aP5bu655yBCeaxn+ilv+ecgQnlsbHkuJznnIEJ5rKz5Y2X55yBCea5luWMl+ecgQnmuZbljZfnnIEJ5bm/5Lic55yBBuW5v+ilvwnmtbfljZfnnIEJ6YeN5bqG5biCCeWbm+W3neecgQnotLXlt57nnIEJ5LqR5Y2X55yBBuilv+iXjwnpmZXopb/nnIEJ55SY6IKD55yBCemdkua1t+ecgQblroHlpI8G5paw55aGDOW7uuiuvuWFteWbohUhCDAwMDAwMDAwCDExMDAwMDAwCDEyMDAwMDAwCDEzMDAwMDAwCDE0MDAwMDAwCDE1MDAwMDAwCDIxMDAwMDAwCDIyMDAwMDAwCDIzMDAwMDAwCDMxMDAwMDAwCDMyMDAwMDAwCDMzMDAwMDAwCDM0MDAwMDAwCDM1MDAwMDAwCDM2MDAwMDAwCDM3MDAwMDAwCDQxMDAwMDAwCDQyMDAwMDAwCDQzMDAwMDAwCDQ0MDAwMDAwCDQ1MDAwMDAwCDQ2MDAwMDAwCDUwMDAwMDAwCDUxMDAwMDAwCDUyMDAwMDAwCDUzMDAwMDAwCDU0MDAwMDAwCDYxMDAwMDAwCDYyMDAwMDAwCDYzMDAwMDAwCDY0MDAwMDAwCDY1MDAwMDAwCDY2MDAwMDAwFCsDIWdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZxYBAg9kAgUPEA8WBh8BBQJqYx8CBQNzaWQfA2dkEBUSCeWxseS4nOecgQnmtY7ljZfluIIJ6Z2S5bKb5biCCea3hOWNmuW4ggnmnqPluoTluIIJ5Lic6JCl5biCCeeDn+WPsOW4ggnmvY3lnYrluIIJ5rWO5a6B5biCCeazsOWuieW4ggnlqIHmtbfluIIJ5pel54Wn5biCCeiOseiKnOW4ggnkuLTmsoLluIIJ5b635bee5biCCeiBiuWfjuW4ggnmu6jlt57luIIJ6I+P5rO95biCFRIIMzcwMDAwMDAIMzcwMTAwMDAIMzcwMjAwMDAIMzcwMzAwMDAIMzcwNDAwMDAIMzcwNTAwMDAIMzcwNjAwMDAIMzcwNzAwMDAIMzcwODAwMDAIMzcwOTAwMDAIMzcxMDAwMDAIMzcxMTAwMDAIMzcxMjAwMDAIMzcxMzAwMDAIMzcxNDAwMDAIMzcxNTAwMDAIMzcxNjAwMDAIMzcxNzAwMDAUKwMSZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnFgECAWQCBw8QDxYGHwEFAmpjHwIFA3NpZB8DZ2QQFQsJ5rWO5Y2X5biCCeWOhuS4i+WMugnluILkuK3ljLoJ5qeQ6I2r5Yy6CeWkqeahpeWMugnljobln47ljLoJ6ZW/5riF5Yy6CeW5s+mYtOWOvwnmtY7pmLPljr8J5ZWG5rKz5Y6/CeeroOS4mOW4ghULCDM3MDEwMDAwCDM3MDEwMjAwCDM3MDEwMzAwCDM3MDEwNDAwCDM3MDEwNTAwCDM3MDExMjAwCDM3MDExMzAwCDM3MDEyNDAwCDM3MDEyNTAwCDM3MDEyNjAwCDM3MDE4MTAwFCsDC2dnZ2dnZ2dnZ2dnFgECAWQCCQ8QDxYIHwEFAmpjHwIFA3NpZB8DZx4HRW5hYmxlZGdkEBUPCeWOhuS4i+WMuhjop6PmlL7ot6/ooZfpgZPlip7kuovlpIQY5Y2D5L2b5bGx6KGX6YGT5Yqe5LqL5aSEGOazieWfjui3r+ihl+mBk+WKnuS6i+WkhBjotrXnqoHms4nooZfpgZPlip7kuovlpIQY5aSn5piO5rmW6KGX6YGT5Yqe5LqL5aSEFeS4nOWFs+ihl+mBk+WKnuS6i+WkhBXlu7rmlrDooZfpgZPlip7kuovlpIQV5paH5Lic6KGX6YGT5Yqe5LqL5aSEFeeUuOafs+ihl+mBk+WKnuS6i+WkhBXnh5XlsbHooZfpgZPlip7kuovlpIQV5aea5a626KGX6YGT5Yqe5LqL5aSEFeaZuui/nOihl+mBk+WKnuS6i+WkhBXpvpnmtJ7ooZfpgZPlip7kuovlpIQY6Iic5Y2O6Lev6KGX6YGT5Yqe5LqL5aSEFQ8IMzcwMTAyMDAIMzcwMTAyMDEIMzcwMTAyMDIIMzcwMTAyMDMIMzcwMTAyMDQIMzcwMTAyMDUIMzcwMTAyMDYIMzcwMTAyMDcIMzcwMTAyMDgIMzcwMTAyMDkIMzcwMTAyMTAIMzcwMTAyMTEIMzcwMTAyMTIIMzcwMTAyMTMIMzcwMTAyMTQUKwMPZ2dnZ2dnZ2dnZ2dnZ2dnFgECAWQCCw8QDxYGHwEFAmpjHwIFA3NpZB8DZ2QQFQcJ6Z2S6b6Z6KGXCeWQjuWdoeihlwnljYHkuqnlm60J6Kej5pS+5qGlCeWOhuWxsei3rwnop6PmlL7ot68M6Z2S5ZCO5bCP5Yy6FQcLMzcwMTAyMDEwMDELMzcwMTAyMDEwMDILMzcwMTAyMDEwMDMLMzcwMTAyMDEwMDQLMzcwMTAyMDEwMDULMzcwMTAyMDEwMDYLMzcwMTAyMDEwMDcUKwMHZ2dnZ2dnZxYBZmQCDQ8PFgIeBFRleHQFCDM3MDEwMjAxZGQCDw8PFgIfBQUz5bGx5Lic55yB5rWO5Y2X5biC5Y6G5LiL5Yy66Kej5pS+6Lev6KGX6YGT5Yqe5LqL5aSEZGQCEg8PFgIfBQUHMjAxOTAwMWRkAhQPDxYCHwVlZGQCFg8PFgIfBWVkZAIZDw8WAh8FZWRkAhwPEGRkFgBkAh4PDxYCHwVlZGQCIA8PFgIfBWVkZAIiDxBkZBYAZAIkDw8WAh8FZWRkAicPDxYCHwVlZGQCKg8PFgIfBWVkZAItDxBkZBYBZmQCLw9kFgICAQ9kFgQCAQ8PFgIfBWVkZAIDDw8WAh8FZWRkAjEPZBYCAgEPZBYCAgEPDxYCHwVlZGQCMw8QDxYGHwEFAm1jHwIFAmlkHwNnZBAVBQzor7fpgInmi6kuLi4P55Sf5Lqn5oCn6Ieq55SoD+eUn+S6p+aAp+WPl+mbhxvpnZ7nlJ/kuqfmgKfor6/mnI3vvIjnlKjvvIkS6Z2e55Sf5Lqn5oCn6Ieq5pyNFQUAATEBMgEzATQUKwMFZ2dnZ2cWAWZkAjcPEGRkFgBkAjkPEGRkFgBkAjsPEGRkFgBkAj0PEGRkFgBkAj8PEGRkFgBkAkEPEGRkFgBkAkMPEGRkFgBkAkUPEGRkFgBkAkcPEGRkFgBkAkkPEGRkFgBkAksPEGRkFgBkAk0PEGRkFgBkAk8PEGRkFgBkAlEPEGRkFgBkAlMPEA8WBh8BBQJtYx8CBQJpZB8DZ2QQFQUM6K+36YCJ5oupLi4uBueXiuaEiAblpb3ovawG5q275LqhBuWFtuS7lhUFAAE1ATYBNwE4FCsDBWdnZ2dnFgFmZAJXDxYCHwBoFgICAQ9kFgICAQ8PFgIfBWVkZAJZDxYCHwBoFgICAQ9kFgICAQ8PFgIfBWVkZAJbDw8WAh8FZWRkAl4PDxYCHwVlZGQCYA8PFgIfBQUJ5p+Q5Yy76ZmiZGQCYg8PFgIfBWVkZAJkDw8WAh8FBQzlhazlhbHljavnlJ9kZAJmDw8WAh8FBQoyMDE5LTA5LTE2ZGQCaA8PFgIfBWVkZAJqDw8WAh8FBQoyMDE5LTA5LTE2ZGQCbA8PFgIfBQUJ5p+Q5Yy76ZmiZGQCbg8PFgIfBQUM5YWs5YWx5Y2r55SfZGQCcA8QDxYGHwEFAm1jHwIFBm5vZGVpZB8DZ2QQFTcHQui2heWupAVDVOWupANJQ1UJSUNV55eF5oi/CeeXheeQhuenkQzmn6XkvZPkuK3lv4MJ5pS+5bCE56eRBuWmh+enkQnogp3nl4Xnp5EM6IKb6IKg5LqM56eREuiCm+iCoOS6jOenkeeXheaIvwzogpvogqDkuIDnp5ES6IKb6IKg5LiA56eR55eF5oi/CeWFrOWNq+enkQnpqqjkuoznp5ES6aqo5Lyk5LqM56eR55eF5oi/EumqqOS8pOS4gOenkeeXheaIvwnpqqjkuIDnp5EJ5oCl6K+K56eRD+aApeiviuenkeeXheaIvwnmo4Dpqoznp5EM5bq35aSN5LqM56eRD+m6u+mGieeWvOeXm+enkQnlhoXkuoznp5EP5YaF5LqM56eR55eF5oi/DOWGheeqpemVnOWupAnlhoXkuInnp5EP5YaF5LiJ56eR55eF5oi/CeWGheS4gOenkQ/lhoXkuIDnp5Hnl4XmiL8J6ISR55S15Zu+CeearuiCpOenkQnogr7lhoXnp5EP6IK+5YaF56eR55eF5oi/CeaJi+acr+WupAnovpPooYDnp5EJ5aSW5LqM56eRD+WkluS6jOenkeeXheaIvwblpJbpmaIJ6KW/6I2v5oi/DOW/g+eUteWbvuWupAbnnLznp5EM55y856eR55eF5oi/CeWMu+WKoeenkQ/nq5nkuJzpl6jor4rpg6gP6ZKI54G45o6o5ou/56eRFemSiOeBuOaOqOaLv+enkeeXheaIvwnkuK3oja/miL8S5Lit5Yy75L+d5YGl5Lit5b+DDOS4reWMu+mXqOivihLogr/nmKTkuoznp5Hnl4XmiL8J6IK/55ik56eREuiCv+eYpOS4gOenkeeXheaIvwnoh6rliqnmnLoP5YWs5YWx5Y2r55Sf56eRFTcCMTECMTICMTMCMTQCMTUCMTYCMTcCMTgCMTkCMjACMjECMjICMjMBNAIyNAIyNQIyNgIyNwIyOAIyOQIzMAIzMQIzMgIzMwIzNAIzNQIzNgIzNwIzOAIzOQI0MAI0MQI0MgI0MwI0NAI0NQI0NgI0NwI0OAI0OQI1MAI1MQI1MgI1MwI1NAI1NQI1NgI1NwI1OAI1OQI2MAI2MQI2MgI2MwEyFCsDN2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2cWAQI2ZAJyDxAPFgIfBGdkZBYBZmQCdA8QDxYCHwRnZGQWAQIBZAKAAQ8PFgIfBQUEMTAxMGRkAoEBDw8WAh8FBQzlhazlhbHljavnlJ9kZAKCAQ8PFgIfBQUDMTI2ZGQCgwEPDxYCHwUFBuWuoeaguGRkAgUPZBYCZg9kFgJmD2QWCgIBDxBkZBYBZmQCFQ8QDxYGHwEFAm1jHwIFAmlkHwNnZBAVBRMtLeivt+S4i+aLiemAieaLqS0tD+eUn+S6p+aAp+iHqueUqA/nlJ/kuqfmgKflj5fpm4cb6Z2e55Sf5Lqn5oCn6K+v5pyN77yI55So77yJEumdnueUn+S6p+aAp+iHquacjRUFAAExATIBMwE0FCsDBWdnZ2dnZGQCKw8PFgIfAGdkZAIxDxYCHgVzdHlsZQUNZGlzcGxheTpub25lO2QCMw88KwALAQAPFgoeC18hSXRlbUNvdW50Zh4IRGF0YUtleXMWAB4JUGFnZUNvdW50AgEeFV8hRGF0YVNvdXJjZUl0ZW1Db3VudGYeB0NhcHRpb24FOzxmb250IHN0eWxlPSdmb250LXNpemU6IDEycHgnPuesrDHpobUw5p2hIOWFsTHpobUw5p2hPGZvbnQ+ZGQCBw8PFgIfBQUBMWRkAggPDxYCHwVlZGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFisFBmN4XzEwMAUPQ2hlY2tCb3hMaXN0MSQwBQ9DaGVja0JveExpc3QxJDEFD0NoZWNrQm94TGlzdDEkMgUPQ2hlY2tCb3hMaXN0MSQzBQ9DaGVja0JveExpc3QxJDQFD0NoZWNrQm94TGlzdDEkNQUPQ2hlY2tCb3hMaXN0MSQ2BQ9DaGVja0JveExpc3QxJDcFD0NoZWNrQm94TGlzdDEkOAUPQ2hlY2tCb3hMaXN0MSQ5BRBDaGVja0JveExpc3QxJDEwBRBDaGVja0JveExpc3QxJDExBRBDaGVja0JveExpc3QxJDEyBRBDaGVja0JveExpc3QxJDEzBRBDaGVja0JveExpc3QxJDE0BRBDaGVja0JveExpc3QxJDE1BRBDaGVja0JveExpc3QxJDE2BRBDaGVja0JveExpc3QxJDE3BRBDaGVja0JveExpc3QxJDE4BRBDaGVja0JveExpc3QxJDE5BRBDaGVja0JveExpc3QxJDIwBRBDaGVja0JveExpc3QxJDIxBRBDaGVja0JveExpc3QxJDIyBRBDaGVja0JveExpc3QxJDIzBRBDaGVja0JveExpc3QxJDI0BRBDaGVja0JveExpc3QxJDI1BRBDaGVja0JveExpc3QxJDI2BRBDaGVja0JveExpc3QxJDI3BRBDaGVja0JveExpc3QxJDI4BRBDaGVja0JveExpc3QxJDI5BRBDaGVja0JveExpc3QxJDMwBRBDaGVja0JveExpc3QxJDMxBRBDaGVja0JveExpc3QxJDMyBRBDaGVja0JveExpc3QxJDMzBRBDaGVja0JveExpc3QxJDM0BRBDaGVja0JveExpc3QxJDM1BRBDaGVja0JveExpc3QxJDM2BRBDaGVja0JveExpc3QxJDM3BRBDaGVja0JveExpc3QxJDM4BRBDaGVja0JveExpc3QxJDM5BRBDaGVja0JveExpc3QxJDQwBRBDaGVja0JveExpc3QxJDQwoYE1jxeu78lG7RAb0k0oyaBMTbBM3RixwtRRpix0P9o=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./shenhe_files/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1B96C51F">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAFWwMD1wk0wI7jtGRSEYDAxO2PDiJB6uSsZDKjr58HXE8iSqjqVLdEt6ErfNE/GPbs6/8dCJZkzDWgADUW0kRi2eFwxbv9vnuxKoLnsL4+Z7lBza92AzL3h6wLUTYbzOqzYZeDtJqYinm4yMKrwvxyVjLt2+1c05Fu04mcYrOPAWTecTooYvbhz4s69/jCuCA/deUfnb6E65Ao2w6wy78BAwnfS9Q6Ys7fng4QJG0AkTUYyDrOJkPithsiGrd4bWpQCsBKwNZq+GUtLi96U9ShUS9JQzlVCK5seNnSjDw/Ij5hjK0VUeX6Oua2iGi8h64sQPnt04cGAlsOtJ6vJ5XAp8noN+wylbZsg0dXNEwJrBNNgu0TX4cFoXRJ/p0JIsIHm3E/G38jUo9+nzijj5n0RWpI0MRAU8s0wmuZ9S31LUfTbNhTVZEdfCX/bIBTM4/6aEVZyHl/YoJIDt73JR2c24gDXY7Izq67peoNC5InZZXqsSn4uQHUEVvJnbxgEOnYgAb/OJfnqILqrcgh1ShC1niia/6h2aTAXVy3LAWLYrjQRSOYozZLSzQFAojRlAPNumm2r4eFKqrx7O9YTE6dm3TR5dLyVIcMV9uiEQtAUbFwSZBiSikugfQ7KMcp+ddVC1JRoejl0HqtQ0OHVRkauo/nRexT4YN3vQ4phIgdvKx+kysMsaJRB8N89KY2dgPE6IMDUktxYDDonKk8pVxh5lKPcO1KUhnTM3l9I8Kt04UV+JMQpv4a/cD9aUSBAXwkRfIUP+Zg9ibF55t1QpULNkpIUuZ9fiTkwbeTSUEd+WGYMN1tzfh/BnVFtyOBHYH07eziDJgNAP8b2XIXsjINpxZq8AIrZ0By6KxeGKA3q2X+6A1/J8ih2D/WBdPSJo9kvlQdbgwtenQX7/572OmIdQYsM/NU/Z5r2lBSJnouRCWmUgvfSOipW6li3hh9stZcawmRNupW5HFY5PrwHDOUfeUT0qdyYrXk4KHcdtoNilhtK24ndwjjpRkx6LzjheqiQZcK2T6akpdkrmrETBNdDPYbfsoKQHvbNQOir4eAShmBib02Bl0Md86IHCjEup/2Of1yEQAgQgAv3QTGZn1ALz0mZ80oFFkm13/viZEI9bqPOb9an5ruJ+n/UIiK2OChdEAMccd3VuhmhBvvv1hykZ7VfrUDm57ElBrVkeqlss3tKgv07Ai8jbzVVeamLhHvAojolbmatkluzwHFw9KqzaMsBgdQzjilSGdAt1Zbr5ESF11IBLke+7Gk+BtiSx5FFAuihT/JMs77Kw3RnCW2zkPO40VAackrAR7kFv/+xQNJB2L41e4/IW429PZWibARdVFYdWVDWUfbauT4hKNZxjx4jIdNaiqvO0AYr3kDeIXYj22d7dgE/IvY0RPZeGayEB60UlusOLR9XZoPbnlHP9FJXvzPWYZ3kdVwhDZsXTph6rM59FJRLxpRDNktmNxMtEs/V+bkan0vooV6hECsmP06NcghLxCmHib8w2zV+G9q3PEAOj6P7UQXFizLM6t+ccAeVgHrgwgBtuvy7NGsA59LWyqun7b5z07xXkVrB2jviTUrWEvz+JlRay0QWKuG3Wy1asNUzFnUTJExMo5uqFQpPL0pfKNMdLffsOAruGdjt9tKpCGRIeqMNQeS28/7Dg/c+GGrSmSY1eF+1HwjPRV9AKgITs6DzlzatJTw6UXJW458hY1tfZcfXljA3FOrw9wlKGYVLbLZBG7LvwqQF1sk0jz8v6PD5PwCwz6GvUiM/L3uCJklDgXaOK5SwaPMkOQMoj35RbFQAGL+TBkG65f2mY/FrbY2sPEWyykW+5ZF/tYgBH8kPMArBSoH77sjY=">
+</div>
+    <table border="0" cellspacing="0" cellpadding="2" width="100%" align="center">
+        <tbody><tr>
+            <td>
+                <div class="r-top">
+                    <span class="rt-s1">
+                        <img src="./shenhe_files/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 农药中毒管理</span></div>
+                <!--r-top end-->
+                <div class="e-page-title">
+                    <h2>
+                        <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" checked="checked"><label for="rl_tab_1">审核列表</label></span>
+                    </h2>
+                </div>
+                
+                <table id="tab_lb" border="0" cellspacing="0" cellpadding="1" width="100%">
+	<tbody><tr>
+		<td>
+                            <table cellspacing="0" cellpadding="0" width="95%" align="center" class="lbtable">
+                                <tbody><tr>
+                                    <td style="font-size: 12px; width: 230px;">
+                                        报告院区：<select name="dp_yq" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_yq\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_yq" style="width:140px;">
+			<option selected="selected" value="0">某医院</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px; width: 220px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;报告科室：<select name="dll_cx_ks" id="dll_cx_ks" style="width: 120px;">
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px; width: 280px;">
+                                        报告日期：<input name="cx_bgrq1" type="text" maxlength="10" id="cx_bgrq1" title="格式yyyy-MM-dd" class="txt" onclick="WdatePicker()" style="width:80px;">至<input name="cx_bgrq2" type="text" maxlength="10" id="cx_bgrq2" title="格式yyyy-MM-dd" class="txt" onclick="WdatePicker()" style="width:80px;">
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;报告人：<input name="cx_bgr" type="text" maxlength="10" id="cx_bgr" class="txt" style="width:120px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">
+                                        患者性别：<select name="cx_xb" id="cx_xb" style="width: 140px">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="1">男</option>
+			<option value="2">女</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;患者姓名：<input name="cx_xm" type="text" maxlength="10" id="cx_xm" class="txt" style="width:120px;">
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄：<input name="cx_nl1" type="text" maxlength="10" id="cx_nl1" title="格式yy" class="txt" style="width:80px;">至<input name="cx_nl2" type="text" maxlength="10" id="cx_nl2" title="格式yy" class="txt" style="width:80px;">
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号：<input name="cx_sfzh" type="text" maxlength="18" id="cx_sfzh" class="txt" style="width:120px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">
+                                        中毒类型：<select name="cx_zdlx" id="cx_zdlx" style="width: 140px">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="1">生产性自用</option>
+			<option value="2">生产性受雇</option>
+			<option value="3">非生产性误服（用）</option>
+			<option value="4">非生产性自服</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        农药中毒名称：<input name="txtnyzdmc" type="text" maxlength="18" id="txtnyzdmc" class="txt" style="width:120px;">
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;死亡日期：<input name="txtswrq1" type="text" maxlength="10" id="txtswrq1" title="格式yyyy-M-d" class="txt" onclick="WdatePicker()" style="width:80px;">至<input name="txtswrq2" type="text" maxlength="10" id="txtswrq2" title="格式yyyy-M-d" class="txt" onclick="WdatePicker()" style="width:80px;">
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否导出：<select name="cx_dc" id="cx_dc">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">否</option>
+			<option value="1">是</option>
+
+		</select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">
+                                        品种数量：<select name="ddlnyzdsl" id="ddlnyzdsl" style="width: 140px">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="1">单一</option>
+			<option value="2">两种以上</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        &nbsp;&nbsp;报告卡状态：<select name="cx_zt" id="cx_zt">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">正常</option>
+			<option value="1">重卡</option>
+			<option value="2">废卡</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        是否审核：<select name="cx_sh" id="cx_sh" style="width: 178px">
+			<option selected="selected" value="">--请下拉选择--</option>
+			<option value="0">否</option>
+			<option value="1">是</option>
+
+		</select>
+                                    </td>
+                                    <td style="font-size: 12px;">
+                                        报告卡编号（院区）：<input name="txtbgkbh1" type="text" maxlength="10" id="txtbgkbh1" class="txt" style="width:120px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px; text-align: left;" colspan="4">
+                                        <span title="查询数据量&lt;=100"><input id="cx_100" type="checkbox" name="cx_100" checked="checked"></span>&nbsp;&nbsp;<input type="submit" name="ib_cx" value="查询" id="ib_cx" class="xk-but1">&nbsp;&nbsp;<input type="submit" name="ib_cc" value="查重" id="ib_cc" class="xk-but1">&nbsp;<input type="submit" name="ib_dcExcle" value="导excel" id="ib_dcExcle" class="xk-but1">&nbsp;<input type="submit" name="ib_dcWord" value="导word" id="ib_dcWord" class="xk-but1">
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            <table cellspacing="0" cellpadding="0" width="95%" align="center">
+                                <tbody><tr id="tr_check" style="display:none;">
+			<td style="border: #ddd 1px solid; text-align: left;" colspan="4" align="center">
+                                        <font color="red">请选择要导出的列，不选默认导出所有列：</font><input type="submit" name="ib_dcExcle2" value="导出EXCLE" id="ib_dcExcle2" class="xk-but2">
+                                        <table id="CheckBoxList1" border="0" style="height:30px;">
+				<tbody><tr>
+					<td><label for="CheckBoxList1_0">报告卡编号国家</label><input id="CheckBoxList1_0" type="checkbox" name="CheckBoxList1$0"></td><td><label for="CheckBoxList1_1">报告卡编号医院</label><input id="CheckBoxList1_1" type="checkbox" name="CheckBoxList1$1"></td><td><label for="CheckBoxList1_2">姓名</label><input id="CheckBoxList1_2" type="checkbox" name="CheckBoxList1$2" checked="checked"></td><td><label for="CheckBoxList1_3">性别</label><input id="CheckBoxList1_3" type="checkbox" name="CheckBoxList1$3"></td><td><label for="CheckBoxList1_4">身份证号</label><input id="CheckBoxList1_4" type="checkbox" name="CheckBoxList1$4"></td><td><label for="CheckBoxList1_5">年龄</label><input id="CheckBoxList1_5" type="checkbox" name="CheckBoxList1$5" checked="checked"></td><td><label for="CheckBoxList1_6">年龄单位</label><input id="CheckBoxList1_6" type="checkbox" name="CheckBoxList1$6"></td><td><label for="CheckBoxList1_7">出生日期</label><input id="CheckBoxList1_7" type="checkbox" name="CheckBoxList1$7"></td><td><label for="CheckBoxList1_8">居住地址</label><input id="CheckBoxList1_8" type="checkbox" name="CheckBoxList1$8" checked="checked"></td><td><label for="CheckBoxList1_9">诊断日期</label><input id="CheckBoxList1_9" type="checkbox" name="CheckBoxList1$9"></td><td><label for="CheckBoxList1_10">可联系的家属姓名</label><input id="CheckBoxList1_10" type="checkbox" name="CheckBoxList1$10"></td><td><label for="CheckBoxList1_11">家属联系电话</label><input id="CheckBoxList1_11" type="checkbox" name="CheckBoxList1$11"></td><td><label for="CheckBoxList1_12">中毒农药名称</label><input id="CheckBoxList1_12" type="checkbox" name="CheckBoxList1$12"></td><td><label for="CheckBoxList1_13">中毒农药品种数量</label><input id="CheckBoxList1_13" type="checkbox" name="CheckBoxList1$13"></td><td><label for="CheckBoxList1_14">职业安全卫生知识的培训</label><input id="CheckBoxList1_14" type="checkbox" name="CheckBoxList1$14"></td><td><label for="CheckBoxList1_15">是否隔行打药</label><input id="CheckBoxList1_15" type="checkbox" name="CheckBoxList1$15"></td><td><label for="CheckBoxList1_16">是否退步打药</label><input id="CheckBoxList1_16" type="checkbox" name="CheckBoxList1$16"></td><td><label for="CheckBoxList1_17">是否顺风打药</label><input id="CheckBoxList1_17" type="checkbox" name="CheckBoxList1$17"></td><td><label for="CheckBoxList1_18">是否阅读标签</label><input id="CheckBoxList1_18" type="checkbox" name="CheckBoxList1$18"></td><td><label for="CheckBoxList1_19">是否徒手配药</label><input id="CheckBoxList1_19" type="checkbox" name="CheckBoxList1$19"></td><td><label for="CheckBoxList1_20">是否使用防护用品</label><input id="CheckBoxList1_20" type="checkbox" name="CheckBoxList1$20"></td><td><label for="CheckBoxList1_21">是否施药时吸烟</label><input id="CheckBoxList1_21" type="checkbox" name="CheckBoxList1$21"></td><td><label for="CheckBoxList1_22">是否施药时进食</label><input id="CheckBoxList1_22" type="checkbox" name="CheckBoxList1$22"></td><td><label for="CheckBoxList1_23">是否用手擦汗</label><input id="CheckBoxList1_23" type="checkbox" name="CheckBoxList1$23"></td><td><label for="CheckBoxList1_24">是否药械滴漏</label><input id="CheckBoxList1_24" type="checkbox" name="CheckBoxList1$24"></td><td><label for="CheckBoxList1_25">是否身体被农药污染</label><input id="CheckBoxList1_25" type="checkbox" name="CheckBoxList1$25"></td><td><label for="CheckBoxList1_26">是否打药结束后清洗</label><input id="CheckBoxList1_26" type="checkbox" name="CheckBoxList1$26"></td><td><label for="CheckBoxList1_27">是否感觉不适继续工作</label><input id="CheckBoxList1_27" type="checkbox" name="CheckBoxList1$27"></td><td><label for="CheckBoxList1_28">首诊后转归</label><input id="CheckBoxList1_28" type="checkbox" name="CheckBoxList1$28" checked="checked"></td><td><label for="CheckBoxList1_29">具体转归信息</label><input id="CheckBoxList1_29" type="checkbox" name="CheckBoxList1$29"></td><td><label for="CheckBoxList1_30">死亡日期</label><input id="CheckBoxList1_30" type="checkbox" name="CheckBoxList1$30" checked="checked"></td><td><label for="CheckBoxList1_31">备注</label><input id="CheckBoxList1_31" type="checkbox" name="CheckBoxList1$31"></td><td><label for="CheckBoxList1_32">报告人</label><input id="CheckBoxList1_32" type="checkbox" name="CheckBoxList1$32"></td><td><label for="CheckBoxList1_33">报告日期</label><input id="CheckBoxList1_33" type="checkbox" name="CheckBoxList1$33" checked="checked"></td><td><label for="CheckBoxList1_34">报告科室</label><input id="CheckBoxList1_34" type="checkbox" name="CheckBoxList1$34"></td><td><label for="CheckBoxList1_35">填表人</label><input id="CheckBoxList1_35" type="checkbox" name="CheckBoxList1$35"></td><td><label for="CheckBoxList1_36">填表日期</label><input id="CheckBoxList1_36" type="checkbox" name="CheckBoxList1$36"></td><td><label for="CheckBoxList1_37">填表人联系电话</label><input id="CheckBoxList1_37" type="checkbox" name="CheckBoxList1$37"></td><td><label for="CheckBoxList1_38">卡片状态</label><input id="CheckBoxList1_38" type="checkbox" name="CheckBoxList1$38"></td><td><label for="CheckBoxList1_39">是否审核</label><input id="CheckBoxList1_39" type="checkbox" name="CheckBoxList1$39" checked="checked"></td><td><label for="CheckBoxList1_40">是否导出</label><input id="CheckBoxList1_40" type="checkbox" name="CheckBoxList1$40" checked="checked"></td>
+				</tr>
+			</tbody></table>
+                                    </td>
+		</tr>
+		
+                            </tbody></table>
+                            <table class="e-table" cellspacing="0" cellpadding="3" rules="all" border="1" id="dg_lb" style="border-color:#9DB2DF;width:1500px;border-collapse:collapse;">
+			<caption align="Bottom">
+				<font style="font-size: 12px">第1页0条 共1页0条<font>
+			</font></font></caption><tbody><tr class="th" align="center" style="height:30px;">
+				<td style="width:10px;">
+                                            <input id="checkall" name="checkall" type="checkbox" onclick="chooseall()">
+                                        </td><td>报告卡编号（医院）</td><td style="width:80px;">姓名</td><td style="width:30px;">性别</td><td style="width:30px;">年龄</td><td style="width:80px;">身份证</td><td style="width:180px;">地址</td><td style="width:80px;">电话</td><td style="width:80px;">中毒原因</td><td style="width:110px;">农药中毒名称</td><td style="width:110px;">诊断日期</td><td style="width:100px;">报告科室</td><td style="width:80px;">报告人</td><td style="width:120px;">报告日期</td><td style="width:120px;">转归</td><td style="width:60px;">报告卡状态</td><td style="width:30px;">审核</td><td style="width:30px;">导出word</td><td style="width:140px;">操作</td>
+			</tr><tr align="center">
+				<td colspan="20"><span>1</span></td>
+			</tr>
+		</tbody></table>
+                        </td>
+	</tr>
+</tbody></table>
+
+            </td>
+        </tr>
+    </tbody></table>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

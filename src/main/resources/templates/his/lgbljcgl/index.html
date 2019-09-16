@@ -1,0 +1,815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0086)http://www.yingyisoft.com:8516/ggws/PhsInfluenzaSur/Flu_bgk.aspx?dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	流感监测上报
+</title>
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/WdatePicker.js" type="text/javascript">
+    </script><link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        function check() {
+            var msg = "";
+            var score0 = $("#txt_Age").val();
+            if (score0 == "" || isNaN(score0)) {
+                msg += "年龄不能为空且必须为数字！\n";
+            }
+
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function check1() {
+            var msg = "";
+
+            var score1 = $("#txtTemperature").val();
+            if (score1 == "" || isNaN(score1)) {
+                msg += "体温不能为空且必须为数字！\n";
+            }
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function funbirthday() {
+            var sfz = document.getElementById("txtIdentificationNumber");
+            var sr = document.getElementById("txtBirthdayDate");
+
+            var birthday;
+            if (sfz.value.length == 18) {
+                birthday = sfz.value.substring(6, 10) + "-" + sfz.value.substring(10, 12) + "-" + sfz.value.substring(12, 14);
+                if (parseInt(sfz.value.charAt(16) / 2) * 2 != sfz.value.charAt(16)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+            }
+            else if (sfz.value.length == 15) {
+                birthday = "19" + sfz.value.substring(6, 8) + "-" + sfz.value.substring(8, 10) + "-" + sfz.value.substring(10, 12);
+                if (parseInt(sfz.value.charAt(14) / 2) * 2 != sfz.value.charAt(14)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+
+            }
+            else {
+                birthday = "";
+            }
+            sr.value = birthday;
+        }
+
+
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+    </script>
+    <script language="vbscript">
+			function nl()
+				dim birth
+				birth = document.all.txtBirthdayDate.value
+				if not isdate(birth) then
+					exit function
+				end if
+				if (cdate(birth) > date()) then
+					birth = date()
+				end if
+				dim today,y, m, d
+				today=date() 
+				if not isdate(today) then
+					today = date()
+				end if
+				if (cdate(today) > date()) then
+					today = date()
+				end if
+				
+				y = datediff("yyyy", birth, today)
+				if month(today) < month(birth) then
+					y = y -1
+				end if
+				birth = dateadd("yyyy", y, birth)
+				m = datediff("m", birth, today)
+				if day(today) < day(birth) then
+					m = m -1
+				end if
+				birth = dateadd("m", m, birth)
+				d = datediff("d", birth, today)
+				if (y>0) then
+					document.all.txt_Age.value = y
+					document.all.rl_AgeType_0.checked = true
+				elseif (m>0) then
+					document.all.txt_Age.value = m
+					document.all.rl_AgeType_1.checked = true
+				elseif (d>0) then
+					document.all.txt_Age.value = d
+					document.all.rl_AgeType_2.checked = true
+				else
+					document.all.txt_Age.value = 1
+					document.all.rl_AgeType_2.checked = true
+				end if
+				'alert(y & "岁" & m & "个月" & d & "天")
+			end function
+    </script>
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsInfluenzaSur/Flu_bgk.aspx?dlmc=FE30304E96A1DA16" id="form1">
+<div>
+<input type="hidden" name="__SCROLLPOS" id="__SCROLLPOS" value="0">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A1462589">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 流感监测管理</span></div>
+    <!--r-top end-->
+    <div class="e-page-title">
+        <h2>
+            <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" checked="checked"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_1">审核列表</label></span>
+        </h2>
+    </div>
+    <div id="tab_bgk">
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">基本信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">报告卡编号（医院）</font>：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtCardHospitalNumber" type="text" value="20190001" id="txtCardHospitalNumber" disabled="disabled" class="txt" style="width:100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">姓名 </font>：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtPatientName" type="text" maxlength="10" id="txtPatientName" class="txt" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>身份证号：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtIdentificationNumber" type="text" maxlength="18" id="txtIdentificationNumber" class="txt" onblur="funbirthday();nl();" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">性别</font>：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="Rbl_PatientGender" border="0">
+	<tbody><tr>
+		<td><input id="Rbl_PatientGender_0" type="radio" name="Rbl_PatientGender" value="1"><label for="Rbl_PatientGender_0">男</label></td><td><input id="Rbl_PatientGender_1" type="radio" name="Rbl_PatientGender" value="2"><label for="Rbl_PatientGender_1">女</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>出生日期：
+                        </td>
+                        <td height="30">
+                            <input name="txtBirthdayDate" type="text" maxlength="10" id="txtBirthdayDate" class="txt" onblur="nl();" onclick="WdatePicker()" style="width:100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">年龄</font>：
+                        </td>
+                        <td height="30">
+                            <input name="txt_Age" type="text" maxlength="3" id="txt_Age" class="txt" onblur="check()" style="width:50px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">年龄单位</font>：
+                        </td>
+                        <td height="30">
+                            <span id="rl_AgeType" style="display:inline-block;border-style:None;"><input id="rl_AgeType_0" type="radio" name="rl_AgeType" value="1"><label for="rl_AgeType_0">岁</label><input id="rl_AgeType_1" type="radio" name="rl_AgeType" value="2"><label for="rl_AgeType_1">月</label><input id="rl_AgeType_2" type="radio" name="rl_AgeType" value="3"><label for="rl_AgeType_2">天</label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            可联系的家属姓名：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtContactFamily" type="text" maxlength="10" id="txtContactFamily" class="txt" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            家属联系电话 ：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtContactFamilyTelephone" type="text" maxlength="11" id="txtContactFamilyTelephone" class="txt" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>职业 ：
+                        </td>
+                        <td height="25" align="left">
+                            <select name="ddl_hzzy" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddl_hzzy\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddl_hzzy">
+	<option selected="selected" value="">...请下拉选择...</option>
+	<option value="1">幼托儿童</option>
+	<option value="2">散居儿童</option>
+	<option value="3">学生</option>
+	<option value="4">教师</option>
+	<option value="5">保育员及保姆</option>
+	<option value="6">餐饮食品业</option>
+	<option value="7">公共场所服务员</option>
+	<option value="8">商业服务</option>
+	<option value="9">医务人员</option>
+	<option value="16">工人</option>
+	<option value="17">民工</option>
+	<option value="18">农民</option>
+	<option value="19">牧民</option>
+	<option value="20">渔(船)民</option>
+	<option value="21">海员及长途驾驶员</option>
+	<option value="22">干部职员</option>
+	<option value="23">离退人员</option>
+	<option value="24">家务及待业</option>
+	<option value="28">不详</option>
+	<option value="29">其它</option>
+
+</select>
+                            &nbsp; 其它：<input name="txt_srhzzy" type="text" maxlength="20" id="txt_srhzzy" disabled="disabled" class="txt">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>单位名称 ：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtUnitName" type="text" id="txtUnitName" class="txt" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>一年内是否接种过流感疫苗 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="rbl_ynnsfjz" border="0">
+	<tbody><tr>
+		<td><input id="rbl_ynnsfjz_0" type="radio" name="rbl_ynnsfjz" value="1"><label for="rbl_ynnsfjz_0">是</label></td><td><input id="rbl_ynnsfjz_1" type="radio" name="rbl_ynnsfjz" value="0" checked="checked"><label for="rbl_ynnsfjz_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">就诊日期</font>：
+                        </td>
+                        <td height="30">
+                            <input name="txtVisitDate" type="text" value="2019-09-15" id="txtVisitDate" class="txt" onblur="nl();" onclick="WdatePicker()" style="width:100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">发病日期</font>：
+                        </td>
+                        <td height="30">
+                            <input name="txtIllnessDate" type="text" id="txtIllnessDate" class="txt" onblur="nl();" onclick="WdatePicker()" style="width:100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">体温</font>：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtTemperature" type="text" id="txtTemperature" class="txt" onblur="check1()" style="width:50px;">℃
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">是否咳嗽</font> ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsCough" border="0">
+	<tbody><tr>
+		<td><input id="ralIsCough_0" type="radio" name="ralIsCough" value="1"><label for="ralIsCough_0">是</label></td><td><input id="ralIsCough_1" type="radio" name="ralIsCough" value="0"><label for="ralIsCough_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            是否咳痰 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsSpit" border="0">
+	<tbody><tr>
+		<td><input id="ralIsSpit_0" type="radio" name="ralIsSpit" value="1"><label for="ralIsSpit_0">是</label></td><td><input id="ralIsSpit_1" type="radio" name="ralIsSpit" value="0"><label for="ralIsSpit_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            是否呼吸困难 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsDyspnea" border="0">
+	<tbody><tr>
+		<td><input id="ralIsDyspnea_0" type="radio" name="ralIsDyspnea" value="1"><label for="ralIsDyspnea_0">是</label></td><td><input id="ralIsDyspnea_1" type="radio" name="ralIsDyspnea" value="0"><label for="ralIsDyspnea_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">是否咽痛</font> ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsAngina" border="0">
+	<tbody><tr>
+		<td><input id="ralIsAngina_0" type="radio" name="ralIsAngina" value="1"><label for="ralIsAngina_0">是</label></td><td><input id="ralIsAngina_1" type="radio" name="ralIsAngina" value="0"><label for="ralIsAngina_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            是否肌肉酸痛 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsMuscleAche" border="0">
+	<tbody><tr>
+		<td><input id="ralIsMuscleAche_0" type="radio" name="ralIsMuscleAche" value="1"><label for="ralIsMuscleAche_0">是</label></td><td><input id="ralIsMuscleAche_1" type="radio" name="ralIsMuscleAche" value="0"><label for="ralIsMuscleAche_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            是否畏寒 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="ralIsChilly" border="0">
+	<tbody><tr>
+		<td><input id="ralIsChilly_0" type="radio" name="ralIsChilly" value="1"><label for="ralIsChilly_0">是</label></td><td><input id="ralIsChilly_1" type="radio" name="ralIsChilly" value="0"><label for="ralIsChilly_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            是否有其它症状 ：
+                        </td>
+                        <td height="25">
+                            <table id="ralIsOtherSymptom" border="0">
+	<tbody><tr>
+		<td><input id="ralIsOtherSymptom_0" type="radio" name="ralIsOtherSymptom" value="1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ralIsOtherSymptom$0\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="ralIsOtherSymptom_0">是</label></td><td><input id="ralIsOtherSymptom_1" type="radio" name="ralIsOtherSymptom" value="0" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ralIsOtherSymptom$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="ralIsOtherSymptom_1">否</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>白细胞 ：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtLeucocyte" type="text" id="txtLeucocyte" class="txt" style="width:100px;">(单位：10E+9L)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            肺部阴影 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="rbl_IsLungShadow" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsLungShadow_0" type="radio" name="rbl_IsLungShadow" value="1"><label for="rbl_IsLungShadow_0">有</label></td><td><input id="rbl_IsLungShadow_1" type="radio" name="rbl_IsLungShadow" value="0"><label for="rbl_IsLungShadow_1">无</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">临床诊断</font> ：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtClinicDiagnose" type="text" value="上感" id="txtClinicDiagnose" class="txt" style="width:200px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            接触史 ：
+                        </td>
+                        <td height="25" align="left">
+                            <table id="rbl_IsTouch" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsTouch_0" type="radio" name="rbl_IsTouch" value="1"><label for="rbl_IsTouch_0">有</label></td><td><input id="rbl_IsTouch_1" type="radio" name="rbl_IsTouch" value="0" checked="checked"><label for="rbl_IsTouch_1">无</label></td>
+	</tr>
+</tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            *<font color="red">诊断日期</font>：
+                        </td>
+                        <td height="30">
+                            <input name="txtDiagnoseDate" type="text" value="2019-09-15" id="txtDiagnoseDate" class="txt" onclick="WdatePicker()" style="width:100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red"></font>所属地区地址选择：
+                        </td>
+                        <td height="30">
+                            <select name="dp_sheng" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_sheng\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_sheng" style="width:120px;">
+	<option value="00000000">全国</option>
+	<option value="11000000">北京市</option>
+	<option value="12000000">天津市</option>
+	<option value="13000000">河北省</option>
+	<option value="14000000">山西省</option>
+	<option value="15000000">内蒙古</option>
+	<option value="21000000">辽宁省</option>
+	<option value="22000000">吉林省</option>
+	<option value="23000000">黑龙江省</option>
+	<option value="31000000">上海市</option>
+	<option value="32000000">江苏省</option>
+	<option value="33000000">浙江省</option>
+	<option value="34000000">安徽省</option>
+	<option value="35000000">福建省</option>
+	<option value="36000000">江西省</option>
+	<option selected="selected" value="37000000">山东省</option>
+	<option value="41000000">河南省</option>
+	<option value="42000000">湖北省</option>
+	<option value="43000000">湖南省</option>
+	<option value="44000000">广东省</option>
+	<option value="45000000">广西</option>
+	<option value="46000000">海南省</option>
+	<option value="50000000">重庆市</option>
+	<option value="51000000">四川省</option>
+	<option value="52000000">贵州省</option>
+	<option value="53000000">云南省</option>
+	<option value="54000000">西藏</option>
+	<option value="61000000">陕西省</option>
+	<option value="62000000">甘肃省</option>
+	<option value="63000000">青海省</option>
+	<option value="64000000">宁夏</option>
+	<option value="65000000">新疆</option>
+	<option value="66000000">建设兵团</option>
+
+</select>
+                            省
+                            <select name="dp_shi" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_shi\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_shi" style="width:120px;">
+	<option value="37000000">山东省</option>
+	<option selected="selected" value="37010000">济南市</option>
+	<option value="37020000">青岛市</option>
+	<option value="37030000">淄博市</option>
+	<option value="37040000">枣庄市</option>
+	<option value="37050000">东营市</option>
+	<option value="37060000">烟台市</option>
+	<option value="37070000">潍坊市</option>
+	<option value="37080000">济宁市</option>
+	<option value="37090000">泰安市</option>
+	<option value="37100000">威海市</option>
+	<option value="37110000">日照市</option>
+	<option value="37120000">莱芜市</option>
+	<option value="37130000">临沂市</option>
+	<option value="37140000">德州市</option>
+	<option value="37150000">聊城市</option>
+	<option value="37160000">滨州市</option>
+	<option value="37170000">菏泽市</option>
+	<option value="37990000">不详市</option>
+
+</select>
+                            市
+                            <select name="dp_xian" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_xian\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_xian" style="width:120px;">
+	<option value="37010000">济南市</option>
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010300">市中区</option>
+	<option value="37010400">槐荫区</option>
+	<option value="37010500">天桥区</option>
+	<option value="37011200">历城区</option>
+	<option value="37011300">长清区</option>
+	<option value="37012400">平阴县</option>
+	<option value="37012500">济阳县</option>
+	<option value="37012600">商河县</option>
+	<option value="37018100">章丘市</option>
+	<option value="37019900">不详县</option>
+
+</select>
+                            县
+                            <select name="dp_xiang" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_xiang\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_xiang" style="width:160px;">
+	<option value="37010200">历下区</option>
+	<option selected="selected" value="37010201">解放路街道办事处</option>
+	<option value="37010202">千佛山街道办事处</option>
+	<option value="37010203">泉城路街道办事处</option>
+	<option value="37010204">趵突泉街道办事处</option>
+	<option value="37010205">大明湖街道办事处</option>
+	<option value="37010206">东关街道办事处</option>
+	<option value="37010207">建新街道办事处</option>
+	<option value="37010208">文东街道办事处</option>
+	<option value="37010209">甸柳街道办事处</option>
+	<option value="37010210">燕山街道办事处</option>
+	<option value="37010211">姚家街道办事处</option>
+	<option value="37010212">智远街道办事处</option>
+	<option value="37010213">龙洞街道办事处</option>
+	<option value="37010214">舜华路街道办事处</option>
+	<option value="37010299">不详乡镇</option>
+
+</select>
+                            乡
+                            <select name="dp_cun" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_cun\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_cun" style="width:160px;">
+	<option selected="selected" value="37010201001">青龙街</option>
+	<option value="37010201002">后坡街</option>
+	<option value="37010201003">十亩园</option>
+	<option value="37010201004">解放桥</option>
+	<option value="37010201005">历山路</option>
+	<option value="37010201006">解放路</option>
+	<option value="37010201007">青后小区</option>
+
+</select>
+                            村
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            所属地区详细地址：
+                        </td>
+                        <td height="30">
+                            <input name="txt_dz" type="text" value="山东省济南市历下区解放路街道办事处青龙街" maxlength="60" id="txt_dz" class="txt" style="width:60%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            备注 ：
+                        </td>
+                        <td height="25" align="left">
+                            <input name="txtflu_pDemo" type="text" id="txtflu_pDemo" class="txt" style="width:60%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" align="right">
+                            <font color="red" size="3"></font>
+                        </td>
+                        <td height="25" align="left">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+            <legend style="margin-left: 10px; font-size: 16px;">填报信息 </legend>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tbody><tr style="display: none">
+                    <td height="30" align="right">
+                        <font color="red"></font>填表人 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtWritePerson" type="text" value="公共卫生" maxlength="10" id="txtWritePerson" class="txt" style="width:200px;">
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td height="30" align="right">
+                        <font color="red"></font>填表日期 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtWriteDate" type="text" value="2019-09-15" id="txtWriteDate" class="txt" onclick="WdatePicker()" style="width:200px;">
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td height="30" align="right">
+                        <font color="red"></font>填表人联系电话 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtWritePersonTelephone" type="text" id="txtWritePersonTelephone" class="txt" style="width:200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" align="right">
+                        报告日期 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtReportDate" type="text" value="2019-09-15" id="txtReportDate" class="txt" onclick="WdatePicker()" style="width:200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" align="right">
+                        报告单位 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtReportUnit" type="text" value="某医院" id="txtReportUnit" class="txt" style="width:200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" align="right">
+                        报告人 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtReportPerson" type="text" value="公共卫生" maxlength="10" id="txtReportPerson" class="txt" style="width:200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" align="right">
+                        报告科室 ：
+                    </td>
+                    <td height="25" align="left">
+                        <select name="ddlReportDepartment" id="ddlReportDepartment">
+	<option value="11">B超室</option>
+	<option value="12">CT室</option>
+	<option value="13">ICU</option>
+	<option value="14">ICU病房</option>
+	<option value="15">病理科</option>
+	<option value="16">查体中心</option>
+	<option value="17">放射科</option>
+	<option value="18">妇科</option>
+	<option value="19">肝病科</option>
+	<option value="20">肛肠二科</option>
+	<option value="21">肛肠二科病房</option>
+	<option value="22">肛肠一科</option>
+	<option value="23">肛肠一科病房</option>
+	<option value="4">公卫科</option>
+	<option value="24">骨二科</option>
+	<option value="25">骨伤二科病房</option>
+	<option value="26">骨伤一科病房</option>
+	<option value="27">骨一科</option>
+	<option value="28">急诊科</option>
+	<option value="29">急诊科病房</option>
+	<option value="30">检验科</option>
+	<option value="31">康复二科</option>
+	<option value="32">麻醉疼痛科</option>
+	<option value="33">内二科</option>
+	<option value="34">内二科病房</option>
+	<option value="35">内窥镜室</option>
+	<option value="36">内三科</option>
+	<option value="37">内三科病房</option>
+	<option value="38">内一科</option>
+	<option value="39">内一科病房</option>
+	<option value="40">脑电图</option>
+	<option value="41">皮肤科</option>
+	<option value="42">肾内科</option>
+	<option value="43">肾内科病房</option>
+	<option value="44">手术室</option>
+	<option value="45">输血科</option>
+	<option value="46">外二科</option>
+	<option value="47">外二科病房</option>
+	<option value="48">外院</option>
+	<option value="49">西药房</option>
+	<option value="50">心电图室</option>
+	<option value="51">眼科</option>
+	<option value="52">眼科病房</option>
+	<option value="53">医务科</option>
+	<option value="54">站东门诊部</option>
+	<option value="55">针灸推拿科</option>
+	<option value="56">针灸推拿科病房</option>
+	<option value="57">中药房</option>
+	<option value="58">中医保健中心</option>
+	<option value="59">中医门诊</option>
+	<option value="60">肿瘤二科病房</option>
+	<option value="61">肿瘤科</option>
+	<option value="62">肿瘤一科病房</option>
+	<option value="63">自助机</option>
+	<option selected="selected" value="2">公共卫生科</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="#ff0000">报告卡状态</font>：
+                    </td>
+                    <td>
+                        <select name="dl_zt" id="dl_zt" disabled="disabled">
+	<option selected="selected" value="0">正常</option>
+	<option value="1">重卡</option>
+	<option value="2">废卡</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        *<font color="#ff0000">报告卡审核</font>：
+                    </td>
+                    <td>
+                        <select name="dl_sh" id="dl_sh" disabled="disabled">
+	<option selected="selected" value="0">否</option>
+	<option value="1">是</option>
+
+</select>
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td height="30" align="right">
+                        备注 ：
+                    </td>
+                    <td height="25" align="left">
+                        <input name="txtDemo" type="text" id="txtDemo" class="txt" style="width:200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: #66c9f3 1px solid" height="30" valign="bottom" colspan="2" align="left">
+                        <table>
+                            <tbody><tr>
+                                <td width="80px">
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <input type="submit" name="ib_add" value="保存" id="ib_add" class="xk-but1">
+                                    
+                                    <input type="submit" name="ib_lb" value="列表" id="ib_lb" class="xk-but1">
+                                    
+                                    &nbsp;&nbsp;
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </fieldset>
+    </div>
+    
+    <div style="display: none">
+        报告卡编号（院区）：<input name="cx_bgkbh" type="text" maxlength="10" id="cx_bgkbh" class="txt" style="width:120px;">
+    </div>
+    
+    
+<script language="javascript">function saveScrollPosition() { document.forms[0].__SCROLLPOS.value = thebody.scrollTop;}thebody.onscroll=saveScrollPosition;</script><script language="javascript">function set0() { thebody.scrollTop = 0;}thebody.onload=set0;</script>
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>

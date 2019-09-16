@@ -1,0 +1,901 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0092)http://www.yingyisoft.com:8516/ggws/PhsPesticidePoi/Pesticide_bgk.aspx?dlmc=FE30304E96A1DA16 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	农药中毒上报
+</title><meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+    <meta name="CODE_LANGUAGE" content="C#"><meta name="vs_defaultClientScript" content="JavaScript">
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/WdatePicker.js" type="text/javascript">
+    </script><link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        function check() {
+            var msg = "";
+            var score0 = $("#txt_sznl").val();
+            if (score0 == "" || isNaN(score0)) {
+                msg += "年龄不能为空且必须为数字！\n";
+            }
+            if (msg != "") {
+                alert(msg);
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+
+        //设置icd10编码
+        //设置icd10编码,name2为调查记录中死因推断
+        function icd(nameobj, codeobj) {
+            var rstr = showModalDialog("SelectPesticideID.aspx", null, "dialogwidth=500px;dialogheight=500px;center=yes;scrollbars=yes;status=no");
+            var i = rstr.lastIndexOf("&");
+            if (i > 0) {
+                if (document.all.Rbl_PoisonPesticideCount_0.checked) {
+                    nameobj.value = rstr.substring(0, i);
+                    codeobj.value = rstr.substring(i + 1);
+                }
+                if (document.all.Rbl_PoisonPesticideCount_1.checked) {
+                    if (nameobj.value != "") {
+                        nameobj.value += "，" + rstr.substring(0, i);
+                        codeobj.value += "," + rstr.substring(i + 1);
+                    }
+                    else {
+                        nameobj.value += rstr.substring(0, i);
+                        codeobj.value += rstr.substring(i + 1);
+                    }
+                }
+            }
+        }
+        //清除icd10编码
+        function icdk(nameobj, codeobj) {
+            nameobj.value = "";
+            codeobj.value = "";
+
+        }
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+        function funbirthday() {
+            var sfz = document.getElementById("txtIdentificationNumber");
+            var sr = document.getElementById("txtBirthdayDate");
+
+            var birthday;
+            if (sfz.value.length == 18) {
+                birthday = sfz.value.substring(6, 10) + "-" + sfz.value.substring(10, 12) + "-" + sfz.value.substring(12, 14);
+                if (parseInt(sfz.value.charAt(16) / 2) * 2 != sfz.value.charAt(16)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+            }
+            else {
+                birthday = "19" + sfz.value.substring(6, 8) + "-" + sfz.value.substring(8, 10) + "-" + sfz.value.substring(10, 12);
+                if (parseInt(sfz.value.charAt(14) / 2) * 2 != sfz.value.charAt(14)) {
+                    document.all.Rbl_PatientGender_0.checked = true;
+                }
+                else {
+                    document.all.Rbl_PatientGender_1.checked = true;
+                }
+
+            }
+
+            sr.value = birthday;
+        }
+
+
+
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+
+    </script>
+    <script language="vbscript">
+			function nl()
+				dim birth
+				birth = document.all.txtBirthdayDate.value
+				if not isdate(birth) then
+					exit function
+				end if
+				if (cdate(birth) > date()) then
+					birth = date()
+				end if
+				dim today,y, m, d
+				today=date() 
+				if not isdate(today) then
+					today = date()
+				end if
+				if (cdate(today) > date()) then
+					today = date()
+				end if
+				
+				y = datediff("yyyy", birth, today)
+				if month(today) < month(birth) then
+					y = y -1
+				end if
+				birth = dateadd("yyyy", y, birth)
+				m = datediff("m", birth, today)
+				if day(today) < day(birth) then
+					m = m -1
+				end if
+				birth = dateadd("m", m, birth)
+				d = datediff("d", birth, today)
+				if (y>0) then
+					document.all.txt_sznl.value = y
+					document.all.rl_AgeType_0.checked = true
+				elseif (m>0) then
+					document.all.txt_sznl.value = m
+					document.all.rl_AgeType_1.checked = true
+				elseif (d>0) then
+					document.all.txt_sznl.value = d
+					document.all.rl_AgeType_2.checked = true
+				else
+					document.all.txt_sznl.value = 1
+					document.all.rl_AgeType_2.checked = true
+				end if
+				'alert(y & "岁" & m & "个月" & d & "天")
+			end function
+    </script>
+</head>
+<body onkeydown="entertotab()" id="thebody">
+    <form name="Form1" method="post" action="http://www.yingyisoft.com:8516/ggws/PhsPesticidePoi/Pesticide_bgk.aspx?dlmc=FE30304E96A1DA16" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../static/js/WebResource.axd" type="text/javascript"></script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1B96C51F">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+    <table border="0" cellspacing="0" cellpadding="2" width="100%" align="center">
+        <tbody><tr>
+            <td>
+                <div class="r-top">
+                    <span class="rt-s1">
+                        <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 农药中毒管理</span></div>
+                <!--r-top end-->
+                <div class="e-page-title">
+                    <h2>
+                        <span id="rl_tab"><input id="rl_tab_0" type="radio" name="rl_tab" value="bgk" checked="checked"><label for="rl_tab_0">上报页面</label><input id="rl_tab_1" type="radio" name="rl_tab" value="lb" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_tab$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_tab_1">审核列表</label></span>
+                    </h2>
+                </div>
+                <div id="tab_bgk">
+                    <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+                        <legend style="margin-left: 10px; font-size: 16px;">基本信息 </legend>
+                        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td height="30" align="right" width="300">
+                                        *<font color="red">所属地区选择</font>：
+                                    </td>
+                                    <td height="30">
+                                        <span id="rl_brdq" style="display:inline-block;border-style:None;"><input id="rl_brdq_0" type="radio" name="rl_brdq" value="9" checked="checked"><label for="rl_brdq_0">本县区</label><input id="rl_brdq_1" type="radio" name="rl_brdq" value="10" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_brdq$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_brdq_1">本市其它县区</label><input id="rl_brdq_2" type="radio" name="rl_brdq" value="11" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_brdq$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_brdq_2">本省其它地市</label><input id="rl_brdq_3" type="radio" name="rl_brdq" value="12" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_brdq$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_brdq_3">其它省</label><input id="rl_brdq_4" type="radio" name="rl_brdq" value="13" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_brdq$4\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_brdq_4">港澳台</label><input id="rl_brdq_5" type="radio" name="rl_brdq" value="14" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rl_brdq$5\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rl_brdq_5">外籍</label></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        所属地区选择地址选择：
+                                    </td>
+                                    <td height="30">
+                                        <select name="dp_sheng" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_sheng\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_sheng" disabled="disabled" style="width: 120px">
+	<option value="00000000">全国</option>
+	<option value="11000000">北京市</option>
+	<option value="12000000">天津市</option>
+	<option value="13000000">河北省</option>
+	<option value="14000000">山西省</option>
+	<option value="15000000">内蒙古</option>
+	<option value="21000000">辽宁省</option>
+	<option value="22000000">吉林省</option>
+	<option value="23000000">黑龙江省</option>
+	<option value="31000000">上海市</option>
+	<option value="32000000">江苏省</option>
+	<option value="33000000">浙江省</option>
+	<option value="34000000">安徽省</option>
+	<option value="35000000">福建省</option>
+	<option value="36000000">江西省</option>
+	<option selected="selected" value="37000000">山东省</option>
+	<option value="41000000">河南省</option>
+	<option value="42000000">湖北省</option>
+	<option value="43000000">湖南省</option>
+	<option value="44000000">广东省</option>
+	<option value="45000000">广西</option>
+	<option value="46000000">海南省</option>
+	<option value="50000000">重庆市</option>
+	<option value="51000000">四川省</option>
+	<option value="52000000">贵州省</option>
+	<option value="53000000">云南省</option>
+	<option value="54000000">西藏</option>
+	<option value="61000000">陕西省</option>
+	<option value="62000000">甘肃省</option>
+	<option value="63000000">青海省</option>
+	<option value="64000000">宁夏</option>
+	<option value="65000000">新疆</option>
+	<option value="66000000">建设兵团</option>
+
+</select>
+                                        省
+                                        <select name="dp_shi" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_shi\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_shi" disabled="disabled" style="width: 120px">
+	<option value="37000000">山东省</option>
+	<option selected="selected" value="37010000">济南市</option>
+	<option value="37020000">青岛市</option>
+	<option value="37030000">淄博市</option>
+	<option value="37040000">枣庄市</option>
+	<option value="37050000">东营市</option>
+	<option value="37060000">烟台市</option>
+	<option value="37070000">潍坊市</option>
+	<option value="37080000">济宁市</option>
+	<option value="37090000">泰安市</option>
+	<option value="37100000">威海市</option>
+	<option value="37110000">日照市</option>
+	<option value="37120000">莱芜市</option>
+	<option value="37130000">临沂市</option>
+	<option value="37140000">德州市</option>
+	<option value="37150000">聊城市</option>
+	<option value="37160000">滨州市</option>
+	<option value="37170000">菏泽市</option>
+
+</select>
+                                        市
+                                        <select name="dp_xian" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_xian\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_xian" disabled="disabled" style="width: 120px">
+	<option value="37010000">济南市</option>
+	<option selected="selected" value="37010200">历下区</option>
+	<option value="37010300">市中区</option>
+	<option value="37010400">槐荫区</option>
+	<option value="37010500">天桥区</option>
+	<option value="37011200">历城区</option>
+	<option value="37011300">长清区</option>
+	<option value="37012400">平阴县</option>
+	<option value="37012500">济阳县</option>
+	<option value="37012600">商河县</option>
+	<option value="37018100">章丘市</option>
+
+</select>
+                                        县
+                                        <select name="dp_xiang" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;dp_xiang\&#39;,\&#39;\&#39;)&#39;, 0)" id="dp_xiang" style="width: 160px">
+	<option value="37010200">历下区</option>
+	<option selected="selected" value="37010201">解放路街道办事处</option>
+	<option value="37010202">千佛山街道办事处</option>
+	<option value="37010203">泉城路街道办事处</option>
+	<option value="37010204">趵突泉街道办事处</option>
+	<option value="37010205">大明湖街道办事处</option>
+	<option value="37010206">东关街道办事处</option>
+	<option value="37010207">建新街道办事处</option>
+	<option value="37010208">文东街道办事处</option>
+	<option value="37010209">甸柳街道办事处</option>
+	<option value="37010210">燕山街道办事处</option>
+	<option value="37010211">姚家街道办事处</option>
+	<option value="37010212">智远街道办事处</option>
+	<option value="37010213">龙洞街道办事处</option>
+	<option value="37010214">舜华路街道办事处</option>
+
+</select>
+                                        乡
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        所属地区国标 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtGB" type="text" value="37010201" id="txtGB" class="txt" style="width:200px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        所属地区详细地址：
+                                    </td>
+                                    <td height="30">
+                                        <input name="txt_dz" type="text" value="山东省济南市历下区解放路街道办事处" maxlength="60" id="txt_dz" class="txt" style="width:60%;"><span id="l_xxdz" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        <font color="red"></font>报告卡编号 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtCardHospitalNumber" type="text" value="2019001" id="txtCardHospitalNumber" disabled="disabled" class="txt" style="width:200px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">村名</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtCommunityName" type="text" id="txtCommunityName" class="txt" style="width:200px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        * <font color="red">姓名</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtPatientName" type="text" maxlength="10" id="txtPatientName" class="txt" style="width:200px;"><span id="l_xm" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">身份证号</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtIdentificationNumber" type="text" maxlength="18" id="txtIdentificationNumber" class="txt" onblur="funbirthday();nl();" style="width:200px;"><span id="l_sfzh" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        <font color="red"></font>性别 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="Rbl_PatientGender" border="0">
+	<tbody><tr>
+		<td><input id="Rbl_PatientGender_0" type="radio" name="Rbl_PatientGender" value="1"><label for="Rbl_PatientGender_0">男</label></td><td><input id="Rbl_PatientGender_1" type="radio" name="Rbl_PatientGender" value="2"><label for="Rbl_PatientGender_1">女</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        <font color="red"></font>出生日期：
+                                    </td>
+                                    <td height="30">
+                                        <input name="txtBirthdayDate" type="text" id="txtBirthdayDate" class="txt" onclick="WdatePicker()" onblur="nl();" style="width:100px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        <font color="red"></font>年龄：
+                                    </td>
+                                    <td height="30">
+                                        <input name="txt_sznl" type="text" maxlength="3" id="txt_sznl" class="txt" onblur="check()" style="width:50px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        <font color="red"></font>年龄单位：
+                                    </td>
+                                    <td height="30">
+                                        <span id="rl_AgeType" style="display:inline-block;border-style:None;"><input id="rl_AgeType_0" type="radio" name="rl_AgeType" value="1"><label for="rl_AgeType_0">岁</label><input id="rl_AgeType_1" type="radio" name="rl_AgeType" value="2"><label for="rl_AgeType_1">月</label><input id="rl_AgeType_2" type="radio" name="rl_AgeType" value="3"><label for="rl_AgeType_2">天</label></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">联系电话</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtContactTelephone" type="text" maxlength="11" id="txtContactTelephone" class="txt" style="width:200px;"><span id="l_lxdh" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        可联系的家属姓名 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtContactFamily" type="text" id="txtContactFamily" class="txt" style="width:200px;"><span id="l_jsxm" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        家属联系电话 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtContactFamilyTelephone" type="text" maxlength="11" id="txtContactFamilyTelephone" class="txt" style="width:200px;"><span id="l_jslxdh" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">中毒农药品种数量</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="Rbl_PoisonPesticideCount" border="0">
+	<tbody><tr>
+		<td><input id="Rbl_PoisonPesticideCount_0" type="radio" name="Rbl_PoisonPesticideCount" value="1" checked="checked"><label for="Rbl_PoisonPesticideCount_0">单一</label></td><td><input id="Rbl_PoisonPesticideCount_1" type="radio" name="Rbl_PoisonPesticideCount" value="2"><label for="Rbl_PoisonPesticideCount_1">两种以上</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input id="icd_a" onclick="icd(txtnzdnymc,lab_PesticideID);" value="选择" type="button">
+                                        <input id="icd_bk" onclick="icdk(txtnzdnymc,lab_PesticideID);" value="清空" type="button">
+                                    </td>
+                                </tr>
+                                <tr id="tr_zdnymc">
+	<td height="30" align="right">
+                                        *<font color="red">中毒农药名称</font> ：
+                                    </td>
+	<td height="25" align="left">
+                                        <input name="txtnzdnymc" type="text" id="txtnzdnymc" class="txt" style="width:500px;">
+                                        <input name="lab_PesticideID" type="text" id="lab_PesticideID" style="width:0px;display: none">
+                                        <span id="l_nyzdmc" style="color:Red;z-index: 0"></span>
+                                    </td>
+</tr>
+
+                                <tr id="tr_zdnymcqt">
+	<td height="30" align="right">
+                                        <font color="red"></font>其他中毒农药名称 ：
+                                    </td>
+	<td height="25" align="left">
+                                        <input name="txtPesticideDetail" type="text" id="txtPesticideDetail" class="txt" style="width:200px;">
+                                    </td>
+</tr>
+
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">中毒原因</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <select name="ddl_PoisonReason" id="ddl_PoisonReason" style="width:156px;">
+	<option value="">请选择...</option>
+	<option value="1">生产性自用</option>
+	<option value="2">生产性受雇</option>
+	<option value="3">非生产性误服（用）</option>
+	<option value="4">非生产性自服</option>
+
+</select>
+                                        <span id="l_zdyy" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        职业安全卫生知识的培训 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_SafetyKnowledgeTraining" border="0">
+	<tbody><tr>
+		<td><input id="rbl_SafetyKnowledgeTraining_0" type="radio" name="rbl_SafetyKnowledgeTraining" value="1"><label for="rbl_SafetyKnowledgeTraining_0">未接受教育</label></td><td><input id="rbl_SafetyKnowledgeTraining_1" type="radio" name="rbl_SafetyKnowledgeTraining" value="2"><label for="rbl_SafetyKnowledgeTraining_1">接受教育</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        隔行打药 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsInterlaceSpray" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsInterlaceSpray_0" type="radio" name="rbl_IsInterlaceSpray" value="1"><label for="rbl_IsInterlaceSpray_0">是</label></td><td><input id="rbl_IsInterlaceSpray_1" type="radio" name="rbl_IsInterlaceSpray" value="2"><label for="rbl_IsInterlaceSpray_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        退步打药 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsBackSpray" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsBackSpray_0" type="radio" name="rbl_IsBackSpray" value="1"><label for="rbl_IsBackSpray_0">是</label></td><td><input id="rbl_IsBackSpray_1" type="radio" name="rbl_IsBackSpray" value="2"><label for="rbl_IsBackSpray_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        顺风打药 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsTailwindSpray" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsTailwindSpray_0" type="radio" name="rbl_IsTailwindSpray" value="1"><label for="rbl_IsTailwindSpray_0">是</label></td><td><input id="rbl_IsTailwindSpray_1" type="radio" name="rbl_IsTailwindSpray" value="2"><label for="rbl_IsTailwindSpray_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        阅读标签 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsReadTag" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsReadTag_0" type="radio" name="rbl_IsReadTag" value="1"><label for="rbl_IsReadTag_0">是</label></td><td><input id="rbl_IsReadTag_1" type="radio" name="rbl_IsReadTag" value="2"><label for="rbl_IsReadTag_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        徒手配药 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsHandDosage" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsHandDosage_0" type="radio" name="rbl_IsHandDosage" value="1"><label for="rbl_IsHandDosage_0">是</label></td><td><input id="rbl_IsHandDosage_1" type="radio" name="rbl_IsHandDosage" value="2"><label for="rbl_IsHandDosage_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        使用防护用品 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsUseProtectProduct" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsUseProtectProduct_0" type="radio" name="rbl_IsUseProtectProduct" value="1"><label for="rbl_IsUseProtectProduct_0">是</label></td><td><input id="rbl_IsUseProtectProduct_1" type="radio" name="rbl_IsUseProtectProduct" value="2"><label for="rbl_IsUseProtectProduct_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        施药时吸烟 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsSpraySmoking" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsSpraySmoking_0" type="radio" name="rbl_IsSpraySmoking" value="1"><label for="rbl_IsSpraySmoking_0">是</label></td><td><input id="rbl_IsSpraySmoking_1" type="radio" name="rbl_IsSpraySmoking" value="2"><label for="rbl_IsSpraySmoking_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        施药时进食 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsSprayEating" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsSprayEating_0" type="radio" name="rbl_IsSprayEating" value="1"><label for="rbl_IsSprayEating_0">是</label></td><td><input id="rbl_IsSprayEating_1" type="radio" name="rbl_IsSprayEating" value="2"><label for="rbl_IsSprayEating_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        用手擦汗 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsHandSweat" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsHandSweat_0" type="radio" name="rbl_IsHandSweat" value="1"><label for="rbl_IsHandSweat_0">是</label></td><td><input id="rbl_IsHandSweat_1" type="radio" name="rbl_IsHandSweat" value="2"><label for="rbl_IsHandSweat_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        药械滴漏 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsEquipmentLeak" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsEquipmentLeak_0" type="radio" name="rbl_IsEquipmentLeak" value="1"><label for="rbl_IsEquipmentLeak_0">是</label></td><td><input id="rbl_IsEquipmentLeak_1" type="radio" name="rbl_IsEquipmentLeak" value="2"><label for="rbl_IsEquipmentLeak_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        身体被农药污染 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsBodyPollute" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsBodyPollute_0" type="radio" name="rbl_IsBodyPollute" value="1"><label for="rbl_IsBodyPollute_0">是</label></td><td><input id="rbl_IsBodyPollute_1" type="radio" name="rbl_IsBodyPollute" value="2"><label for="rbl_IsBodyPollute_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        打药结束后清洗 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="rbl_IsFinishWash" border="0">
+	<tbody><tr>
+		<td><input id="rbl_IsFinishWash_0" type="radio" name="rbl_IsFinishWash" value="1"><label for="rbl_IsFinishWash_0">是</label></td><td><input id="rbl_IsFinishWash_1" type="radio" name="rbl_IsFinishWash" value="2"><label for="rbl_IsFinishWash_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        感觉不适继续工作 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <table id="Rbl_IsIllnessWork" border="0">
+	<tbody><tr>
+		<td><input id="Rbl_IsIllnessWork_0" type="radio" name="Rbl_IsIllnessWork" value="1"><label for="Rbl_IsIllnessWork_0">是</label></td><td><input id="Rbl_IsIllnessWork_1" type="radio" name="Rbl_IsIllnessWork" value="2"><label for="Rbl_IsIllnessWork_1">否</label></td>
+	</tr>
+</tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">首诊后转归</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <select name="ddlFirstDiagnoseRecover" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlFirstDiagnoseRecover\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlFirstDiagnoseRecover">
+	<option selected="selected" value="">请选择...</option>
+	<option value="5">痊愈</option>
+	<option value="6">好转</option>
+	<option value="7">死亡</option>
+	<option value="8">其他</option>
+
+</select>
+                                        <span id="l_szhzg" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td height="30" align="right">
+                                        *<font color="red">诊断日期</font> ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="txtDiagnoseDate" type="text" id="txtDiagnoseDate" class="txt" onclick="WdatePicker()" style="width:200px;"><span id="l_zdrq" style="color:Red;z-index: 0"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="right">
+                                        备注 ：
+                                    </td>
+                                    <td height="25" align="left">
+                                        <input name="Demo" type="text" id="Demo" class="txt" style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                    <fieldset class="selectColor" style="width: 98%; text-align: left; margin-left: 10px;">
+                        <legend style="margin-left: 10px; font-size: 16px;">填报信息 </legend>
+                        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                            <tbody><tr>
+                                <td height="30" align="right" width="300">
+                                    <font color="red"></font>诊断单位 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtDiagnoseUnit" type="text" value="某医院" id="txtDiagnoseUnit" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    <font color="red"></font>单位负责人 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtUnitLeader" type="text" id="txtUnitLeader" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    <font color="red"></font>填表人 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtWritePerson" type="text" value="公共卫生" maxlength="10" id="txtWritePerson" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    <font color="red"></font>填表日期 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtWriteDate" type="text" value="2019-09-15" id="txtWriteDate" class="txt" onclick="WdatePicker()" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    <font color="red"></font>填表人联系电话 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtWritePersonTelephone" type="text" id="txtWritePersonTelephone" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    报告日期 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtReportDate" type="text" value="2019-09-15" id="txtReportDate" class="txt" onclick="WdatePicker()" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    报告单位 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtReportUnit" type="text" value="某医院" id="txtReportUnit" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    报告人 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <input name="txtReportPerson" type="text" value="公共卫生" maxlength="10" id="txtReportPerson" class="txt" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right">
+                                    报告科室 ：
+                                </td>
+                                <td height="25" align="left">
+                                    <select name="ddlReportDepartment" id="ddlReportDepartment">
+	<option value="11">B超室</option>
+	<option value="12">CT室</option>
+	<option value="13">ICU</option>
+	<option value="14">ICU病房</option>
+	<option value="15">病理科</option>
+	<option value="16">查体中心</option>
+	<option value="17">放射科</option>
+	<option value="18">妇科</option>
+	<option value="19">肝病科</option>
+	<option value="20">肛肠二科</option>
+	<option value="21">肛肠二科病房</option>
+	<option value="22">肛肠一科</option>
+	<option value="23">肛肠一科病房</option>
+	<option value="4">公卫科</option>
+	<option value="24">骨二科</option>
+	<option value="25">骨伤二科病房</option>
+	<option value="26">骨伤一科病房</option>
+	<option value="27">骨一科</option>
+	<option value="28">急诊科</option>
+	<option value="29">急诊科病房</option>
+	<option value="30">检验科</option>
+	<option value="31">康复二科</option>
+	<option value="32">麻醉疼痛科</option>
+	<option value="33">内二科</option>
+	<option value="34">内二科病房</option>
+	<option value="35">内窥镜室</option>
+	<option value="36">内三科</option>
+	<option value="37">内三科病房</option>
+	<option value="38">内一科</option>
+	<option value="39">内一科病房</option>
+	<option value="40">脑电图</option>
+	<option value="41">皮肤科</option>
+	<option value="42">肾内科</option>
+	<option value="43">肾内科病房</option>
+	<option value="44">手术室</option>
+	<option value="45">输血科</option>
+	<option value="46">外二科</option>
+	<option value="47">外二科病房</option>
+	<option value="48">外院</option>
+	<option value="49">西药房</option>
+	<option value="50">心电图室</option>
+	<option value="51">眼科</option>
+	<option value="52">眼科病房</option>
+	<option value="53">医务科</option>
+	<option value="54">站东门诊部</option>
+	<option value="55">针灸推拿科</option>
+	<option value="56">针灸推拿科病房</option>
+	<option value="57">中药房</option>
+	<option value="58">中医保健中心</option>
+	<option value="59">中医门诊</option>
+	<option value="60">肿瘤二科病房</option>
+	<option value="61">肿瘤科</option>
+	<option value="62">肿瘤一科病房</option>
+	<option value="63">自助机</option>
+	<option selected="selected" value="2">公共卫生科</option>
+
+</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <font color="#ff0000"></font>报告卡状态：
+                                </td>
+                                <td>
+                                    <select name="dl_zt" id="dl_zt" disabled="disabled">
+	<option selected="selected" value="0">正常</option>
+	<option value="1">重卡</option>
+	<option value="2">废卡</option>
+
+</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <font color="#ff0000"></font>报告卡审核：
+                                </td>
+                                <td>
+                                    <select name="dl_sh" id="dl_sh" disabled="disabled">
+	<option selected="selected" value="0">否</option>
+	<option value="1">是</option>
+
+</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: #66c9f3 1px solid" height="30" valign="bottom" colspan="2" align="left">
+                                    <table>
+                                        <tbody><tr>
+                                            <td width="80px">
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                <input type="submit" name="ib_add" value="保存" id="ib_add" class="xk-but1">&nbsp;&nbsp;
+                                            </td>
+                                            <td>
+                                                <input type="submit" name="ib_lb" value="列表" id="ib_lb" class="xk-but1">&nbsp;&nbsp;
+                                            </td>
+                                            <td>
+                                                &nbsp;&nbsp;
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </fieldset>
+                </div>
+                
+            </td>
+        </tr>
+    </tbody></table>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+
+
+</body></html>
