@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 模态窗口
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(HisManageController.prefix)
 public class HisManageController
 {
-    public static final  String prefix = "/his";
+    public static final  String prefix = "his";
     public static final String INDEX = "/index";
     public static final String SHENHE = "/shenhe";
     public static final String DENGJIBU = "/dengjibu";
