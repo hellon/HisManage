@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0095)http://localhost:8083/PhsSysInterface/PACSWHList.aspx?qx=8294361849FEFE34&dlmc=BF702F6D0A1D9CD7 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+	<script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/JSDate.js" type="text/javascript"></script>
+	
+    <script language="JavaScript">
+<!--
+        function MM_openBrWindow(theURL, winName, features) { //v2.0
+            window.open(theURL, winName, features);
+        }
+//-->
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox')  ) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') ) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="form1" method="post" action="http://localhost:8083/PhsSysInterface/PACSWHList.aspx?qx=8294361849FEFE34&amp;dlmc=BF702F6D0A1D9CD7" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="336F90BE">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：影像管理</span></div>
+    <!--r-top end-->
+    <div style="margin: 20px;">
+        <table border="1" cellspacing="0" bordercolor="#bfd3e6" bordercolorlight="#bfd3e6" bordercolordark="#ffffff" cellpadding="0" width="20%" align="left" style="margin-top: 2px;
+            margin-bottom: 2px; display: none">
+            <tbody><tr>
+                <td class="viewbgtd">
+                    数据量: 年度
+                </td>
+                <td align="right">
+                    <font color="red">
+                        <span id="lblRequestCount"></span></font>
+                </td>
+                <td align="right">
+                    <select name="ddlYear" id="ddlYear">
+	<option value="2011">2011</option>
+	<option value="2012">2012</option>
+	<option value="2013">2013</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+
+</select>
+                </td>
+                <td class="viewbgtd">
+                    类型
+                </td>
+                <td>
+                    <select name="ddlDiseaseInfo" id="ddlDiseaseInfo">
+	<option selected="selected" value="0">全部</option>
+	<option value="1">胸部CT增强</option>
+	<option value="2">头颅CT扫描</option>
+
+</select>
+                </td>
+            </tr>
+        </tbody></table>
+        <table border="1" cellspacing="0" bordercolor="#bfd3e6" bordercolorlight="#bfd3e6" bordercolordark="#ffffff" cellpadding="0" width="100%" align="center" style="margin-top: 2px;
+            margin-bottom: 2px;">
+            <tbody><tr>
+                <td class="viewbgtd">
+                    检查日期
+                </td>
+                <td>
+                    <input name="txt_bDateTime" type="text" value="2016-12-20" id="txt_bDateTime" class="txt" onfocus="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" onchange="return checkDate(this.value);" blur="return checkDate(this.value);" style="width: 80px;">-
+                    <input name="txt_eDateTime" type="text" value="2019-09-16" id="txt_eDateTime" class="txt" onfocus="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" onchange="return checkEndDate(this.value);" blur="return checkEndDate(this.value);" style="width: 80px;">
+                </td>
+              
+                <td style="width: 60px" align="right" class="tdbg">
+                    <b>姓名：</b>
+                </td>
+                <td class="tdbg">
+                    <input name="txtKeyword" type="text" id="txtKeyword" class="txt">
+                </td>
+                <td style="width: 160px" align="right" class="tdbg">
+                    <input type="submit" name="btnSearch" value="查询" onclick="return clientCheckBlank(&#39;0&#39;);" id="btnSearch" class="xk-but1">
+                         &nbsp;<input type="submit" name="btn_export" value="导出" id="btn_export" class="xk-but1">
+                </td>
+                <td class="tdbg">
+                    
+                </td>
+                <td class="viewbgtd">
+                    数据量 <font color="red">
+                        <span id="lblRealCount">3</span></font>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        <div>
+	<table class="e-table" cellspacing="0" cellpadding="3" rules="all" border="1" id="gridView" style="border-width:1px;border-style:solid;width:98%;border-collapse:collapse;">
+		<tbody><tr class="th" align="center" style="height:30px;background:#FFF">
+			<th scope="col" style="width:10px;">
+                                <input id="checkall" name="checkall" type="checkbox" onclick="chooseall()">
+                            </th><th scope="col">序号</th><th scope="col">姓名</th><th scope="col">性别</th><th scope="col">年龄</th><th scope="col">住院号</th><th scope="col">报告医师</th><th scope="col">检验日期</th><th scope="col">检查所见</th><th scope="col">检查诊断</th><th scope="col">是否上报</th><th scope="col">操作</th>
+		</tr><tr align="center" style="background:#FFF">
+			<td style="width:10px;">
+                                <input id="gridView_ctl02_CheckBox1" type="checkbox" name="gridView$ctl02$CheckBox1">
+                            </td><td align="center">1</td><td align="center">谭风香</td><td align="center">女 </td><td align="center">68</td><td align="center" style="width:60px;">929590</td><td align="center">赵锦桥</td><td align="center">2017/5/17 16:11:01</td><td align="center" style="width:360px;">双肺野可见多发条索状、带状及结节样、块状密度增高影，密度不均，内可见多发钙化，右肺中叶未见正常显示，内呈片状密度增高影，内可见扭曲扩张的支气管影，并见多发钙化，双肺野可见多发呈管状扩张支气管影，壁增厚，其周围可见散在分布的小斑片状密度增高影，密度不均，边缘模糊，纵隔内可见肿大淋巴结，主动脉及冠状动脉可见多发钙化；双侧胸腔未见明显积液。
+肝脏形态尚可，增强扫描实质内未见明显异常强化灶，胆囊未见明显异常；脾脏不大；胰腺形态尚可，增强扫描实质内未见明显异常强化灶，主胰管稍宽；双肾形态尚可，增强扫描实质内未见明显异常强化灶，双侧肾盂肾盏未见明显扩张积水；回盲部肠壁局部不规则增厚，增强扫描不均匀强化，腹膜后可见多发肿大淋巴结，盆腔内可见少量水样密度。</td><td align="center" style="width:160px;">双肺多发病变，考虑结核，请结合既往病史
+符合双肺支气管扩张并感染表现
+右肺中叶改变，请结合临床
+主动脉及冠状动脉多发钙化
+回盲部壁增厚，请结合肠镜检查
+腹膜后多发肿大淋巴结
+盆腔积液</td><td>
+                        <font color="red">否</font>
+                    </td><td>
+                        
+                        <a id="gridView_ctl02_ck" title="补 报" href="javascript:__doPostBack(&#39;gridView$ctl02$ck&#39;,&#39;&#39;)"><b> <img src="../static/images/bl.gif" border="0"></b></a>
+                    </td>
+		</tr><tr align="center" style="background:#FFF">
+			<td style="width:10px;">
+                                <input id="gridView_ctl03_CheckBox1" type="checkbox" name="gridView$ctl03$CheckBox1">
+                            </td><td align="center">2</td><td align="center">薛殿兰</td><td align="center">女 </td><td align="center">69</td><td align="center" style="width:60px;">649899</td><td align="center">王晓华</td><td align="center">2017/5/17 15:06:31</td><td align="center" style="width:360px;">胸廓对称，双肺纹理增多，左肺尖见一团块影，密度不均，肺门不大，纵隔居中，心影正常，肋膈角锐利。</td><td align="center" style="width:160px;">左肺尖团块影，结核球？建议CT进一步检查。</td><td>
+                        <font color="red">否</font>
+                    </td><td>
+                        
+                        <a id="gridView_ctl03_ck" title="补 报" href="javascript:__doPostBack(&#39;gridView$ctl03$ck&#39;,&#39;&#39;)"><b> <img src="../static/images/bl.gif" border="0"></b></a>
+                    </td>
+		</tr><tr align="center" style="background:#FFF">
+			<td style="width:10px;">
+                                <input id="gridView_ctl04_CheckBox1" type="checkbox" name="gridView$ctl04$CheckBox1">
+                            </td><td align="center">3</td><td align="center">刘彦汝</td><td align="center">女</td><td align="center">6</td><td align="center" style="width:60px;">649899</td><td align="center">邹佳霖</td><td align="center">2017/5/17 8:40:00</td><td align="center" style="width:360px;">    腹腔扫查：肠气多，显示部位未见包块及积液，肠蠕动正常，未见扩张及积液；肠系膜可见多个淋巴结，最大13*4，边界清晰，CDFI显示血运较丰富。右下腹扫查未见明显肿大阑尾结构</td><td align="center" style="width:160px;">    肠系膜淋巴结肿大,结核</td><td>
+                        是
+                    </td><td>
+                        
+                        <a id="gridView_ctl04_ck" title="补 报" href="javascript:__doPostBack(&#39;gridView$ctl04$ck&#39;,&#39;&#39;)"><b> <img src="../static/images/bl.gif" border="0"></b></a>
+                    </td>
+		</tr>
+	</tbody></table>
+</div>
+        <table width="98%" style="display: ">
+            <tbody><tr>
+                <td align="right">
+                    <a id="lnkbtnFrist" disabled="disabled" style="color:Navy;font-family:verdana;font-size:8pt;">首  页</a>
+                    <a id="lnkbtnPre" disabled="disabled" style="color:Navy;font-family:verdana;font-size:8pt;">上一页</a>
+                    <a id="lnkbtnNext" disabled="disabled" style="color:Navy;font-family:verdana;font-size:8pt;">下一页</a>
+                    <a id="lnkbtnLast" disabled="disabled" style="color:Navy;font-family:verdana;font-size:8pt;">尾  页</a>
+                    <span id="lblCurrentPage">[ 1 ] / [ 1 ], 总记录数：[ 3 ]</span>
+                    跳转到第<select name="ddlCurrentPage" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlCurrentPage\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlCurrentPage">
+	<option selected="selected" value="1">1</option>
+
+</select>
+                    页
+                </td>
+            </tr>
+        </tbody></table>
+        <input type="hidden" name="hidCurrentPageIndex" id="hidCurrentPageIndex" value="0">
+        <input type="hidden" name="hidDataCount" id="hidDataCount" value="3">
+        <input type="hidden" name="hidTimeVal" id="hidTimeVal" value="1000">
+        <input type="hidden" name="hidUserType" id="hidUserType" value="0">
+        <input type="hidden" name="hidDeptName" id="hidDeptName">
+        <input type="hidden" name="hidqx" id="hidqx" value="审核">
+    </div>
+    </form>
+
+
+</body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0074)http://localhost:8083/PhsChronicDis/ExportExcel.aspx?dlmc=BF702F6D0A1D9CD7 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	生成报卡
+</title>
+    <script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/JSDate.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+            $('#dg_lb').addClass('dg');
+        });
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.getElementsByTagName("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+    </script>
+</head>
+<body onkeydown="entertotab()">
+    <form name="Form1" method="post" action="http://localhost:8083/PhsChronicDis/ExportExcel.aspx?dlmc=BF702F6D0A1D9CD7" id="Form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C9382A81">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAA0091RA2+RY98qsE+yMAJWHWW0XyM07AQPLn+5ofzpqKhSWbpRmdm19cePrcH+L1y0C81+5wsgshgkZawsVJuYy9soXfy9FQLCogTHUJI2I0xykVc5E/5MBwcphRWeXKgSU1i3xS7A3PF6OfD4lqUdYR+3NnC76qyz0Ndb8PpChwkMT/aRfmvlie5U2ptoix6fpv2SQq15Mkx+3XVB/r8Dp3s4gyYDQD/G9lyF7IyDacfs8Hw7HhioDSJIgVEhblftZ0orUVHCA25C8bxom9xqZUeMVW5bOnxADZpK0I/L2ugQQNFOGrMq3rgnLtuUJGOY=">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 慢性病管理-&gt;生成报卡</span></div>
+    <!--r-top end-->
+    <table id="tab_lb" cellpadding="2" width="100%">
+	<tbody><tr>
+		<td>
+                <table cellpadding="2" align="center">
+                    <tbody><tr>
+                        <td>
+                            院区：
+                        </td>
+                        <td>
+                            <select name="ddl_yq" id="ddl_yq">
+			<option selected="selected" value="市立医院">市立医院</option>
+			<option value="威海市立医院南院区">市立医院南院区</option>
+			<option value="威海市立医院西院区">市立医院西院区</option>
+			<option value="威海市立医院钦村门诊">市立医院钦村门诊</option>
+
+		</select>
+                        </td>
+                        <td>
+                            诊断日期
+                        </td>
+                        <td>
+                            <input name="cx_rq1" type="text" value="2019-09-16" maxlength="10" id="cx_rq1" title="格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">
+                        </td>
+                        <td>
+                            至
+                        </td>
+                        <td>
+                            <input name="cx_rq2" type="text" value="2019-09-16" maxlength="10" id="cx_rq2" title="格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <select name="ddl_type" id="ddl_type">
+			<option selected="selected" value="1">肿瘤</option>
+			<option value="2">脑卒中</option>
+			<option value="3">冠心病</option>
+
+		</select>
+                            <input type="submit" name="ib_cx" value="查询" id="ib_cx" class="xk-but1">&nbsp;&nbsp;<input type="submit" name="imagbt_dc" value="导出" id="imagbt_dc" class="xk-but1">
+                            <input type="submit" name="ib_Alldr" value="生成报卡" id="ib_Alldr" class="xk-but2">
+                        </td>
+                    </tr>
+                </tbody></table>
+                <table class="e-table dg" cellspacing="0" cellpadding="2" rules="all" border="1" id="dg_lb" style="width:100%;border-collapse:collapse;">
+			<caption align="Bottom">
+				<font style="font-size: 12px">第1页8条 共1页8条<font>
+			</font></font></caption><tbody><tr class="th" align="center" style="height:30px;">
+				<td>生成报卡</td><td>姓名</td><td>性别</td><td>身份证号码</td><td>工作单位</td><td>联系电话</td><td>住院号</td><td>ICD_10编码</td><td>ICD_10名称</td><td>形态学名称</td><td>常住地详细地址</td><td>户籍所在地详细地址</td><td>填卡医师</td>
+			</tr><tr align="center">
+				<td>
+                                <font color="red">已生成</font>
+                            </td><td style="width:60px;">马秀春</td><td>1</td><td>370630195112147013</td><td>-</td><td>13792707257</td><td>932535</td><td>C22.0</td><td>原发性肝癌</td><td>肝细胞癌</td><td>南黄镇庄子园65</td><td>南黄镇庄子园65</td><td>张立军</td>
+			</tr><tr align="center" style="background-color:#FAFBFD;">
+				<td>
+                                <font color="red">已生成</font>
+                            </td><td style="width:60px;">汤建才</td><td>1</td><td>37063319650823001X</td><td>荣成供电公司</td><td>15666319896</td><td>932582</td><td>C82.1</td><td>滤泡性淋巴瘤（II级，IV期B）</td><td>骨髓活检：HE及免疫组化示骨髓增生大致正常（50%）</td><td>彩虹西区31-</td><td>彩虹西区31</td><td>于海英</td>
+			</tr><tr align="center">
+				<td>
+                                <font color="red">已生成</font>
+                            </td><td style="width:60px;">田明芬</td><td>2</td><td>370632195810086468</td><td>-</td><td>18389105744</td><td>932633</td><td>C34.1</td><td>左肺小细胞癌</td><td>肺小细胞癌</td><td>高村镇沙柳村</td><td>高村镇沙柳村</td><td>徐宁</td>
+			</tr><tr align="center" style="background-color:#FAFBFD;">
+				<td>
+                                <font color="red">已生成</font>
+                            </td><td style="width:60px;">王海祥</td><td>1</td><td>370632195909105032</td><td>-</td><td>13792705678</td><td>932694</td><td>C67.5</td><td>膀胱癌T2N0M0</td><td>膀胱高级别尿路上皮细胞癌，累及肌层</td><td>小观镇北塂村62号</td><td>小观镇北塂村62号</td><td>于鹏</td>
+			</tr><tr align="center">
+				<td>
+                                
+                            </td><td style="width:60px;">姜富德</td><td>1</td><td>370630195708215515</td><td>-</td><td>15854656056</td><td>932878</td><td>C22.0</td><td>原发性肝癌</td><td>&nbsp;</td><td>大孤山镇胡家48</td><td>大孤山镇胡家48</td><td>王冉冉</td>
+			</tr><tr align="center" style="background-color:#FAFBFD;">
+				<td>
+                                
+                            </td><td style="width:60px;">宋显兰</td><td>2</td><td>370633194401163225</td><td>-</td><td>15063167951</td><td>932936</td><td>C02.9</td><td>舌癌</td><td>&nbsp;</td><td>桥头镇黑石村219号</td><td>桥头镇黑石村219号</td><td>孙政勤</td>
+			</tr><tr align="center">
+				<td>
+                                
+                            </td><td style="width:60px;">于元熙</td><td>1</td><td>370630195809183516</td><td>-</td><td>15006317042</td><td>932965</td><td>C16.3</td><td>胃癌并胃潴留</td><td>&nbsp;</td><td>黄家沟38-402</td><td>黄家沟38-402</td><td>孙胜波</td>
+			</tr><tr align="center" style="background-color:#FAFBFD;">
+				<td>
+                                
+                            </td><td style="width:60px;">周德祝</td><td>1</td><td>370633196405278336</td><td>山东华鹏玻璃股份有限公司A</td><td>13616312186</td><td>A655760</td><td>C82.7</td><td>非霍奇金淋巴瘤（滤泡淋巴瘤EBV+）</td><td>&nbsp;</td><td>港湾街道办事处桃园村</td><td>港湾街道办事处桃园村</td><td>孙伟</td>
+			</tr><tr align="center">
+				<td colspan="13"><span>1</span></td>
+			</tr>
+		</tbody></table>
+            </td>
+	</tr>
+</tbody></table>
+
+    
+    
+    
+    
+    </form>
+
+
+</body></html>

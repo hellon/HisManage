@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0069)http://localhost:8083/PhsChronicDis/mxb_dc.aspx?dlmc=BF702F6D0A1D9CD7 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	慢性病内外网交互
+</title>
+<script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/JSDate.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+        });
+    </script>
+</head>
+<body>
+    <form name="Form1" method="post" action="http://localhost:8083/PhsChronicDis/mxb_dc.aspx?dlmc=BF702F6D0A1D9CD7" id="Form1" enctype="multipart/form-data">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjAzMjExNDA3NQ9kFgICAw8WAh4HZW5jdHlwZQUTbXVsdGlwYXJ0L2Zvcm0tZGF0YRYEAgEPEA8WCB4NRGF0YVRleHRGaWVsZAUCbWMeDkRhdGFWYWx1ZUZpZWxkBQJpZB4LXyFEYXRhQm91bmRnHgdWaXNpYmxlaGQQFQEM5biC56uL5Yy76ZmiFQEBMBQrAwFnFgFmZAIDDxAPFgYfAQUCbWMfAgUCaWQfA2dkEBUEBuiCv+eYpAnohJHljZLkuK0J5Yag5b+D55eFDOS8pOWus+S9j+mZohUEATEBMgEzATQUKwMEZ2dnZ2RkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYCBQVtYl9kYwUGaWJfZHIyfZpsXxI+Aq6igCMr/9oJABUEYyq/slacFwE2nZzOMpQ=">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E5031EC6">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAA1MdK/NsbA1rb/K6Rul7XjHcxZcSSZeoczLmbmZFNSOuO2jtFJZ1EuySZdy9pKV6QZxG1AsKs+OpWj8AtBHrwghKjSpuziQvp30XNr1epM9L8mK2P/XkQrI77/AtKZlRnWj/spK21aLkoN0MOudgKWI0kCh8Y7pkfTylIBvP7iByGwR8QRw+3Iqd8F+8lTuHNL6gpUTxjNHmSjB/vsI2XEL8TBV3T3YniPfZG5Ay3+qJvc3LmudvZUQBdBepwY6mFjfCS9sNgeFnuj1rtZ09PaolhJJTPZ8HJ7Q5nlcGqkYxlygJzO08ESiuUrDfhEYQAY=">
+</div>
+    <div class="r-top"><span class="rt-s1"><img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 慢性病管理</span></div><!--r-top end-->
+    <dl class="rr-dl" style="margin-left:20px;">
+    	<dt>系统数据导出</dt>
+        <dd> 
+        	 慢性病: 
+             <select name="dl_mxb" id="dl_mxb">
+	<option value="1">肿瘤</option>
+	<option value="2">脑卒中</option>
+	<option value="3">冠心病</option>
+	<option value="4">伤害住院</option>
+
+</select> &nbsp; &nbsp;
+            录入日期:<input name="tb_lrrq1" type="text" maxlength="10" id="tb_lrrq1" title="格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">至<input name="tb_lrrq2" type="text" maxlength="10" id="tb_lrrq2" title="格式yyyy-M-d" onclick="WdatePicker()" style="width: 80px" class="txt">
+            &nbsp; &nbsp;<input type="submit" name="ib_dc" value="导出" id="ib_dc" class="xk-but1">
+        </dd>
+        <dt>省系统返回数据导入</dt>
+        <dd>
+        	<span class="rr-s1a">选择上传的文件：</span>
+            <span class="rr-s2a"> <input name="File1" type="file" id="File1" class="xk-int3"></span>
+            <span class="rr-s5">    <input type="submit" name="ib_dr1" value="导入" id="ib_dr1" class="xk-but1"></span>
+        </dd>
+    </dl>
+    
+        <table border="0" cellspacing="0" cellpadding="1" style="display:none; margin-top:80px;">
+        <tbody><tr style="display:none;">
+                <td>
+                    <h4>
+                        前置机数据导出</h4>
+                </td>
+            </tr>
+            <tr style="display:none;">
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody><tr>
+                            <td>
+                                录入日期
+                            </td>
+                            <td>
+                                <input name="mb_lrrq1" type="text" maxlength="10" id="mb_lrrq1" title="格式yyyy-MM-dd" onclick="WdatePicker()" style="width: 70px" class="txt">
+                            </td>
+                            <td>
+                                至
+                            </td>
+                            <td>
+                                <input name="mb_lrrq2" type="text" maxlength="10" id="mb_lrrq2" title="格式yyyy-MM-dd" onclick="WdatePicker()" style="width: 70px" class="txt">
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <input type="image" name="mb_dc" id="mb_dc" src="../static/images/dc.gif" alt="导出" style="border-width:0px;">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        
+        
+         
+          
+            <tr>
+                <td>
+                    <h4>
+                        省疾控编码补充数据导入</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody><tr>
+                            <td>
+                                选择要上传的文件
+                            </td>
+                            <td>
+                                <input name="File2" type="file" id="File2">
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <input type="image" name="ib_dr2" id="ib_dr2" src="../static/images/dr.gif" alt="导入" style="border-width:0px;">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+    
+    </form>
+
+
+</body></html>

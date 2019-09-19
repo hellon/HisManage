@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0079)http://localhost:8083/PhsInfluenzaSur/Flu_CreateData.aspx?dlmc=BF702F6D0A1D9CD7 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	流感数据导入
+</title>
+<script src="../static/js/WdatePicker.js" type="text/javascript"></script>
+    <link href="../static/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/all.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/JSDate.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:text').addClass('txt');
+            $('#dg_lb').addClass('dg');
+        });
+        function entertotab() {
+            if (event.keyCode == 13) {
+                event.keyCode = 9;
+            }
+        }
+
+        //CheckBox选择项
+        var checkflag = true;
+        function chooseall() {
+            if (checkflag) {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = true;
+                    }
+                }
+                checkflag = false;
+            }
+            else {
+                var inputs = document.all.tags("input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if ((inputs[i].id != 'checkall') && (inputs[i].type == 'checkbox') && (inputs[i].id != 'cx_100')) {
+                        inputs[i].checked = false;
+                    }
+                }
+                checkflag = true;
+            }
+        }
+    </script>
+</head>
+<body onkeydown="entertotab()">
+    <form name="Form1" method="post" action="http://localhost:8083/PhsInfluenzaSur/Flu_CreateData.aspx?dlmc=BF702F6D0A1D9CD7" id="Form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNjE4MzM0Njk2D2QWAgIDD2QWAgIBD2QWAmYPZBYCZg9kFgICDQ88KwALAQAPFgoeB0NhcHRpb24FOzxmb250IHN0eWxlPSdmb250LXNpemU6IDEycHgnPuesrDHpobUy5p2hIOWFsTHpobUy5p2hPGZvbnQ+HghEYXRhS2V5cxYAHgtfIUl0ZW1Db3VudAICHhVfIURhdGFTb3VyY2VJdGVtQ291bnQCAh4JUGFnZUNvdW50AgFkFgJmD2QWBAICD2QWGmYPDxYCHgRUZXh0BREwNjY1NDQ2OUAyMzYxNjgyNWRkAgIPZBYCZg8VATs8Zm9udCBjb2xvcj0ncmVkJyBzdHlsZT0nZm9udC1zaXplOiAxMnB4Oyc+5bey5a+85YWlPC9mb250PmQCAw8PFgIfBQUJ5Lib5ruL6IqzZGQCBA8PFgIfBQUD5aWzZGQCBQ8PFgIfBQUSMzcwNjIwMTk1MzEwMTM0NTI4ZGQCBg8PFgIfBQUR6YCAKOemuynkvJHkurrlkZhkZAIHDw8WAh8FBQYmbmJzcDtkZAIIDw8WAh8FBQsxNTkwNjMxNTM5MWRkAgkPDxYCHwUFDOS+v+awkemXqOivimRkAgoPDxYCHwUFBuadqOWHgGRkAgsPDxYCHwUFAjM5ZGQCDA8PFgIfBQUS5ZK955ebICAgICAgICAgICAgZGQCDQ8PFgIfBQUTMjAxNy0wNi0xNCAxMDozMDo0N2RkAgMPZBYaZg8PFgIfBQUbMzcxMDAyMTk3NzA1MTUxNTQ2QDIzNjE2ODA5ZGQCAg9kFgJmDxUBOzxmb250IGNvbG9yPSdyZWQnIHN0eWxlPSdmb250LXNpemU6IDEycHg7Jz7lt7Llr7zlhaU8L2ZvbnQ+ZAIDDw8WAh8FBQbpqazlqptkZAIEDw8WAh8FBQPlpbNkZAIFDw8WAh8FBRIzNzEwMDIxOTc3MDUxNTE1NDZkZAIGDw8WAh8FBQblt6XkurpkZAIHDw8WAh8FBQYmbmJzcDtkZAIIDw8WAh8FBQsxMzg2MzE3OTc1MGRkAgkPDxYCHwUFDOS+v+awkemXqOivimRkAgoPDxYCHwUFBuadqOWHgGRkAgsPDxYCHwUFAjM5ZGQCDA8PFgIfBQUS5ZKz5Ze9ICAgICAgICAgICAgZGQCDQ8PFgIfBQUTMjAxNy0wNi0xNCAxMDoyODozNGRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYCBRVkZ19sYiRjdGwwMyRDaGVja0JveDEFFWRnX2xiJGN0bDA0JENoZWNrQm94MTc4bkXE1u53L5BLWRi/xa2tHqCABIYNFQeH9KACa+nM">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C5718CB6">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAg131aOCi8uh29ozZJz6i14rASsDWavhlLS4velPUoVEhykVc5E/5MBwcphRWeXKgSU1i3xS7A3PF6OfD4lqUdY3s4gyYDQD/G9lyF7IyDacXzQWEpvHF8s+Qj3ZqJORdJV8v/Tbq9eg9jEDcu1YvRLmi0n7/mDL5P8cmN0s4vd5YEjPyXO62GEJAzxzCvI+g31Tlsu8kBg6qwETTfCpD6f">
+</div>
+    <div class="r-top">
+        <span class="rt-s1">
+            <img src="../static/images/idx_33.png"></span><span class="rt-s2">当前位置：首页 -&gt; 流感监测管理-&gt;流感数据导入</span></div>
+    <!--r-top end-->
+    <table id="tab_lb" cellpadding="2" width="100%">
+	<tbody><tr>
+		<td>
+                <table cellpadding="2" align="center">
+                    <tbody><tr>
+                        <td>
+                            姓名
+                        </td>
+                        <td>
+                            <input name="cx_xm" type="text" maxlength="15" id="cx_xm" style="width: 80px" class="txt">
+                        </td>
+                        <td>
+                            就诊日期
+                        </td>
+                        <td>
+                            <input name="cx_rq1" type="text" maxlength="10" id="cx_rq1" onclick="WdatePicker()" style="width: 100px" class="txt">
+                        </td>
+                        <td>
+                            至
+                        </td>
+                        <td>
+                            <input name="cx_rq2" type="text" maxlength="10" id="cx_rq2" onclick="WdatePicker()" style="width: 100px" class="txt">
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                           
+                            <input type="submit" name="ib_cx" value="查询" id="ib_cx" class="xk-but1">&nbsp;&nbsp;<input type="submit" name="imagbt_dr" value="导入" id="imagbt_dr" class="xk-but1">
+                            
+                        </td>
+                    </tr>
+                </tbody></table>
+                <table class="e-table dg" cellspacing="0" cellpadding="2" rules="all" border="1" id="dg_lb" style="width:100%;border-collapse:collapse;">
+			<caption align="Bottom">
+				<font style="font-size: 12px">第1页2条 共1页2条<font>
+			</font></font></caption><tbody><tr class="th" align="center" style="height:30px;">
+				<td style="width:10px;">
+                                <input id="checkall" name="checkall" type="checkbox" onclick="chooseall()">
+                            </td><td>导入</td><td>姓名</td><td>性别</td><td>身份证号码</td><td>职业</td><td>工作单位</td><td>联系电话</td><td>科室名称</td><td>填卡医师</td><td>体温</td><td>症状名称</td><td>就诊时间</td>
+			</tr><tr align="center">
+				<td style="width:10px;">
+                                <input id="dg_lb_ctl03_CheckBox1" type="checkbox" name="dg_lb$ctl03$CheckBox1">
+                            </td><td style="width:40px;">
+                                <font color="red" style="font-size: 12px;">已导入</font></td><td style="width:40px;">丛滋芳</td><td>女</td><td>370620195310134528</td><td>退(离)休人员</td><td>&nbsp;</td><td>15906315391</td><td>便民门诊</td><td>杨净</td><td>39</td><td>咽痛            </td><td>2017-06-14 10:30:47</td>
+			</tr><tr align="center" style="background-color:#FAFBFD;">
+				<td style="width:10px;">
+                                <input id="dg_lb_ctl04_CheckBox1" type="checkbox" name="dg_lb$ctl04$CheckBox1">
+                            </td><td style="width:40px;">
+                                <font color="red" style="font-size: 12px;">已导入</font></td><td style="width:40px;">马媛</td><td>女</td><td>371002197705151546</td><td>工人</td><td>&nbsp;</td><td>13863179750</td><td>便民门诊</td><td>杨净</td><td>39</td><td>咳嗽            </td><td>2017-06-14 10:28:34</td>
+			</tr><tr align="center">
+				<td colspan="13"><span>1</span></td>
+			</tr>
+		</tbody></table>
+            </td>
+	</tr>
+</tbody></table>
+
+    </form>
+
+
+</body></html>
