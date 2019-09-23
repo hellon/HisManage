@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.spring.SpringUtils;
+import com.ruoyi.framework.shiro.realm.StatelessRealm;
 import com.ruoyi.framework.shiro.realm.UserRealm;
 import com.ruoyi.framework.shiro.session.OnlineSessionDAO;
 import com.ruoyi.framework.shiro.session.OnlineSessionFactory;
@@ -30,6 +31,7 @@ import com.ruoyi.framework.shiro.web.filter.LogoutFilter;
 import com.ruoyi.framework.shiro.web.filter.captcha.CaptchaValidateFilter;
 import com.ruoyi.framework.shiro.web.filter.kickout.KickoutSessionFilter;
 import com.ruoyi.framework.shiro.web.filter.online.OnlineSessionFilter;
+import com.ruoyi.framework.shiro.web.filter.stateless.StatelessAuthcFilter;
 import com.ruoyi.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
 import com.ruoyi.framework.shiro.web.session.OnlineWebSessionManager;
 import com.ruoyi.framework.shiro.web.session.SpringSessionValidationScheduler;
@@ -150,6 +152,16 @@ public class ShiroConfig
     }
 
     /**
+     * 自定义Realm
+     */
+    @Bean
+    public StatelessRealm statelessRealm()
+    {
+        StatelessRealm statelessRealm = new StatelessRealm();
+        return statelessRealm;
+    }
+
+    /**
      * 自定义sessionDAO会话
      */
     @Bean
@@ -199,11 +211,12 @@ public class ShiroConfig
      * 安全管理器
      */
     @Bean
-    public SecurityManager securityManager(UserRealm userRealm, SpringSessionValidationScheduler springSessionValidationScheduler)
+    public SecurityManager securityManager(UserRealm userRealm, StatelessRealm statelessRealm,SpringSessionValidationScheduler springSessionValidationScheduler)
     {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(userRealm);
+        securityManager.setRealm(statelessRealm);
         // 记住我
         securityManager.setRememberMeManager(rememberMeManager());
         // 注入缓存管理器;
@@ -251,6 +264,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/ruoyi/**", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
+        filterChainDefinitionMap.put("/api/**", "stateless");
         // 退出 logout地址，shiro去清除session
         filterChainDefinitionMap.put("/logout", "logout");
         // 不需要拦截的访问
@@ -263,6 +277,7 @@ public class ShiroConfig
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("captchaValidate", captchaValidateFilter());
         filters.put("kickout", kickoutSessionFilter());
+        filters.put("stateless", statelessAuthcFilter());
         // 注销成功，则跳转到指定页面
         filters.put("logout", logoutFilter());
         shiroFilterFactoryBean.setFilters(filters);
@@ -305,6 +320,16 @@ public class ShiroConfig
         captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
         captchaValidateFilter.setCaptchaType(captchaType);
         return captchaValidateFilter;
+    }
+
+    /**
+     * 自定义api接口过滤器
+     */
+    @Bean
+    public StatelessAuthcFilter statelessAuthcFilter()
+    {
+        StatelessAuthcFilter statelessAuthcFilter = new StatelessAuthcFilter();
+        return statelessAuthcFilter;
     }
 
     /**
